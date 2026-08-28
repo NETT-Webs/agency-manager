@@ -103,12 +103,12 @@ WordPress.org's own marketing assets for the plugin listing (banner, icon, and t
 
 ## License
 
-Agency Manager is licensed under the [GPLv2 or later](LICENSE).
+Agency Manager is licensed under the GPLv2 or later.
 
 ## Support
 
-TODO: Add official company support URL.
+For support, please use the GitHub Issues page to report bugs, request improvements, or ask questions about the plugin.
 
 ## Contributing
 
-TODO: Add contribution guidelines once the official repository owner/organization is confirmed.
+Contributions are welcome. Please open an issue first to discuss significant changes before submitting a pull request.
