@@ -1,0 +1,304 @@
+/**
+ * Form Builder + classic Forms/list styling — visually aligned with the new
+ * React design system's tokens (see src/style.css) even though this page
+ * itself is still plain enqueued CSS, not part of the Tailwind/React bundle
+ * (see the Phase 4 plan note on Form_Builder_Page). Every selector below is
+ * unchanged from the previous stylesheet — only colour/spacing/radius/
+ * shadow values changed — so assets/admin/form-builder.js's DOM/class
+ * structure and drag-and-drop logic are completely untouched.
+ */
+.am-form-builder-page {
+	--am-fb-primary: #6d3fc0;
+	--am-fb-primary-tint: #f2ecfb;
+	--am-fb-border: #e5e7eb;
+	--am-fb-muted-bg: #f8f8fa;
+	--am-fb-muted-text: #6b7280;
+	--am-fb-text: #1f2129;
+	--am-fb-danger: #dc2626;
+	--am-fb-radius: 10px;
+	--am-fb-radius-sm: 6px;
+	color: var(--am-fb-text);
+}
+
+.am-form-builder-page .am-card,
+.am-forms-create {
+	background: #fff;
+	border: 1px solid var(--am-fb-border);
+	border-radius: var(--am-fb-radius);
+	padding: 20px 24px;
+	margin-bottom: 20px;
+	box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.am-shortcode-copy[data-shortcode] {
+	cursor: pointer;
+}
+
+/* Forms list */
+.am-forms-table td,
+.am-forms-table th {
+	vertical-align: middle;
+}
+
+.am-delete-link {
+	color: var(--am-fb-danger);
+}
+
+/* Builder shell */
+.am-fb-toolbar {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	flex-wrap: wrap;
+	background: rgba(255, 255, 255, 0.92);
+	backdrop-filter: saturate(180%) blur(6px);
+	border: 1px solid var(--am-fb-border);
+	border-radius: var(--am-fb-radius);
+	padding: 14px 18px;
+	margin-bottom: 18px;
+	position: sticky;
+	top: 32px;
+	z-index: 10;
+	box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.am-fb-title {
+	font-size: 16px;
+	font-weight: 600;
+	flex: 1 1 240px;
+	min-width: 200px;
+	color: var(--am-fb-text);
+}
+
+.am-fb-status {
+	color: var(--am-fb-primary);
+	font-size: 13px;
+	font-weight: 500;
+	min-width: 80px;
+}
+
+.am-fb-columns {
+	display: grid;
+	grid-template-columns: 260px 1fr 340px;
+	gap: 18px;
+	align-items: start;
+}
+
+.am-fb-library,
+.am-fb-canvas,
+.am-fb-settings {
+	background: #fff;
+	border: 1px solid var(--am-fb-border);
+	border-radius: var(--am-fb-radius);
+	padding: 18px 20px;
+	max-height: calc(100vh - 180px);
+	overflow-y: auto;
+	box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.am-fb-library h2,
+.am-fb-canvas h2,
+.am-fb-settings h2 {
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: var(--am-fb-muted-text);
+	margin: 0 0 14px;
+}
+
+.am-fb-library h3 {
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: #9ca3af;
+	margin: 16px 0 8px;
+}
+
+.am-fb-lib-items {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.am-fb-lib-item {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 10px;
+	border: 1px solid var(--am-fb-border);
+	border-radius: var(--am-fb-radius-sm);
+	background: var(--am-fb-muted-bg);
+	cursor: grab;
+	font-size: 13px;
+	transition: background-color 120ms ease, border-color 120ms ease, transform 120ms ease;
+}
+
+.am-fb-lib-item:hover {
+	background: var(--am-fb-primary-tint);
+	border-color: var(--am-fb-primary);
+	transform: translateX(1px);
+}
+
+.am-fb-lib-item .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+	color: var(--am-fb-muted-text);
+}
+
+.am-fb-canvas-list {
+	min-height: 120px;
+}
+
+.am-fb-empty {
+	color: var(--am-fb-muted-text);
+	font-style: normal;
+	font-size: 13px;
+	padding: 32px 8px;
+	text-align: center;
+	border: 2px dashed var(--am-fb-border);
+	border-radius: var(--am-fb-radius);
+}
+
+.am-fb-row {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 12px;
+	margin-bottom: 8px;
+	background: var(--am-fb-muted-bg);
+	border: 1px solid var(--am-fb-border);
+	border-radius: var(--am-fb-radius-sm);
+	cursor: pointer;
+	transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+}
+
+.am-fb-row:hover {
+	border-color: #c9c9d1;
+}
+
+.am-fb-row:focus-visible,
+.am-fb-row--selected {
+	border-color: var(--am-fb-primary);
+	box-shadow: 0 0 0 2px var(--am-fb-primary-tint);
+	background: #fff;
+}
+
+.am-fb-row--drag-before {
+	border-top: 2px solid var(--am-fb-primary);
+}
+
+.am-fb-row__handle {
+	cursor: grab;
+	color: #b0b3bb;
+}
+
+.am-fb-row__main {
+	flex: 1;
+	font-size: 13px;
+	line-height: 1.4;
+	color: var(--am-fb-text);
+}
+
+.am-fb-row__meta {
+	color: var(--am-fb-muted-text);
+	font-size: 12px;
+}
+
+.am-fb-required {
+	color: var(--am-fb-danger);
+}
+
+.am-fb-row__remove {
+	color: var(--am-fb-danger);
+	font-size: 18px;
+	line-height: 1;
+	text-decoration: none;
+	opacity: 0.7;
+	transition: opacity 120ms ease;
+}
+
+.am-fb-row__remove:hover {
+	opacity: 1;
+}
+
+.am-fb-field-row {
+	margin-bottom: 14px;
+}
+
+.am-fb-field-row label {
+	display: block;
+	font-weight: 600;
+	font-size: 12px;
+	color: var(--am-fb-text);
+	margin-bottom: 4px;
+}
+
+.am-fb-field-row input[type="text"],
+.am-fb-field-row select {
+	width: 100%;
+	border-radius: var(--am-fb-radius-sm);
+	border-color: var(--am-fb-border);
+}
+
+.am-fb-field-row input[type="text"]:focus,
+.am-fb-field-row select:focus {
+	border-color: var(--am-fb-primary);
+	box-shadow: 0 0 0 1px var(--am-fb-primary);
+}
+
+.am-fb-checkbox {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	font-weight: 400 !important;
+}
+
+.am-fb-options-editor,
+.am-fb-mapping-editor,
+.am-fb-conditional-editor {
+	border-top: 1px solid var(--am-fb-border);
+	margin-top: 14px;
+	padding-top: 14px;
+}
+
+.am-fb-options-editor h4,
+.am-fb-mapping-editor h4,
+.am-fb-conditional-editor h4 {
+	margin: 0 0 10px;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--am-fb-muted-text);
+}
+
+.am-fb-option-row {
+	display: flex;
+	gap: 4px;
+	margin-bottom: 4px;
+}
+
+.am-fb-option-row input {
+	flex: 1;
+	min-width: 0;
+}
+
+/* Mobile: stack Library / Canvas / Settings sequentially */
+@media (max-width: 960px) {
+	.am-fb-columns {
+		grid-template-columns: 1fr;
+	}
+
+	.am-fb-library,
+	.am-fb-canvas,
+	.am-fb-settings {
+		max-height: none;
+	}
+
+	.am-fb-toolbar {
+		position: static;
+	}
+}

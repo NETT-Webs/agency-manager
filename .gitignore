@@ -1,0 +1,31 @@
+# Environment / secrets — never commit
+.env
+.env.*
+*.pem
+*.key
+
+# Dependencies — installable via `npm install`, not committed
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build caches / temp files
+.cache/
+*.tmp
+
+# NOTE: build/ (the compiled admin application) and src/ (its source) are
+# both intentionally NOT ignored — this repository ships the compiled
+# output alongside the source it was built from, so the plugin is directly
+# usable without a build step while still being reproducible from source.

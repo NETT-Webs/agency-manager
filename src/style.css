@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design tokens (shadcn-style HSL triplets, consumed via hsl(var(--x))).
+   Scoped to the app root only — never leaks into the rest of wp-admin. */
+#agency-manager-root {
+	--am-background: 0 0% 100%;
+	--am-foreground: 224 15% 15%;
+	--am-card: 0 0% 100%;
+	--am-card-foreground: 224 15% 15%;
+	--am-primary: 262 60% 45%;
+	--am-primary-foreground: 0 0% 100%;
+	--am-secondary: 220 20% 96%;
+	--am-secondary-foreground: 224 15% 15%;
+	--am-muted: 220 20% 96%;
+	--am-muted-foreground: 220 10% 46%;
+	--am-accent: 262 60% 96%;
+	--am-accent-foreground: 262 60% 30%;
+	--am-destructive: 0 72% 51%;
+	--am-destructive-foreground: 0 0% 100%;
+	--am-border: 220 15% 90%;
+	--am-input: 220 15% 90%;
+	--am-ring: 262 60% 45%;
+	--am-radius: 0.5rem;
+
+	background: hsl(var(--am-background));
+	color: hsl(var(--am-foreground));
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	font-size: 14px;
+	line-height: 1.5;
+	box-sizing: border-box;
+}
+
+#agency-manager-root *,
+#agency-manager-root *::before,
+#agency-manager-root *::after {
+	box-sizing: inherit;
+}
+
+#agency-manager-root a {
+	text-decoration: none;
+	color: inherit;
+}
+
+#agency-manager-root button {
+	font-family: inherit;
+}
+
+/* Restrained, purpose-built animations (no animation library dependency) —
+   used by dialog/drawer overlays, dropdown/select popovers, and toasts. */
+@keyframes am-fade-in {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+@keyframes am-scale-in {
+	from { opacity: 0; transform: translate(-50%, -50%) scale(0.97); }
+	to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes am-popover-in {
+	from { opacity: 0; transform: translateY(-4px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+@keyframes am-toast-in {
+	from { opacity: 0; transform: translateY(8px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+#agency-manager-root [data-radix-popper-content-wrapper] {
+	animation: am-popover-in 120ms ease-out;
+}
+#agency-manager-root .am-overlay-anim {
+	animation: am-fade-in 120ms ease-out;
+}
+#agency-manager-root .am-dialog-anim {
+	animation: am-scale-in 140ms ease-out;
+}
+#agency-manager-root .am-toast-enter {
+	animation: am-toast-in 160ms ease-out;
+}

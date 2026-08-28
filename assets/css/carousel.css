@@ -1,0 +1,76 @@
+.am-carousel {
+	position: relative;
+}
+
+.am-carousel__track {
+	display: flex;
+	gap: 20px;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+.am-carousel__track::-webkit-scrollbar {
+	display: none;
+}
+
+.am-carousel__track > * {
+	flex: 0 0 calc( ( 100% - 40px ) / 3 );
+	scroll-snap-align: start;
+}
+
+.am-layout-slider .am-carousel__track > * {
+	flex: 0 0 100%;
+}
+
+.am-carousel__prev,
+.am-carousel__next {
+	position: absolute;
+	top: 50%;
+	transform: translateY( -50% );
+	background: #fff;
+	border: 1px solid #ddd;
+	border-radius: 999px;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+	z-index: 2;
+}
+
+.am-carousel__prev {
+	left: -8px;
+}
+
+.am-carousel__next {
+	right: -8px;
+}
+
+/* Tablet / laptop: 2 per view instead of jumping straight from 3 to 1. */
+@media ( max-width: 1024px ) {
+	.am-carousel__track > * {
+		flex: 0 0 calc( ( 100% - 20px ) / 2 );
+	}
+}
+
+/* Mobile: 1 per view, and bring the arrows in from the edges so they
+   don't overflow a viewport with little to no side margin. */
+@media ( max-width: 600px ) {
+	.am-carousel__track > * {
+		flex: 0 0 calc( 100% - 40px );
+	}
+
+	.am-carousel__prev,
+	.am-carousel__next {
+		width: 34px;
+		height: 34px;
+	}
+
+	.am-carousel__prev {
+		left: 4px;
+	}
+
+	.am-carousel__next {
+		right: 4px;
+	}
+}

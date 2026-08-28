@@ -1,0 +1,306 @@
+.am-meta-table th {
+	width: 200px;
+}
+
+/* Tabbed Add Talent / Add Location editor */
+.am-tab-nav {
+	margin-bottom: 0;
+}
+
+.am-tab-panel {
+	display: none;
+	padding: 16px 4px 4px;
+}
+
+.am-tab-panel.is-active {
+	display: block;
+}
+
+.am-meta-preview {
+	max-width: 320px;
+	margin-top: 8px;
+}
+
+.am-meta-preview .am-talent-card,
+.am-meta-preview .am-location-card {
+	pointer-events: none;
+}
+
+.am-media-picker {
+	margin: 8px 0 16px;
+}
+
+.am-media-preview {
+	display: block;
+	margin: 8px 0;
+}
+
+.am-media-thumb {
+	display: inline-block;
+	margin: 0 6px 6px 0;
+}
+
+.am-media-thumb img {
+	max-width: 80px;
+	height: auto;
+	border: 1px solid #ddd;
+	border-radius: 2px;
+}
+
+/* Dashboard */
+.am-admin-page .am-dashboard-tiles {
+	display: grid;
+	grid-template-columns: repeat( auto-fill, minmax( 180px, 1fr ) );
+	gap: 16px;
+	margin: 20px 0 32px;
+}
+
+.am-dashboard-tile {
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	padding: 16px 18px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.am-dashboard-tile__value {
+	font-size: 26px;
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.am-dashboard-tile__label {
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: #646970;
+}
+
+.am-dashboard-columns {
+	display: grid;
+	grid-template-columns: minmax( 0, 2fr ) minmax( 220px, 1fr );
+	gap: 24px;
+	align-items: start;
+}
+
+@media ( max-width: 900px ) {
+	.am-dashboard-columns {
+		grid-template-columns: 1fr;
+	}
+}
+
+.am-dashboard-activity {
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	margin: 0;
+	padding: 4px 16px;
+}
+
+.am-dashboard-quick-actions {
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	margin: 0;
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.am-dashboard-quick-actions li {
+	list-style: none;
+	margin: 0;
+}
+
+.am-dashboard-quick-actions .button {
+	width: 100%;
+	text-align: center;
+}
+
+.am-dashboard-activity li {
+	padding: 10px 0;
+	border-bottom: 1px solid #f0f0f1;
+	display: flex;
+	justify-content: space-between;
+	gap: 12px;
+}
+
+.am-dashboard-activity li:last-child {
+	border-bottom: none;
+}
+
+.am-dashboard-activity__meta {
+	color: #646970;
+	font-size: 12px;
+	white-space: nowrap;
+}
+
+/* Setup wizard */
+.am-wizard-wrap {
+	max-width: 720px;
+	margin: 40px auto;
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 6px;
+	padding: 32px 40px;
+}
+
+.am-wizard-steps {
+	display: flex;
+	gap: 8px;
+	margin-bottom: 24px;
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: #646970;
+}
+
+.am-wizard-steps .is-current {
+	color: #2271b1;
+	font-weight: 600;
+}
+
+.am-wizard-agency-types {
+	display: grid;
+	grid-template-columns: repeat( auto-fill, minmax( 200px, 1fr ) );
+	gap: 12px;
+	margin: 20px 0;
+}
+
+.am-wizard-agency-types label {
+	display: block;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	padding: 14px 16px;
+	cursor: pointer;
+}
+
+/* Shortcode Reference panel (Dashboard, Forms, Applications, and injected
+   above the native Talent/Location list screens). */
+.am-shortcode-reference {
+	max-width: 720px;
+}
+
+.am-shortcode-reference__group {
+	margin: 20px 0 8px;
+}
+
+.am-shortcode-reference__item {
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	padding: 10px 14px;
+	margin-bottom: 8px;
+	background: #fff;
+}
+
+.am-shortcode-reference__item summary {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	cursor: pointer;
+	list-style: none;
+}
+
+.am-shortcode-reference__item summary::-webkit-details-marker {
+	display: none;
+}
+
+.am-shortcode-reference__item summary code {
+	font-size: 13px;
+	background: #f0f0f1;
+	padding: 3px 8px;
+	border-radius: 3px;
+}
+
+.am-shortcode-reference__params {
+	font-size: 13px;
+}
+
+.am-shortcode-reference__placements td {
+	vertical-align: middle;
+}
+
+.am-shortcode-copy {
+	position: relative;
+}
+
+.am-shortcode-copy__toast {
+	margin-left: 8px;
+	font-size: 12px;
+	color: #2c5a2c;
+	font-weight: 600;
+}
+
+.am-shortcode-reference-notice {
+	padding: 12px 16px;
+}
+
+.am-shortcode-reference__search {
+	margin-bottom: 12px;
+}
+
+.am-shortcode-reference__search input {
+	width: 100%;
+	max-width: 360px;
+}
+
+.am-shortcode-reference__no-results {
+	font-style: italic;
+	color: #646970;
+}
+
+.am-shortcode-builder {
+	background: #f6f7f7;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	padding: 10px 12px;
+	margin-top: 10px;
+}
+
+.am-shortcode-builder__label {
+	font-weight: 600;
+	margin: 0 0 6px;
+}
+
+.am-shortcode-builder__fields {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px 16px;
+	margin-bottom: 10px;
+}
+
+.am-shortcode-builder__field {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	font-size: 12px;
+}
+
+.am-shortcode-builder__field input,
+.am-shortcode-builder__field select {
+	min-width: 90px;
+}
+
+.am-shortcode-builder__field input[type="checkbox"] {
+	align-self: flex-start;
+	margin-top: 4px;
+}
+
+.am-shortcode-builder__output {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0;
+}
+
+.am-shortcode-builder__code {
+	font-size: 13px;
+	background: #fff;
+	border: 1px solid #dcdcde;
+	padding: 4px 8px;
+	border-radius: 3px;
+	word-break: break-all;
+}
