@@ -12,7 +12,7 @@ class Talent_Application_Form_Widget extends Base_Form_Widget {
 	}
 
 	public function get_title(): string {
-		return __( 'Talent Application Form', 'agency-manager' );
+		return __( 'Talent Application Form', 'nettwebs-talent-location-management' );
 	}
 
 	public function get_icon(): string {

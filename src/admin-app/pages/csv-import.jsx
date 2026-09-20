@@ -179,7 +179,7 @@ function MapStep( { type, session, fields, onContinue, onBack } ) {
 					</div>
 				</CardHeader>
 				<CardContent>
-					<p className="am-mb-4 am-text-sm am-text-muted-foreground">Every spreadsheet column below can be mapped to an Agency Manager field, or left as "Don't import."</p>
+					<p className="am-mb-4 am-text-sm am-text-muted-foreground">Every spreadsheet column below can be mapped to a plugin field, or left as "Don't import."</p>
 					<div className="am-flex am-flex-col am-divide-y am-divide-border am-rounded-md am-border am-border-border">
 						{ session.columns.map( ( column ) => (
 							<div key={ column } className="am-grid am-grid-cols-[1fr_auto_1fr] am-items-center am-gap-3 am-p-3">

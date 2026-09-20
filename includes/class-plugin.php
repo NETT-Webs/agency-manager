@@ -23,7 +23,12 @@ class Plugin {
 	}
 
 	private function __construct() {
-		add_action( 'init', array( $this, 'load_textdomain' ) );
+		// No manual load_plugin_textdomain() call -- since WP 4.6, WordPress
+		// auto-loads translations for WordPress.org-hosted plugins whose text
+		// domain exactly matches their plugin slug (both are
+		// nettwebs-talent-location-management here), fetched directly from
+		// translate.wordpress.org. Requires at least: 6.0 is comfortably past
+		// that threshold.
 
 		// Registration guard decides, per data type, whether this plugin or the
 		// active theme owns CPT/taxonomy/meta-box registration. It is a plain
@@ -72,9 +77,5 @@ class Plugin {
 			( new Admin\Form_Builder_Ajax() )->register();
 			( new Wizard\Setup_Wizard() )->register();
 		}
-	}
-
-	public function load_textdomain(): void {
-		load_plugin_textdomain( 'agency-manager', false, dirname( AM_PLUGIN_BASENAME ) . '/languages' );
 	}
 }

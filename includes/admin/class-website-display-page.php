@@ -88,7 +88,7 @@ class Website_Display_Page {
 	}
 
 	public function render_saved_notice(): void {
-		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Website Display settings saved.', 'agency-manager' ) . '</p></div>';
+		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Website Display settings saved.', 'nettwebs-talent-location-management' ) . '</p></div>';
 	}
 
 	public function render(): void {
@@ -97,19 +97,19 @@ class Website_Display_Page {
 		Media_Picker_Assets::enqueue();
 
 		$type_labels = array(
-			'talent'   => __( 'Talent', 'agency-manager' ),
-			'location' => __( 'Locations', 'agency-manager' ),
+			'talent'   => __( 'Talent', 'nettwebs-talent-location-management' ),
+			'location' => __( 'Locations', 'nettwebs-talent-location-management' ),
 		);
 
 		$mode_labels = array(
-			'hidden'   => __( 'Hidden', 'agency-manager' ),
-			'scouting' => __( 'Now Scouting', 'agency-manager' ),
-			'live'     => __( 'Live', 'agency-manager' ),
+			'hidden'   => __( 'Hidden', 'nettwebs-talent-location-management' ),
+			'scouting' => __( 'Now Scouting', 'nettwebs-talent-location-management' ),
+			'live'     => __( 'Live', 'nettwebs-talent-location-management' ),
 		);
 		?>
 		<div class="wrap am-admin-page">
-			<h1><?php esc_html_e( 'Website Display', 'agency-manager' ); ?></h1>
-			<p class="description"><?php esc_html_e( 'Everything that controls how Talent and Locations appear on your website — Display Mode, the "Now Scouting" placeholders, and the homepage sections — all in one place. No Elementor editing required.', 'agency-manager' ); ?></p>
+			<h1><?php esc_html_e( 'Website Display', 'nettwebs-talent-location-management' ); ?></h1>
+			<p class="description"><?php esc_html_e( 'Everything that controls how Talent and Locations appear on your website — Display Mode, the "Now Scouting" placeholders, and the homepage sections — all in one place. No Elementor editing required.', 'nettwebs-talent-location-management' ); ?></p>
 
 			<form method="post">
 				<?php wp_nonce_field( self::NONCE_ACTION, 'am_website_display_nonce' ); ?>
@@ -117,10 +117,10 @@ class Website_Display_Page {
 				<?php foreach ( self::TYPES as $type ) : ?>
 					<h2><?php echo esc_html( $type_labels[ $type ] ); ?></h2>
 
-					<h3><?php esc_html_e( 'Display Mode', 'agency-manager' ); ?></h3>
+					<h3><?php esc_html_e( 'Display Mode', 'nettwebs-talent-location-management' ); ?></h3>
 					<table class="form-table">
 						<tr>
-							<th><?php esc_html_e( 'Mode', 'agency-manager' ); ?></th>
+							<th><?php esc_html_e( 'Mode', 'nettwebs-talent-location-management' ); ?></th>
 							<td>
 								<?php foreach ( $mode_labels as $mode_value => $mode_label ) : ?>
 									<label style="margin-right:16px;">
@@ -132,30 +132,30 @@ class Website_Display_Page {
 						</tr>
 					</table>
 
-					<h3><?php esc_html_e( 'Placeholder Manager ("Now Scouting" cards)', 'agency-manager' ); ?></h3>
+					<h3><?php esc_html_e( 'Placeholder Manager ("Now Scouting" cards)', 'nettwebs-talent-location-management' ); ?></h3>
 					<table class="form-table">
 						<tr>
-							<th><?php esc_html_e( 'Badge', 'agency-manager' ); ?></th>
+							<th><?php esc_html_e( 'Badge', 'nettwebs-talent-location-management' ); ?></th>
 							<td><input type="text" class="regular-text" name="placeholder_<?php echo esc_attr( $type ); ?>_badge" value="<?php echo esc_attr( $settings['placeholder'][ $type ]['badge'] ); ?>"></td>
 						</tr>
 						<tr>
-							<th><?php esc_html_e( 'Title', 'agency-manager' ); ?></th>
+							<th><?php esc_html_e( 'Title', 'nettwebs-talent-location-management' ); ?></th>
 							<td><input type="text" class="regular-text" name="placeholder_<?php echo esc_attr( $type ); ?>_heading" value="<?php echo esc_attr( $settings['placeholder'][ $type ]['heading'] ); ?>"></td>
 						</tr>
 						<tr>
-							<th><?php esc_html_e( 'Description', 'agency-manager' ); ?></th>
+							<th><?php esc_html_e( 'Description', 'nettwebs-talent-location-management' ); ?></th>
 							<td><textarea class="large-text" rows="3" name="placeholder_<?php echo esc_attr( $type ); ?>_description"><?php echo esc_textarea( $settings['placeholder'][ $type ]['description'] ); ?></textarea></td>
 						</tr>
 						<tr>
-							<th><?php esc_html_e( 'Button Text', 'agency-manager' ); ?></th>
+							<th><?php esc_html_e( 'Button Text', 'nettwebs-talent-location-management' ); ?></th>
 							<td><input type="text" class="regular-text" name="placeholder_<?php echo esc_attr( $type ); ?>_button_text" value="<?php echo esc_attr( $settings['placeholder'][ $type ]['button_text'] ); ?>"></td>
 						</tr>
 						<tr>
-							<th><?php esc_html_e( 'Button Link', 'agency-manager' ); ?></th>
+							<th><?php esc_html_e( 'Button Link', 'nettwebs-talent-location-management' ); ?></th>
 							<td><input type="url" class="regular-text" name="placeholder_<?php echo esc_attr( $type ); ?>_button_link" value="<?php echo esc_attr( $settings['placeholder'][ $type ]['button_link'] ); ?>" placeholder="<?php echo esc_attr( home_url( '/contact/' ) ); ?>"></td>
 						</tr>
 						<tr>
-							<th><?php esc_html_e( 'Scouting Images', 'agency-manager' ); ?></th>
+							<th><?php esc_html_e( 'Scouting Images', 'nettwebs-talent-location-management' ); ?></th>
 							<td>
 								<?php $image_ids = (array) $settings['placeholder'][ $type ]['image_ids']; ?>
 								<p class="am-media-picker" data-multiple="1">
@@ -165,51 +165,51 @@ class Website_Display_Page {
 											<span class="am-media-thumb"><?php echo wp_get_attachment_image( (int) $image_id, 'thumbnail' ); ?></span>
 										<?php endforeach; ?>
 									</span><br>
-									<button type="button" class="button am-media-select"><?php esc_html_e( 'Select Images', 'agency-manager' ); ?></button>
-									<button type="button" class="button am-media-clear"><?php esc_html_e( 'Clear', 'agency-manager' ); ?></button>
+									<button type="button" class="button am-media-select"><?php esc_html_e( 'Select Images', 'nettwebs-talent-location-management' ); ?></button>
+									<button type="button" class="button am-media-clear"><?php esc_html_e( 'Clear', 'nettwebs-talent-location-management' ); ?></button>
 								</p>
-								<p class="description"><?php esc_html_e( 'Select one or more images. Each placeholder card uses the next image in order, cycling back to the first once every image has been used. Leave empty to use the plain placeholder block.', 'agency-manager' ); ?></p>
+								<p class="description"><?php esc_html_e( 'Select one or more images. Each placeholder card uses the next image in order, cycling back to the first once every image has been used. Leave empty to use the plain placeholder block.', 'nettwebs-talent-location-management' ); ?></p>
 							</td>
 						</tr>
 						<tr>
-							<th><?php esc_html_e( 'Number of Placeholder Cards', 'agency-manager' ); ?></th>
+							<th><?php esc_html_e( 'Number of Placeholder Cards', 'nettwebs-talent-location-management' ); ?></th>
 							<td><input type="number" min="1" max="24" name="placeholder_<?php echo esc_attr( $type ); ?>_count" value="<?php echo esc_attr( $settings['placeholder'][ $type ]['count'] ); ?>"></td>
 						</tr>
 					</table>
 
-					<h3><?php esc_html_e( 'Homepage Section', 'agency-manager' ); ?></h3>
+					<h3><?php esc_html_e( 'Homepage Section', 'nettwebs-talent-location-management' ); ?></h3>
 					<table class="form-table">
 						<tr>
-							<th><?php esc_html_e( 'Heading', 'agency-manager' ); ?></th>
+							<th><?php esc_html_e( 'Heading', 'nettwebs-talent-location-management' ); ?></th>
 							<td><input type="text" class="regular-text" name="homepage_<?php echo esc_attr( $type ); ?>_heading" value="<?php echo esc_attr( $settings['homepage'][ $type ]['heading'] ); ?>"></td>
 						</tr>
 						<tr>
-							<th><?php esc_html_e( 'Subheading', 'agency-manager' ); ?></th>
+							<th><?php esc_html_e( 'Subheading', 'nettwebs-talent-location-management' ); ?></th>
 							<td><input type="text" class="regular-text" name="homepage_<?php echo esc_attr( $type ); ?>_subheading" value="<?php echo esc_attr( $settings['homepage'][ $type ]['subheading'] ); ?>"></td>
 						</tr>
 						<tr>
-							<th><?php esc_html_e( 'Button Text', 'agency-manager' ); ?></th>
+							<th><?php esc_html_e( 'Button Text', 'nettwebs-talent-location-management' ); ?></th>
 							<td><input type="text" class="regular-text" name="homepage_<?php echo esc_attr( $type ); ?>_button_text" value="<?php echo esc_attr( $settings['homepage'][ $type ]['button_text'] ); ?>"></td>
 						</tr>
 						<tr>
-							<th><?php esc_html_e( 'Button Link', 'agency-manager' ); ?></th>
+							<th><?php esc_html_e( 'Button Link', 'nettwebs-talent-location-management' ); ?></th>
 							<td><input type="url" class="regular-text" name="homepage_<?php echo esc_attr( $type ); ?>_button_link" value="<?php echo esc_attr( $settings['homepage'][ $type ]['button_link'] ); ?>"></td>
 						</tr>
 						<tr>
-							<th><?php esc_html_e( 'Number of Cards', 'agency-manager' ); ?></th>
+							<th><?php esc_html_e( 'Number of Cards', 'nettwebs-talent-location-management' ); ?></th>
 							<td><input type="number" min="1" max="24" name="homepage_<?php echo esc_attr( $type ); ?>_count" value="<?php echo esc_attr( $settings['homepage'][ $type ]['count'] ); ?>"></td>
 						</tr>
 						<tr>
-							<th><?php esc_html_e( 'Display Mode', 'agency-manager' ); ?></th>
+							<th><?php esc_html_e( 'Display Mode', 'nettwebs-talent-location-management' ); ?></th>
 							<td>
 								<select name="homepage_<?php echo esc_attr( $type ); ?>_display_mode">
 									<?php
 									foreach (
 										array(
-											'inherit'  => __( 'Inherit from Display Mode above', 'agency-manager' ),
-											'hidden'   => __( 'Hidden', 'agency-manager' ),
-											'scouting' => __( 'Now Scouting', 'agency-manager' ),
-											'live'     => __( 'Live', 'agency-manager' ),
+											'inherit'  => __( 'Inherit from Display Mode above', 'nettwebs-talent-location-management' ),
+											'hidden'   => __( 'Hidden', 'nettwebs-talent-location-management' ),
+											'scouting' => __( 'Now Scouting', 'nettwebs-talent-location-management' ),
+											'live'     => __( 'Live', 'nettwebs-talent-location-management' ),
 										) as $value => $label
 									) :
 										?>
@@ -219,16 +219,16 @@ class Website_Display_Page {
 							</td>
 						</tr>
 						<tr>
-							<th><?php esc_html_e( 'Card Hover Animation', 'agency-manager' ); ?></th>
+							<th><?php esc_html_e( 'Card Hover Animation', 'nettwebs-talent-location-management' ); ?></th>
 							<td>
 								<select name="homepage_<?php echo esc_attr( $type ); ?>_animation">
 									<?php
 									foreach (
 										array(
-											'none' => __( 'None', 'agency-manager' ),
-											'lift' => __( 'Lift', 'agency-manager' ),
-											'zoom' => __( 'Zoom', 'agency-manager' ),
-											'fade' => __( 'Fade', 'agency-manager' ),
+											'none' => __( 'None', 'nettwebs-talent-location-management' ),
+											'lift' => __( 'Lift', 'nettwebs-talent-location-management' ),
+											'zoom' => __( 'Zoom', 'nettwebs-talent-location-management' ),
+											'fade' => __( 'Fade', 'nettwebs-talent-location-management' ),
 										) as $value => $label
 									) :
 										?>
@@ -241,7 +241,7 @@ class Website_Display_Page {
 					<hr>
 				<?php endforeach; ?>
 
-				<?php submit_button( __( 'Save Website Display Settings', 'agency-manager' ) ); ?>
+				<?php submit_button( __( 'Save Website Display Settings', 'nettwebs-talent-location-management' ) ); ?>
 			</form>
 		</div>
 		<?php

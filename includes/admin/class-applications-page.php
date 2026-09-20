@@ -51,7 +51,7 @@ class Applications_Page {
 
 	public function render(): void {
 		$type  = isset( $_GET['type'] ) && 'location' === $_GET['type'] ? 'location' : 'talent';
-		$title = 'location' === $type ? __( 'Location Applications', 'agency-manager' ) : __( 'Talent Applications', 'agency-manager' );
+		$title = 'location' === $type ? __( 'Location Applications', 'nettwebs-talent-location-management' ) : __( 'Talent Applications', 'nettwebs-talent-location-management' );
 
 		echo '<div class="wrap am-admin-page"><h1>' . esc_html( $title ) . '</h1>';
 
@@ -59,8 +59,8 @@ class Applications_Page {
 		$this->render_csv_links( $type );
 		$this->render_submissions( $type );
 
-		echo '<h2>' . esc_html__( 'Shortcodes', 'agency-manager' ) . '</h2>';
-		echo '<p class="description">' . esc_html__( 'Applications are created when a visitor submits one of these public forms.', 'agency-manager' ) . '</p>';
+		echo '<h2>' . esc_html__( 'Shortcodes', 'nettwebs-talent-location-management' ) . '</h2>';
+		echo '<p class="description">' . esc_html__( 'Applications are created when a visitor submits one of these public forms.', 'nettwebs-talent-location-management' ) . '</p>';
 		Shortcode_Reference::render_panel( array( 'forms' ), false );
 
 		echo '</div>';
@@ -68,8 +68,8 @@ class Applications_Page {
 
 	private function render_type_tabs( string $current ): void {
 		$tabs = array(
-			'talent'   => __( 'Talent Applications', 'agency-manager' ),
-			'location' => __( 'Location Applications', 'agency-manager' ),
+			'talent'   => __( 'Talent Applications', 'nettwebs-talent-location-management' ),
+			'location' => __( 'Location Applications', 'nettwebs-talent-location-management' ),
 		);
 
 		echo '<h2 class="nav-tab-wrapper">';
@@ -101,7 +101,7 @@ class Applications_Page {
 			$links[] = '<a class="button" href="' . esc_url( $csv_url ) . '">' . esc_html(
 				sprintf(
 					/* translators: %s: form title */
-					__( 'Export CSV — %s', 'agency-manager' ),
+					__( 'Export CSV — %s', 'nettwebs-talent-location-management' ),
 					$form->post_title
 				)
 			) . '</a>';
@@ -123,10 +123,10 @@ class Applications_Page {
 			)
 		);
 
-		echo '<table class="widefat striped" style="margin-top:12px;"><thead><tr><th>' . esc_html__( 'Form', 'agency-manager' ) . '</th><th>' . esc_html__( 'Submitted', 'agency-manager' ) . '</th><th>' . esc_html__( 'Summary', 'agency-manager' ) . '</th><th>' . esc_html__( 'Status', 'agency-manager' ) . '</th><th>' . esc_html__( 'Actions', 'agency-manager' ) . '</th></tr></thead><tbody>';
+		echo '<table class="widefat striped" style="margin-top:12px;"><thead><tr><th>' . esc_html__( 'Form', 'nettwebs-talent-location-management' ) . '</th><th>' . esc_html__( 'Submitted', 'nettwebs-talent-location-management' ) . '</th><th>' . esc_html__( 'Summary', 'nettwebs-talent-location-management' ) . '</th><th>' . esc_html__( 'Status', 'nettwebs-talent-location-management' ) . '</th><th>' . esc_html__( 'Actions', 'nettwebs-talent-location-management' ) . '</th></tr></thead><tbody>';
 
 		if ( empty( $submissions ) ) {
-			echo '<tr><td colspan="5">' . esc_html__( 'No applications yet.', 'agency-manager' ) . '</td></tr>';
+			echo '<tr><td colspan="5">' . esc_html__( 'No applications yet.', 'nettwebs-talent-location-management' ) . '</td></tr>';
 		}
 
 		$workflow = new Workflow();
@@ -171,10 +171,10 @@ class Applications_Page {
 		$mapped = $workflow->preview_mapping( $submission_id );
 		?>
 		<details style="margin:0 0 8px;padding:0 8px;">
-			<summary style="cursor:pointer;padding:6px 0;color:#2271b1;"><?php esc_html_e( 'View submitted data', 'agency-manager' ); ?></summary>
+			<summary style="cursor:pointer;padding:6px 0;color:#2271b1;"><?php esc_html_e( 'View submitted data', 'nettwebs-talent-location-management' ); ?></summary>
 			<div style="display:flex;gap:24px;flex-wrap:wrap;padding:4px 0 12px;">
 				<div style="flex:1;min-width:220px;">
-					<strong><?php esc_html_e( 'Form Data', 'agency-manager' ); ?></strong>
+					<strong><?php esc_html_e( 'Form Data', 'nettwebs-talent-location-management' ); ?></strong>
 					<table class="widefat" style="margin-top:4px;">
 						<tbody>
 							<?php foreach ( $values as $key => $value ) : ?>
@@ -187,9 +187,9 @@ class Applications_Page {
 					</table>
 				</div>
 				<div style="flex:1;min-width:220px;">
-					<strong><?php esc_html_e( 'Mapped Talent/Location Data', 'agency-manager' ); ?></strong>
+					<strong><?php esc_html_e( 'Mapped Talent/Location Data', 'nettwebs-talent-location-management' ); ?></strong>
 					<?php if ( empty( $mapped ) ) : ?>
-						<p class="description"><?php esc_html_e( 'No fields on this form are mapped to Talent/Location yet — nothing will be written on Publish beyond the title/photo.', 'agency-manager' ); ?></p>
+						<p class="description"><?php esc_html_e( 'No fields on this form are mapped to Talent/Location yet — nothing will be written on Publish beyond the title/photo.', 'nettwebs-talent-location-management' ); ?></p>
 					<?php else : ?>
 						<table class="widefat" style="margin-top:4px;">
 							<tbody>
@@ -212,14 +212,14 @@ class Applications_Page {
 		$actions = array();
 
 		$next_by_status = array(
-			'submitted' => array( 'review' => __( 'Move to Review', 'agency-manager' ) ),
+			'submitted' => array( 'review' => __( 'Move to Review', 'nettwebs-talent-location-management' ) ),
 			'review'    => array(
-				'approved' => __( 'Approve', 'agency-manager' ),
-				'rejected' => __( 'Reject', 'agency-manager' ),
+				'approved' => __( 'Approve', 'nettwebs-talent-location-management' ),
+				'rejected' => __( 'Reject', 'nettwebs-talent-location-management' ),
 			),
 			'approved'  => array(
-				'publish'  => __( 'Publish', 'agency-manager' ),
-				'rejected' => __( 'Reject', 'agency-manager' ),
+				'publish'  => __( 'Publish', 'nettwebs-talent-location-management' ),
+				'rejected' => __( 'Reject', 'nettwebs-talent-location-management' ),
 			),
 		);
 
@@ -228,13 +228,13 @@ class Applications_Page {
 		}
 
 		if ( ! in_array( $status, array( 'published', 'archived' ), true ) ) {
-			$actions[] = '<a href="' . esc_url( $this->status_action_url( $type, $submission_id, 'archived' ) ) . '">' . esc_html__( 'Archive', 'agency-manager' ) . '</a>';
+			$actions[] = '<a href="' . esc_url( $this->status_action_url( $type, $submission_id, 'archived' ) ) . '">' . esc_html__( 'Archive', 'nettwebs-talent-location-management' ) . '</a>';
 		}
 
 		if ( 'published' === $status ) {
 			$post_id = (int) get_post_meta( $submission_id, '_am_published_post_id', true );
 			if ( $post_id ) {
-				$actions[] = '<a href="' . esc_url( (string) get_edit_post_link( $post_id ) ) . '">' . esc_html__( 'Edit Profile', 'agency-manager' ) . '</a>';
+				$actions[] = '<a href="' . esc_url( (string) get_edit_post_link( $post_id ) ) . '">' . esc_html__( 'Edit Profile', 'nettwebs-talent-location-management' ) . '</a>';
 			}
 		}
 

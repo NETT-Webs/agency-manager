@@ -66,8 +66,8 @@ class Meta_Boxes {
 	}
 
 	public function add_meta_boxes(): void {
-		add_meta_box( 'am_talent_profile', __( 'Talent Profile', 'agency-manager' ), array( $this, 'render_talent_box' ), 'talent', 'normal', 'high' );
-		add_meta_box( 'am_location_profile', __( 'Location Profile', 'agency-manager' ), array( $this, 'render_location_box' ), 'location', 'normal', 'high' );
+		add_meta_box( 'am_talent_profile', __( 'Talent Profile', 'nettwebs-talent-location-management' ), array( $this, 'render_talent_box' ), 'talent', 'normal', 'high' );
+		add_meta_box( 'am_location_profile', __( 'Location Profile', 'nettwebs-talent-location-management' ), array( $this, 'render_location_box' ), 'location', 'normal', 'high' );
 	}
 
 	// ---- Talent ----
@@ -79,22 +79,22 @@ class Meta_Boxes {
 			array(
 				array(
 					'id'       => 'general',
-					'label'    => __( 'General', 'agency-manager' ),
+					'label'    => __( 'General', 'nettwebs-talent-location-management' ),
 					'callback' => function () use ( $post ) {
 						echo '<table class="form-table am-meta-table">';
-						$this->render_field_row( $post->ID, 'city', array( __( 'City', 'agency-manager' ), 'text' ) );
-						$this->render_field_row( $post->ID, 'age', array( __( 'Age', 'agency-manager' ), 'text' ) );
+						$this->render_field_row( $post->ID, 'city', array( __( 'City', 'nettwebs-talent-location-management' ), 'text' ) );
+						$this->render_field_row( $post->ID, 'age', array( __( 'Age', 'nettwebs-talent-location-management' ), 'text' ) );
 						$this->render_field_row(
 							$post->ID,
 							'availability',
 							array(
-								__( 'Availability', 'agency-manager' ),
+								__( 'Availability', 'nettwebs-talent-location-management' ),
 								'select',
 								array(
-									''          => __( '—', 'agency-manager' ),
-									'available' => __( 'Available', 'agency-manager' ),
-									'limited'   => __( 'Limited', 'agency-manager' ),
-									'booked'    => __( 'Booked', 'agency-manager' ),
+									''          => __( '—', 'nettwebs-talent-location-management' ),
+									'available' => __( 'Available', 'nettwebs-talent-location-management' ),
+									'limited'   => __( 'Limited', 'nettwebs-talent-location-management' ),
+									'booked'    => __( 'Booked', 'nettwebs-talent-location-management' ),
 								),
 							)
 						);
@@ -103,81 +103,81 @@ class Meta_Boxes {
 				),
 				array(
 					'id'       => 'profile',
-					'label'    => __( 'Profile', 'agency-manager' ),
+					'label'    => __( 'Profile', 'nettwebs-talent-location-management' ),
 					'callback' => function () use ( $post ) {
 						echo '<table class="form-table am-meta-table">';
-						$this->render_field_row( $post->ID, 'languages', array( __( 'Languages (one per line)', 'agency-manager' ), 'textarea' ) );
-						$this->render_field_row( $post->ID, 'skills', array( __( 'Skills (one per line)', 'agency-manager' ), 'textarea' ) );
-						$this->render_field_row( $post->ID, 'experience', array( __( 'Experience (one credit per line)', 'agency-manager' ), 'textarea' ) );
-						$this->render_field_row( $post->ID, 'video_url', array( __( 'Video URL', 'agency-manager' ), 'url' ) );
+						$this->render_field_row( $post->ID, 'languages', array( __( 'Languages (one per line)', 'nettwebs-talent-location-management' ), 'textarea' ) );
+						$this->render_field_row( $post->ID, 'skills', array( __( 'Skills (one per line)', 'nettwebs-talent-location-management' ), 'textarea' ) );
+						$this->render_field_row( $post->ID, 'experience', array( __( 'Experience (one credit per line)', 'nettwebs-talent-location-management' ), 'textarea' ) );
+						$this->render_field_row( $post->ID, 'video_url', array( __( 'Video URL', 'nettwebs-talent-location-management' ), 'url' ) );
 						echo '</table>';
 					},
 				),
 				array(
 					'id'       => 'measurements',
-					'label'    => __( 'Measurements', 'agency-manager' ),
+					'label'    => __( 'Measurements', 'nettwebs-talent-location-management' ),
 					'callback' => function () use ( $post ) {
 						echo '<table class="form-table am-meta-table">';
-						$this->render_field_row( $post->ID, 'height', array( __( 'Height', 'agency-manager' ), 'text' ) );
+						$this->render_field_row( $post->ID, 'height', array( __( 'Height', 'nettwebs-talent-location-management' ), 'text' ) );
 						$this->render_field_row(
 							$post->ID,
 							'body_type',
 							array(
-								__( 'Body Type', 'agency-manager' ),
+								__( 'Body Type', 'nettwebs-talent-location-management' ),
 								'select',
 								array(
-									''              => __( '—', 'agency-manager' ),
-									'straight-size' => __( 'Straight Size', 'agency-manager' ),
-									'plus-size'     => __( 'Plus Size', 'agency-manager' ),
-									'athletic'      => __( 'Athletic', 'agency-manager' ),
-									'petite'        => __( 'Petite', 'agency-manager' ),
-									'tall'          => __( 'Tall', 'agency-manager' ),
+									''              => __( '—', 'nettwebs-talent-location-management' ),
+									'straight-size' => __( 'Straight Size', 'nettwebs-talent-location-management' ),
+									'plus-size'     => __( 'Plus Size', 'nettwebs-talent-location-management' ),
+									'athletic'      => __( 'Athletic', 'nettwebs-talent-location-management' ),
+									'petite'        => __( 'Petite', 'nettwebs-talent-location-management' ),
+									'tall'          => __( 'Tall', 'nettwebs-talent-location-management' ),
 								),
 							)
 						);
-						$this->render_field_row( $post->ID, 'hair_color', array( __( 'Hair Colour', 'agency-manager' ), 'text' ) );
-						$this->render_field_row( $post->ID, 'eye_color', array( __( 'Eye Colour', 'agency-manager' ), 'text' ) );
-						$this->render_field_row( $post->ID, 'measurements', array( __( 'Measurements', 'agency-manager' ), 'textarea' ) );
+						$this->render_field_row( $post->ID, 'hair_color', array( __( 'Hair Colour', 'nettwebs-talent-location-management' ), 'text' ) );
+						$this->render_field_row( $post->ID, 'eye_color', array( __( 'Eye Colour', 'nettwebs-talent-location-management' ), 'text' ) );
+						$this->render_field_row( $post->ID, 'measurements', array( __( 'Measurements', 'nettwebs-talent-location-management' ), 'textarea' ) );
 						echo '</table>';
 					},
 				),
 				array(
 					'id'       => 'media',
-					'label'    => __( 'Media', 'agency-manager' ),
+					'label'    => __( 'Media', 'nettwebs-talent-location-management' ),
 					'callback' => function () use ( $post ) {
-						echo '<p class="description">' . esc_html__( 'The main profile photo is set using the Profile Photo panel in the sidebar.', 'agency-manager' ) . '</p>';
-						$this->render_media_picker_row( $post->ID, 'pdf_id', __( 'PDF (comp card / CV)', 'agency-manager' ), false );
+						echo '<p class="description">' . esc_html__( 'The main profile photo is set using the Profile Photo panel in the sidebar.', 'nettwebs-talent-location-management' ) . '</p>';
+						$this->render_media_picker_row( $post->ID, 'pdf_id', __( 'PDF (comp card / CV)', 'nettwebs-talent-location-management' ), false );
 					},
 				),
 				array(
 					'id'       => 'gallery',
-					'label'    => __( 'Gallery', 'agency-manager' ),
+					'label'    => __( 'Gallery', 'nettwebs-talent-location-management' ),
 					'callback' => function () use ( $post ) {
-						$this->render_media_picker_row( $post->ID, 'gallery_ids', __( 'Gallery', 'agency-manager' ), true );
+						$this->render_media_picker_row( $post->ID, 'gallery_ids', __( 'Gallery', 'nettwebs-talent-location-management' ), true );
 					},
 				),
 				array(
 					'id'       => 'social',
-					'label'    => __( 'Social Links', 'agency-manager' ),
+					'label'    => __( 'Social Links', 'nettwebs-talent-location-management' ),
 					'callback' => function () use ( $post ) {
 						echo '<table class="form-table am-meta-table">';
-						$this->render_field_row( $post->ID, 'social_instagram', array( __( 'Instagram URL', 'agency-manager' ), 'url' ) );
-						$this->render_field_row( $post->ID, 'social_facebook', array( __( 'Facebook URL', 'agency-manager' ), 'url' ) );
-						$this->render_field_row( $post->ID, 'social_tiktok', array( __( 'TikTok URL', 'agency-manager' ), 'url' ) );
-						$this->render_field_row( $post->ID, 'social_website', array( __( 'Website / Portfolio URL', 'agency-manager' ), 'url' ) );
+						$this->render_field_row( $post->ID, 'social_instagram', array( __( 'Instagram URL', 'nettwebs-talent-location-management' ), 'url' ) );
+						$this->render_field_row( $post->ID, 'social_facebook', array( __( 'Facebook URL', 'nettwebs-talent-location-management' ), 'url' ) );
+						$this->render_field_row( $post->ID, 'social_tiktok', array( __( 'TikTok URL', 'nettwebs-talent-location-management' ), 'url' ) );
+						$this->render_field_row( $post->ID, 'social_website', array( __( 'Website / Portfolio URL', 'nettwebs-talent-location-management' ), 'url' ) );
 						echo '</table>';
 					},
 				),
 				array(
 					'id'       => 'visibility',
-					'label'    => __( 'Visibility', 'agency-manager' ),
+					'label'    => __( 'Visibility', 'nettwebs-talent-location-management' ),
 					'callback' => function () use ( $post ) {
 						$this->render_flags_box( $post );
 					},
 				),
 				array(
 					'id'       => 'preview',
-					'label'    => __( 'Preview', 'agency-manager' ),
+					'label'    => __( 'Preview', 'nettwebs-talent-location-management' ),
 					'callback' => function () use ( $post ) {
 						$this->render_preview( $post, 'talent' );
 					},
@@ -215,29 +215,29 @@ class Meta_Boxes {
 			array(
 				array(
 					'id'       => 'general',
-					'label'    => __( 'General', 'agency-manager' ),
+					'label'    => __( 'General', 'nettwebs-talent-location-management' ),
 					'callback' => function () use ( $post ) {
 						echo '<table class="form-table am-meta-table">';
-						$this->render_field_row( $post->ID, 'city', array( __( 'City / Area', 'agency-manager' ), 'text' ) );
+						$this->render_field_row( $post->ID, 'city', array( __( 'City / Area', 'nettwebs-talent-location-management' ), 'text' ) );
 						echo '</table>';
 					},
 				),
 				array(
 					'id'       => 'property',
-					'label'    => __( 'Property Details', 'agency-manager' ),
+					'label'    => __( 'Property Details', 'nettwebs-talent-location-management' ),
 					'callback' => function () use ( $post ) {
 						echo '<table class="form-table am-meta-table">';
 						$this->render_field_row(
 							$post->ID,
 							'parking',
 							array(
-								__( 'Parking', 'agency-manager' ),
+								__( 'Parking', 'nettwebs-talent-location-management' ),
 								'select',
 								array(
-									''          => __( '—', 'agency-manager' ),
-									'available' => __( 'Available', 'agency-manager' ),
-									'limited'   => __( 'Limited', 'agency-manager' ),
-									'none'      => __( 'Not Available', 'agency-manager' ),
+									''          => __( '—', 'nettwebs-talent-location-management' ),
+									'available' => __( 'Available', 'nettwebs-talent-location-management' ),
+									'limited'   => __( 'Limited', 'nettwebs-talent-location-management' ),
+									'none'      => __( 'Not Available', 'nettwebs-talent-location-management' ),
 								),
 							)
 						);
@@ -245,13 +245,13 @@ class Meta_Boxes {
 							$post->ID,
 							'power',
 							array(
-								__( 'Power', 'agency-manager' ),
+								__( 'Power', 'nettwebs-talent-location-management' ),
 								'select',
 								array(
-									''          => __( '—', 'agency-manager' ),
-									'mains'     => __( 'Mains Power', 'agency-manager' ),
-									'generator' => __( 'Generator Required', 'agency-manager' ),
-									'limited'   => __( 'Limited', 'agency-manager' ),
+									''          => __( '—', 'nettwebs-talent-location-management' ),
+									'mains'     => __( 'Mains Power', 'nettwebs-talent-location-management' ),
+									'generator' => __( 'Generator Required', 'nettwebs-talent-location-management' ),
+									'limited'   => __( 'Limited', 'nettwebs-talent-location-management' ),
 								),
 							)
 						);
@@ -260,36 +260,36 @@ class Meta_Boxes {
 				),
 				array(
 					'id'       => 'gallery',
-					'label'    => __( 'Gallery', 'agency-manager' ),
+					'label'    => __( 'Gallery', 'nettwebs-talent-location-management' ),
 					'callback' => function () use ( $post ) {
-						$this->render_media_picker_row( $post->ID, 'gallery_ids', __( 'Gallery', 'agency-manager' ), true );
+						$this->render_media_picker_row( $post->ID, 'gallery_ids', __( 'Gallery', 'nettwebs-talent-location-management' ), true );
 					},
 				),
 				array(
 					'id'       => 'facilities',
-					'label'    => __( 'Facilities', 'agency-manager' ),
+					'label'    => __( 'Facilities', 'nettwebs-talent-location-management' ),
 					'callback' => function () use ( $post ) {
 						echo '<table class="form-table am-meta-table">';
-						$this->render_field_row( $post->ID, 'amenities', array( __( 'Amenities (one per line)', 'agency-manager' ), 'textarea' ) );
+						$this->render_field_row( $post->ID, 'amenities', array( __( 'Amenities (one per line)', 'nettwebs-talent-location-management' ), 'textarea' ) );
 						echo '</table>';
 					},
 				),
 				array(
 					'id'       => 'availability',
-					'label'    => __( 'Availability', 'agency-manager' ),
+					'label'    => __( 'Availability', 'nettwebs-talent-location-management' ),
 					'callback' => function () use ( $post ) {
 						echo '<table class="form-table am-meta-table">';
 						$this->render_field_row(
 							$post->ID,
 							'availability',
 							array(
-								__( 'Availability', 'agency-manager' ),
+								__( 'Availability', 'nettwebs-talent-location-management' ),
 								'select',
 								array(
-									''          => __( '—', 'agency-manager' ),
-									'available' => __( 'Available', 'agency-manager' ),
-									'booked'    => __( 'Booked', 'agency-manager' ),
-									'seasonal'  => __( 'Seasonal', 'agency-manager' ),
+									''          => __( '—', 'nettwebs-talent-location-management' ),
+									'available' => __( 'Available', 'nettwebs-talent-location-management' ),
+									'booked'    => __( 'Booked', 'nettwebs-talent-location-management' ),
+									'seasonal'  => __( 'Seasonal', 'nettwebs-talent-location-management' ),
 								),
 							)
 						);
@@ -298,23 +298,23 @@ class Meta_Boxes {
 				),
 				array(
 					'id'       => 'map',
-					'label'    => __( 'Map', 'agency-manager' ),
+					'label'    => __( 'Map', 'nettwebs-talent-location-management' ),
 					'callback' => function () use ( $post ) {
 						echo '<table class="form-table am-meta-table">';
-						$this->render_field_row( $post->ID, 'map_embed', array( __( 'Google Maps Embed URL', 'agency-manager' ), 'url' ) );
+						$this->render_field_row( $post->ID, 'map_embed', array( __( 'Google Maps Embed URL', 'nettwebs-talent-location-management' ), 'url' ) );
 						echo '</table>';
 					},
 				),
 				array(
 					'id'       => 'visibility',
-					'label'    => __( 'Visibility', 'agency-manager' ),
+					'label'    => __( 'Visibility', 'nettwebs-talent-location-management' ),
 					'callback' => function () use ( $post ) {
 						$this->render_flags_box( $post );
 					},
 				),
 				array(
 					'id'       => 'preview',
-					'label'    => __( 'Preview', 'agency-manager' ),
+					'label'    => __( 'Preview', 'nettwebs-talent-location-management' ),
 					'callback' => function () use ( $post ) {
 						$this->render_preview( $post, 'location' );
 					},
@@ -349,13 +349,13 @@ class Meta_Boxes {
 		$active = '' === $active_raw ? true : (bool) $active_raw;
 		?>
 		<p>
-			<label><input type="checkbox" name="am_featured" value="1" <?php checked( $featured ); ?>> <?php esc_html_e( 'Featured', 'agency-manager' ); ?></label>
+			<label><input type="checkbox" name="am_featured" value="1" <?php checked( $featured ); ?>> <?php esc_html_e( 'Featured', 'nettwebs-talent-location-management' ); ?></label>
 		</p>
 		<p>
-			<label><input type="checkbox" name="am_homepage" value="1" <?php checked( $homepage ); ?>> <?php esc_html_e( 'Show on Homepage', 'agency-manager' ); ?></label>
+			<label><input type="checkbox" name="am_homepage" value="1" <?php checked( $homepage ); ?>> <?php esc_html_e( 'Show on Homepage', 'nettwebs-talent-location-management' ); ?></label>
 		</p>
 		<p>
-			<label><input type="checkbox" name="am_active" value="1" <?php checked( $active ); ?>> <?php esc_html_e( 'Active', 'agency-manager' ); ?></label>
+			<label><input type="checkbox" name="am_active" value="1" <?php checked( $active ); ?>> <?php esc_html_e( 'Active', 'nettwebs-talent-location-management' ); ?></label>
 		</p>
 		<?php
 	}
@@ -375,10 +375,10 @@ class Meta_Boxes {
 	 * deliberately no live/AJAX preview in v1.
 	 */
 	private function render_preview( \WP_Post $post, string $type ): void {
-		echo '<p class="description">' . esc_html__( 'Save or Update this entry to refresh the preview.', 'agency-manager' ) . '</p>';
+		echo '<p class="description">' . esc_html__( 'Save or Update this entry to refresh the preview.', 'nettwebs-talent-location-management' ) . '</p>';
 
 		if ( 'auto-draft' === $post->post_status ) {
-			echo '<p>' . esc_html__( 'This entry has not been saved yet — save a draft to see a preview.', 'agency-manager' ) . '</p>';
+			echo '<p>' . esc_html__( 'This entry has not been saved yet — save a draft to see a preview.', 'nettwebs-talent-location-management' ) . '</p>';
 			return;
 		}
 
@@ -455,8 +455,8 @@ class Meta_Boxes {
 			}
 		}
 		echo '</span><br>';
-		echo '<button type="button" class="button am-media-select">' . esc_html__( 'Select', 'agency-manager' ) . '</button> ';
-		echo '<button type="button" class="button am-media-clear">' . esc_html__( 'Clear', 'agency-manager' ) . '</button>';
+		echo '<button type="button" class="button am-media-select">' . esc_html__( 'Select', 'nettwebs-talent-location-management' ) . '</button> ';
+		echo '<button type="button" class="button am-media-clear">' . esc_html__( 'Clear', 'nettwebs-talent-location-management' ) . '</button>';
 		echo '</p>';
 	}
 

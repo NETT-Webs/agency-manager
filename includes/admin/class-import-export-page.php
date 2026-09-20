@@ -49,54 +49,54 @@ class Import_Export_Page {
 		$import_error = isset( $_GET['am_import_error'] ) ? sanitize_key( wp_unslash( $_GET['am_import_error'] ) ) : '';
 		?>
 		<div class="wrap am-admin-page">
-			<h1><?php esc_html_e( 'Import / Export', 'agency-manager' ); ?></h1>
+			<h1><?php esc_html_e( 'Import / Export', 'nettwebs-talent-location-management' ); ?></h1>
 
 			<?php if ( $imported ) : ?>
-				<div class="notice notice-success"><p><?php esc_html_e( 'Import complete — see the report below.', 'agency-manager' ); ?></p></div>
+				<div class="notice notice-success"><p><?php esc_html_e( 'Import complete — see the report below.', 'nettwebs-talent-location-management' ); ?></p></div>
 				<?php $this->render_report(); ?>
 			<?php endif; ?>
 
 			<?php if ( $import_error ) : ?>
-				<div class="notice notice-error"><p><?php esc_html_e( 'Import failed — check the file and try again.', 'agency-manager' ); ?></p></div>
+				<div class="notice notice-error"><p><?php esc_html_e( 'Import failed — check the file and try again.', 'nettwebs-talent-location-management' ); ?></p></div>
 			<?php endif; ?>
 
-			<h2><?php esc_html_e( 'Export', 'agency-manager' ); ?></h2>
-			<p class="description"><?php esc_html_e( 'Move the reusable parts of this agency to another WordPress installation: Talent, Locations, their Categories/Groups, and the Display Settings that control how they appear. Elementor page layouts are never touched — the Talent/Location pages on the destination site already use the same widgets or shortcodes, so imported content appears there automatically.', 'agency-manager' ); ?></p>
+			<h2><?php esc_html_e( 'Export', 'nettwebs-talent-location-management' ); ?></h2>
+			<p class="description"><?php esc_html_e( 'Move the reusable parts of this agency to another WordPress installation: Talent, Locations, their Categories/Groups, and the Display Settings that control how they appear. Elementor page layouts are never touched — the Talent/Location pages on the destination site already use the same widgets or shortcodes, so imported content appears there automatically.', 'nettwebs-talent-location-management' ); ?></p>
 			<form method="get" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 				<input type="hidden" name="action" value="am_export">
 				<?php wp_nonce_field( 'am_export', '_wpnonce' ); ?>
 				<?php $this->render_grouped_checkboxes( false, array() ); ?>
 				<p>
-					<button type="submit" class="button button-primary"><?php esc_html_e( 'Export Selected', 'agency-manager' ); ?></button>
+					<button type="submit" class="button button-primary"><?php esc_html_e( 'Export Selected', 'nettwebs-talent-location-management' ); ?></button>
 				</p>
-				<h4 style="margin-bottom:4px;"><?php esc_html_e( 'Quick Actions', 'agency-manager' ); ?></h4>
+				<h4 style="margin-bottom:4px;"><?php esc_html_e( 'Quick Actions', 'nettwebs-talent-location-management' ); ?></h4>
 				<p>
-					<button type="submit" class="button" onclick="<?php echo esc_attr( $this->check_only_js( array( 'talent' ) ) ); ?>"><?php esc_html_e( 'Export Talent', 'agency-manager' ); ?></button>
-					<button type="submit" class="button" onclick="<?php echo esc_attr( $this->check_only_js( array( 'locations' ) ) ); ?>"><?php esc_html_e( 'Export Locations', 'agency-manager' ); ?></button>
-					<button type="submit" class="button" onclick="<?php echo esc_attr( $this->check_only_js( self::CONTENT_SECTIONS ) ); ?>"><?php esc_html_e( 'Export Content', 'agency-manager' ); ?></button>
-					<button type="submit" class="button button-secondary" onclick="<?php echo esc_attr( $this->check_only_js( self::EVERYTHING_SECTIONS ) ); ?>"><?php esc_html_e( 'Export Everything', 'agency-manager' ); ?></button>
+					<button type="submit" class="button" onclick="<?php echo esc_attr( $this->check_only_js( array( 'talent' ) ) ); ?>"><?php esc_html_e( 'Export Talent', 'nettwebs-talent-location-management' ); ?></button>
+					<button type="submit" class="button" onclick="<?php echo esc_attr( $this->check_only_js( array( 'locations' ) ) ); ?>"><?php esc_html_e( 'Export Locations', 'nettwebs-talent-location-management' ); ?></button>
+					<button type="submit" class="button" onclick="<?php echo esc_attr( $this->check_only_js( self::CONTENT_SECTIONS ) ); ?>"><?php esc_html_e( 'Export Content', 'nettwebs-talent-location-management' ); ?></button>
+					<button type="submit" class="button button-secondary" onclick="<?php echo esc_attr( $this->check_only_js( self::EVERYTHING_SECTIONS ) ); ?>"><?php esc_html_e( 'Export Everything', 'nettwebs-talent-location-management' ); ?></button>
 				</p>
 				<p class="description">
-					<?php esc_html_e( 'Export Talent / Export Locations select only that one section. Export Content selects Talent, Locations, Talent Categories, Talent Groups, Location Categories, and Website Display + Homepage Featured Settings. Export Everything additionally includes Forms and Plugin Settings. Each button submits immediately — no manual ticking required.', 'agency-manager' ); ?>
+					<?php esc_html_e( 'Export Talent / Export Locations select only that one section. Export Content selects Talent, Locations, Talent Categories, Talent Groups, Location Categories, and Website Display + Homepage Featured Settings. Export Everything additionally includes Forms and Plugin Settings. Each button submits immediately — no manual ticking required.', 'nettwebs-talent-location-management' ); ?>
 				</p>
 			</form>
 
 			<hr>
 
-			<h2><?php esc_html_e( 'Import', 'agency-manager' ); ?></h2>
-			<p class="description"><?php esc_html_e( 'Upload the same JSON file. Existing Talent, Locations, Categories, Groups, and Forms are matched by slug and updated in place — nothing is duplicated.', 'agency-manager' ); ?></p>
+			<h2><?php esc_html_e( 'Import', 'nettwebs-talent-location-management' ); ?></h2>
+			<p class="description"><?php esc_html_e( 'Upload the same JSON file. Existing Talent, Locations, Categories, Groups, and Forms are matched by slug and updated in place — nothing is duplicated.', 'nettwebs-talent-location-management' ); ?></p>
 			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" enctype="multipart/form-data">
 				<input type="hidden" name="action" value="am_import">
 				<?php wp_nonce_field( 'am_import', 'am_import_nonce' ); ?>
 				<table class="form-table">
 					<tr>
-						<th><label for="am_import_file"><?php esc_html_e( 'JSON File', 'agency-manager' ); ?></label></th>
+						<th><label for="am_import_file"><?php esc_html_e( 'JSON File', 'nettwebs-talent-location-management' ); ?></label></th>
 						<td><input type="file" id="am_import_file" name="am_import_file" accept="application/json"></td>
 					</tr>
 				</table>
 				<?php $this->render_grouped_checkboxes( true, array( 'forms' ) ); ?>
-				<p class="description"><?php esc_html_e( 'Only sections actually present in the uploaded file are applied. Forms is left unticked by default since it is optional — check it only if you intend to overwrite this site\'s forms.', 'agency-manager' ); ?></p>
-				<?php submit_button( __( 'Import', 'agency-manager' ) ); ?>
+				<p class="description"><?php esc_html_e( 'Only sections actually present in the uploaded file are applied. Forms is left unticked by default since it is optional — check it only if you intend to overwrite this site\'s forms.', 'nettwebs-talent-location-management' ); ?></p>
+				<?php submit_button( __( 'Import', 'nettwebs-talent-location-management' ) ); ?>
 			</form>
 		</div>
 		<?php
@@ -127,9 +127,9 @@ class Import_Export_Page {
 		$exceptions = array_flip( $exceptions );
 
 		$groups = array(
-			__( 'Content', 'agency-manager' )  => self::CONTENT_KEYS,
-			__( 'Settings', 'agency-manager' ) => self::SETTINGS_KEYS,
-			__( 'Optional', 'agency-manager' ) => self::OPTIONAL_KEYS,
+			__( 'Content', 'nettwebs-talent-location-management' )  => self::CONTENT_KEYS,
+			__( 'Settings', 'nettwebs-talent-location-management' ) => self::SETTINGS_KEYS,
+			__( 'Optional', 'nettwebs-talent-location-management' ) => self::OPTIONAL_KEYS,
 		);
 
 		foreach ( $groups as $group_label => $keys ) {
@@ -142,7 +142,7 @@ class Import_Export_Page {
 				echo '<label style="display:block;margin-bottom:6px;">';
 				echo '<input type="checkbox" name="sections[]" value="' . esc_attr( $key ) . '" ' . esc_attr( $checked ) . '> ' . esc_html( $label );
 				if ( $is_optional ) {
-					echo ' <span class="description">(' . esc_html__( 'optional — not included in Export Content; included in Export Everything', 'agency-manager' ) . ')</span>';
+					echo ' <span class="description">(' . esc_html__( 'optional — not included in Export Content; included in Export Everything', 'nettwebs-talent-location-management' ) . ')</span>';
 				}
 				echo '</label>';
 			}
@@ -156,7 +156,7 @@ class Import_Export_Page {
 			return;
 		}
 
-		echo '<table class="widefat striped" style="max-width:640px;"><thead><tr><th>' . esc_html__( 'Section', 'agency-manager' ) . '</th><th>' . esc_html__( 'Created', 'agency-manager' ) . '</th><th>' . esc_html__( 'Updated', 'agency-manager' ) . '</th><th>' . esc_html__( 'Errors', 'agency-manager' ) . '</th></tr></thead><tbody>';
+		echo '<table class="widefat striped" style="max-width:640px;"><thead><tr><th>' . esc_html__( 'Section', 'nettwebs-talent-location-management' ) . '</th><th>' . esc_html__( 'Created', 'nettwebs-talent-location-management' ) . '</th><th>' . esc_html__( 'Updated', 'nettwebs-talent-location-management' ) . '</th><th>' . esc_html__( 'Errors', 'nettwebs-talent-location-management' ) . '</th></tr></thead><tbody>';
 
 		foreach ( $report as $section => $counts ) {
 			echo '<tr>';

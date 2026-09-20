@@ -247,20 +247,20 @@ class Field_Mapper {
 	private static function describe_target( array $resolution ): string {
 		$mapping = $resolution['mapping'];
 		$kind    = $mapping['target_kind'] ?? 'meta';
-		$dest    = 'both' === $mapping['destination'] ? __( 'Talent/Location', 'agency-manager' ) : ucfirst( $mapping['destination'] );
+		$dest    = 'both' === $mapping['destination'] ? __( 'Talent/Location', 'nettwebs-talent-location-management' ) : ucfirst( $mapping['destination'] );
 
 		switch ( $kind ) {
 			case 'post_title':
-				return sprintf( '%s → %s', $dest, __( 'Name', 'agency-manager' ) );
+				return sprintf( '%s → %s', $dest, __( 'Name', 'nettwebs-talent-location-management' ) );
 			case 'featured_image':
-				return sprintf( '%s → %s', $dest, __( 'Featured Image', 'agency-manager' ) );
+				return sprintf( '%s → %s', $dest, __( 'Featured Image', 'nettwebs-talent-location-management' ) );
 			case 'gallery':
-				return sprintf( '%s → %s', $dest, __( 'Gallery', 'agency-manager' ) );
+				return sprintf( '%s → %s', $dest, __( 'Gallery', 'nettwebs-talent-location-management' ) );
 			case 'taxonomy':
-				return sprintf( '%s → %s (%s)', $dest, __( 'Category', 'agency-manager' ), $mapping['target_key'] );
+				return sprintf( '%s → %s (%s)', $dest, __( 'Category', 'nettwebs-talent-location-management' ), $mapping['target_key'] );
 			default:
 				$label = 'custom' === ( $mapping['target'] ?? '' )
-					? sprintf( '%s (%s)', $mapping['target_key'], __( 'custom field', 'agency-manager' ) )
+					? sprintf( '%s (%s)', $mapping['target_key'], __( 'custom field', 'nettwebs-talent-location-management' ) )
 					: $mapping['target_key'];
 				return sprintf( '%s → %s', $dest, $label );
 		}

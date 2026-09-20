@@ -56,20 +56,20 @@ class Term_Meta {
 	public function render_add_fields(): void {
 		?>
 		<div class="form-field">
-			<label><?php esc_html_e( 'Card Image', 'agency-manager' ); ?></label>
+			<label><?php esc_html_e( 'Card Image', 'nettwebs-talent-location-management' ); ?></label>
 			<p class="am-media-picker" data-multiple="0">
 				<input type="hidden" class="am-media-ids" name="am_group_image_id" value="">
 				<span class="am-media-preview"></span><br>
-				<button type="button" class="button am-media-select"><?php esc_html_e( 'Select', 'agency-manager' ); ?></button>
-				<button type="button" class="button am-media-clear"><?php esc_html_e( 'Clear', 'agency-manager' ); ?></button>
+				<button type="button" class="button am-media-select"><?php esc_html_e( 'Select', 'nettwebs-talent-location-management' ); ?></button>
+				<button type="button" class="button am-media-clear"><?php esc_html_e( 'Clear', 'nettwebs-talent-location-management' ); ?></button>
 			</p>
 		</div>
 		<div class="form-field">
-			<label for="am_group_button_text"><?php esc_html_e( 'Button Text', 'agency-manager' ); ?></label>
+			<label for="am_group_button_text"><?php esc_html_e( 'Button Text', 'nettwebs-talent-location-management' ); ?></label>
 			<input type="text" name="am_group_button_text" id="am_group_button_text" value="">
 		</div>
 		<div class="form-field">
-			<label for="am_group_button_url"><?php esc_html_e( 'Button URL', 'agency-manager' ); ?></label>
+			<label for="am_group_button_url"><?php esc_html_e( 'Button URL', 'nettwebs-talent-location-management' ); ?></label>
 			<input type="url" name="am_group_button_url" id="am_group_button_url" value="">
 		</div>
 		<?php
@@ -82,7 +82,7 @@ class Term_Meta {
 		$button_url  = get_term_meta( $term->term_id, 'am_group_button_url', true );
 		?>
 		<tr class="form-field">
-			<th><label><?php esc_html_e( 'Card Image', 'agency-manager' ); ?></label></th>
+			<th><label><?php esc_html_e( 'Card Image', 'nettwebs-talent-location-management' ); ?></label></th>
 			<td>
 				<p class="am-media-picker" data-multiple="0">
 					<input type="hidden" class="am-media-ids" name="am_group_image_id" value="<?php echo esc_attr( $image_id ); ?>">
@@ -91,17 +91,17 @@ class Term_Meta {
 							<span class="am-media-thumb"><?php echo wp_get_attachment_image( (int) $image_id, 'thumbnail' ); ?></span>
 						<?php endif; ?>
 					</span><br>
-					<button type="button" class="button am-media-select"><?php esc_html_e( 'Select', 'agency-manager' ); ?></button>
-					<button type="button" class="button am-media-clear"><?php esc_html_e( 'Clear', 'agency-manager' ); ?></button>
+					<button type="button" class="button am-media-select"><?php esc_html_e( 'Select', 'nettwebs-talent-location-management' ); ?></button>
+					<button type="button" class="button am-media-clear"><?php esc_html_e( 'Clear', 'nettwebs-talent-location-management' ); ?></button>
 				</p>
 			</td>
 		</tr>
 		<tr class="form-field">
-			<th><label for="am_group_button_text"><?php esc_html_e( 'Button Text', 'agency-manager' ); ?></label></th>
+			<th><label for="am_group_button_text"><?php esc_html_e( 'Button Text', 'nettwebs-talent-location-management' ); ?></label></th>
 			<td><input type="text" name="am_group_button_text" id="am_group_button_text" value="<?php echo esc_attr( $button_text ); ?>"></td>
 		</tr>
 		<tr class="form-field">
-			<th><label for="am_group_button_url"><?php esc_html_e( 'Button URL', 'agency-manager' ); ?></label></th>
+			<th><label for="am_group_button_url"><?php esc_html_e( 'Button URL', 'nettwebs-talent-location-management' ); ?></label></th>
 			<td><input type="url" name="am_group_button_url" id="am_group_button_url" value="<?php echo esc_attr( $button_url ); ?>"></td>
 		</tr>
 		<?php

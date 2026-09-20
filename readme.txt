@@ -1,18 +1,20 @@
-=== Agency Manager ===
-Contributors: edencast
+=== NettWebs Talent & Location Management ===
+Contributors: salem, nettwebs
 Tags: talent, casting, locations, elementor, csv import
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.6.4
+Stable tag: 1.6.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Talent and location management for agencies — profiles, application forms, CSV import, and Elementor widgets, from one admin screen.
 
+Formerly published as "Agency Manager." Renamed to establish a distinctive plugin identity; no functionality, shortcodes, Elementor widgets, or stored data changed as a result of the rename — see the Changelog for details.
+
 == Description ==
 
-Agency Manager gives a talent, casting, or location agency a self-contained management system inside WordPress: a React/Tailwind admin application (Dashboard, Talent, Locations, Applications, Forms, Website Display, Import/Export, Settings), Talent and Location profiles, public application forms with a review workflow and a drag-and-drop Form Builder, CSV import for bulk Talent/Location data, three Display Modes (Hidden / Now Scouting / Live), Elementor widgets, shortcodes, and JSON import/export.
+NettWebs Talent & Location Management gives a talent, casting, or location agency a self-contained management system inside WordPress: a React/Tailwind admin application (Dashboard, Talent, Locations, Applications, Forms, Website Display, Import/Export, Settings), Talent and Location profiles, public application forms with a review workflow and a drag-and-drop Form Builder, CSV import for bulk Talent/Location data, three Display Modes (Hidden / Now Scouting / Live), Elementor widgets, shortcodes, and JSON import/export.
 
 = Features =
 
@@ -29,12 +31,12 @@ Agency Manager gives a talent, casting, or location agency a self-contained mana
 
 = External services =
 
-Agency Manager's CSV Import feature can download images from URLs that **you** type or paste into your own CSV file — for example, a link to a photo already hosted on Dropbox, your own server, or any other URL you provide. When you use this feature, Agency Manager sends an HTTP request to that specific URL, using WordPress's own `download_url()` function, to copy the image into your site's Media Library. No request is made unless you supply a URL in a CSV file and use the CSV Import feature; there is no other third-party service, API, tracking script, font, or CDN that this plugin contacts, automatically or otherwise.
+The CSV Import feature can download images from URLs that **you** type or paste into your own CSV file — for example, a link to a photo already hosted on Dropbox, your own server, or any other URL you provide. When you use this feature, the plugin sends an HTTP request to that specific URL, using WordPress's own `download_url()` function, to copy the image into your site's Media Library. No request is made unless you supply a URL in a CSV file and use the CSV Import feature; there is no other third-party service, API, tracking script, font, or CDN that this plugin contacts, automatically or otherwise.
 
 == Installation ==
 
 1. In your WordPress admin, go to **Plugins → Add New → Upload Plugin**.
-2. Choose the Agency Manager ZIP file and click **Install Now**.
+2. Choose the plugin ZIP file and click **Install Now**.
 3. Click **Activate**.
 4. You'll be redirected to the Setup Wizard automatically.
 
@@ -42,7 +44,7 @@ Agency Manager's CSV Import feature can download images from URLs that **you** t
 
 = Does this conflict with a theme that already has its own Talent/Location post types? =
 
-No. Agency Manager checks for an existing `talent`/`location` post type or `talent_category`/`talent_group`/`location_type` taxonomy before registering its own, and defers automatically if one already exists. Its Dashboard, Applications, Forms, Website Display, Import/Export, Settings, shortcodes, and Elementor widgets remain fully available either way.
+No. This plugin checks for an existing `talent`/`location` post type or `talent_category`/`talent_group`/`location_type` taxonomy before registering its own, and defers automatically if one already exists. Its Dashboard, Applications, Forms, Website Display, Import/Export, Settings, shortcodes, and Elementor widgets remain fully available either way.
 
 = Do I need Elementor? =
 
@@ -56,19 +58,23 @@ Only if you tell it to. It downloads images from URLs you provide inside your ow
 
 An Admin Guide (day-to-day admin use) and Developer Guide (hooks, architecture, template overrides) are included in the plugin's own files, alongside this readme.
 
+= Where is the source code? =
+
+The public source repository, including the source for the compiled admin application, is at https://github.com/NETT-Webs/agency-manager
+
 = What happens to my data if I delete the plugin? =
 
 Deleting the plugin (not just deactivating it) removes only its own settings option. Your Talent, Location, Form, and Application/Submission content is left in place, since it consists of ordinary WordPress posts, taxonomies, and post meta.
 
 == Privacy ==
 
-Agency Manager's public Talent Application and Location Submission forms can collect personal information directly from the person filling out the form — for example, name, email address, phone number, free-text answers, and uploaded files, depending on how each form is configured in the Form Builder. When a form is submitted, Agency Manager also records the submitter's IP address (from the standard `REMOTE_ADDR` server value) against that submission, for spam/abuse review purposes.
+This plugin's public Talent Application and Location Submission forms can collect personal information directly from the person filling out the form — for example, name, email address, phone number, free-text answers, and uploaded files, depending on how each form is configured in the Form Builder. When a form is submitted, the plugin also records the submitter's IP address (from the standard `REMOTE_ADDR` server value) against that submission, for spam/abuse review purposes.
 
-All of this information is stored locally in your WordPress database as ordinary post meta on the submission record — Agency Manager does not send it to any external service, analytics platform, or third party. It stays on your own server, under your own control, exactly like any other WordPress post data.
+All of this information is stored locally in your WordPress database as ordinary post meta on the submission record — the plugin does not send it to any external service, analytics platform, or third party. It stays on your own server, under your own control, exactly like any other WordPress post data.
 
 If you use the CSV Import feature, the Name/Email/Phone/etc. fields you import become part of the resulting Talent or Location record, stored the same way.
 
-Because these forms can collect personal data, if your site is subject to GDPR or similar regulations you are responsible for including Agency Manager's Talent Application and Location Submission forms in your site's own privacy policy, and for handling data-access/erasure requests through WordPress's built-in Privacy Tools (Tools → Export/Erase Personal Data), the same as you would for any other form plugin.
+Because these forms can collect personal data, if your site is subject to GDPR or similar regulations you are responsible for including this plugin's Talent Application and Location Submission forms in your site's own privacy policy, and for handling data-access/erasure requests through WordPress's built-in Privacy Tools (Tools → Export/Erase Personal Data), the same as you would for any other form plugin.
 
 == Screenshots ==
 
@@ -92,6 +98,9 @@ Because these forms can collect personal data, if your site is subject to GDPR o
 18. Location cards on the front end.
 
 == Changelog ==
+
+= 1.6.5 =
+Corrective release addressing WordPress.org Plugin Review Team feedback. Renamed from "Agency Manager" to "NettWebs Talent & Location Management" to establish a distinctive plugin identity (plugin name, slug, and text domain only — every shortcode, Elementor widget identifier, REST route, and stored meta/option key is unchanged, so existing content and pages continue to work exactly as before). Hardened the public form-upload path to sanitize the uploaded filename and stop trusting the client-supplied file type before use (the real type is still determined the same way it always was, via WordPress's own upload validation). Added explicit per-field schema validation to the Form Builder's save handler and the Elementor Widget Style Preset save handler, so malformed submitted data is normalized or rejected rather than merely decoded. Moved the admin menu from position 25 (which collided with a core WordPress menu position) to a position below WordPress's own core menu items. Removed a manual translation-loading call that is unnecessary now that the plugin's text domain matches its WordPress.org slug. No database schema changes, no functionality removed.
 
 = 1.6.4 =
 Production hardening pass: the CSV Import wizard and its image pipeline were re-verified end-to-end at scale (100 Talent, ~400 images), including a duplicate-import test (Update mode: 0 duplicates), a changed-image re-import test, and a partial-failure test (one bad image URL no longer affects the rest of the batch). Adds WebP optimization for images imported via CSV — generated sub-sizes are re-encoded as WebP after download where the server supports it, while the original uploaded file is always kept untouched in its original format. No CDN or external service required; no behaviour changes to Elementor, shortcodes, Forms, or existing Media Library content.

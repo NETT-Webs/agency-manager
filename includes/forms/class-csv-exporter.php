@@ -13,11 +13,11 @@ class Csv_Exporter {
 
 	public function export(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'agency-manager' ) );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'nettwebs-talent-location-management' ) );
 		}
 
 		if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'am_export_csv' ) ) {
-			wp_die( esc_html__( 'Security check failed.', 'agency-manager' ) );
+			wp_die( esc_html__( 'Security check failed.', 'nettwebs-talent-location-management' ) );
 		}
 
 		$form_id = isset( $_GET['form_id'] ) ? absint( $_GET['form_id'] ) : 0;
@@ -39,7 +39,7 @@ class Csv_Exporter {
 		header( 'Content-Disposition: attachment; filename="submissions-' . $form_id . '.csv"' );
 
 		$out = fopen( 'php://output', 'w' );
-		fputcsv( $out, array_map( array( $this, 'defuse_formula' ), array_merge( array( __( 'Submitted', 'agency-manager' ), __( 'Status', 'agency-manager' ) ), $field_keys ) ) );
+		fputcsv( $out, array_map( array( $this, 'defuse_formula' ), array_merge( array( __( 'Submitted', 'nettwebs-talent-location-management' ), __( 'Status', 'nettwebs-talent-location-management' ) ), $field_keys ) ) );
 
 		foreach ( $submissions as $submission ) {
 			$values = json_decode( (string) get_post_meta( $submission->ID, '_am_field_values', true ), true );
@@ -48,7 +48,8 @@ class Csv_Exporter {
 
 			$row = array( get_the_date( '', $submission ), $status );
 			foreach ( $field_keys as $key ) {
-				$row[] = $values[ $key ] ?? '';
+				$value = $values[ $key ] ?? '';
+				$row[] = is_array( $value ) ? implode( ', ', array_map( 'strval', $value ) ) : $value;
 			}
 
 			fputcsv( $out, array_map( array( $this, 'defuse_formula' ), $row ) );

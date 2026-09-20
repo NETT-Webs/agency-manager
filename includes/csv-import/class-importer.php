@@ -87,7 +87,7 @@ class Importer {
 				$term_result = Term_Resolver::resolve( $taxonomy, $names, ! empty( $options['createTerms'] ) );
 				$payload['terms'][ $taxonomy ] = $term_result['ids'];
 				foreach ( $term_result['missing'] as $missing_name ) {
-					$warnings[] = sprintf( /* translators: %s: term name */ __( 'Unknown term (not created): "%s"', 'agency-manager' ), $missing_name );
+					$warnings[] = sprintf( /* translators: %s: term name */ __( 'Unknown term (not created): "%s"', 'nettwebs-talent-location-management' ), $missing_name );
 				}
 			}
 
@@ -99,7 +99,7 @@ class Importer {
 					if ( $image['id'] ) {
 						$payload['thumbnailId'] = $image['id'];
 					} else {
-						$warnings[] = sprintf( /* translators: %s: error message */ __( 'Featured image could not be imported: %s', 'agency-manager' ), $image['error'] );
+						$warnings[] = sprintf( /* translators: %s: error message */ __( 'Featured image could not be imported: %s', 'nettwebs-talent-location-management' ), $image['error'] );
 					}
 				}
 				if ( ! empty( $payload['_galleryUrls'] ) ) {
@@ -109,7 +109,7 @@ class Importer {
 						if ( $image['id'] ) {
 							$gallery_ids[] = $image['id'];
 						} else {
-							$warnings[] = sprintf( /* translators: %s: error message */ __( 'Gallery image could not be imported: %s', 'agency-manager' ), $image['error'] );
+							$warnings[] = sprintf( /* translators: %s: error message */ __( 'Gallery image could not be imported: %s', 'nettwebs-talent-location-management' ), $image['error'] );
 						}
 					}
 					if ( $gallery_ids ) {
@@ -121,7 +121,7 @@ class Importer {
 
 			if ( $existing_id ) {
 				if ( 'skip' === $options['duplicateMode'] ) {
-					$results[] = array( 'row' => $row_number, 'name' => $payload['title'] ?? '', 'action' => 'skipped', 'status' => 'warning', 'reason' => __( 'Matched an existing record; skipped by import settings.', 'agency-manager' ) );
+					$results[] = array( 'row' => $row_number, 'name' => $payload['title'] ?? '', 'action' => 'skipped', 'status' => 'warning', 'reason' => __( 'Matched an existing record; skipped by import settings.', 'nettwebs-talent-location-management' ) );
 					++$counts['skipped'];
 					continue;
 				}
@@ -140,7 +140,7 @@ class Importer {
 			$new_id = $controller->insert_from_payload( $payload );
 
 			if ( ! $new_id ) {
-				$results[] = array( 'row' => $row_number, 'name' => $payload['title'] ?? '', 'action' => 'error', 'status' => 'error', 'reason' => __( 'Could not create the record.', 'agency-manager' ) );
+				$results[] = array( 'row' => $row_number, 'name' => $payload['title'] ?? '', 'action' => 'error', 'status' => 'error', 'reason' => __( 'Could not create the record.', 'nettwebs-talent-location-management' ) );
 				++$counts['errors'];
 				continue;
 			}

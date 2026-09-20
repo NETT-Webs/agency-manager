@@ -53,7 +53,7 @@ class Workflow {
 		$values = is_array( $values ) ? $values : array();
 
 		$post_type = 'location' === $type ? 'location' : 'talent';
-		$title     = $values['full_name'] ?? ( $values['location_name'] ?? __( 'Untitled', 'agency-manager' ) );
+		$title     = $values['full_name'] ?? ( $values['location_name'] ?? __( 'Untitled', 'nettwebs-talent-location-management' ) );
 
 		$post_id = wp_insert_post(
 			array(

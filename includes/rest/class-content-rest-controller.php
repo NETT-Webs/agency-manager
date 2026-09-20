@@ -61,7 +61,7 @@ class Content_Rest_Controller extends Rest_Controller {
 
 			$rows[] = array(
 				'id'          => $post->ID,
-				'title'       => $post->post_title ?: __( '(no title)', 'agency-manager' ),
+				'title'       => $post->post_title ?: __( '(no title)', 'nettwebs-talent-location-management' ),
 				'status'      => $post->post_status,
 				'thumbnail'   => get_the_post_thumbnail_url( $post->ID, 'thumbnail' ) ?: '',
 				'terms'       => $terms,

@@ -45,11 +45,11 @@ class Widget_Style_Presets {
 
 	private function verify_request(): void {
 		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), self::NONCE_ACTION ) ) {
-			wp_send_json_error( array( 'message' => __( 'Security check failed.', 'agency-manager' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'Security check failed.', 'nettwebs-talent-location-management' ) ), 403 );
 		}
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'You do not have permission to do this.', 'agency-manager' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'You do not have permission to do this.', 'nettwebs-talent-location-management' ) ), 403 );
 		}
 	}
 
@@ -61,7 +61,7 @@ class Widget_Style_Presets {
 		$values     = json_decode( (string) $values_raw, true );
 
 		if ( '' === $name || ! is_array( $values ) ) {
-			wp_send_json_error( array( 'message' => __( 'A preset name and style values are required.', 'agency-manager' ) ), 400 );
+			wp_send_json_error( array( 'message' => __( 'A preset name and style values are required.', 'nettwebs-talent-location-management' ) ), 400 );
 		}
 
 		$settings = Settings::all();
@@ -89,14 +89,14 @@ class Widget_Style_Presets {
 		$new_name = isset( $_POST['new_name'] ) ? sanitize_text_field( wp_unslash( $_POST['new_name'] ) ) : '';
 
 		if ( '' === $old_name || '' === $new_name ) {
-			wp_send_json_error( array( 'message' => __( 'Both the existing and new preset name are required.', 'agency-manager' ) ), 400 );
+			wp_send_json_error( array( 'message' => __( 'Both the existing and new preset name are required.', 'nettwebs-talent-location-management' ) ), 400 );
 		}
 
 		$settings = Settings::all();
 		$presets  = $settings['widget_style_presets'] ?? array();
 
 		if ( ! isset( $presets[ $old_name ] ) ) {
-			wp_send_json_error( array( 'message' => __( 'That preset no longer exists.', 'agency-manager' ) ), 404 );
+			wp_send_json_error( array( 'message' => __( 'That preset no longer exists.', 'nettwebs-talent-location-management' ) ), 404 );
 		}
 
 		$values = $presets[ $old_name ];
@@ -108,22 +108,30 @@ class Widget_Style_Presets {
 		wp_send_json_success( array( 'presets' => Settings::get_widget_style_presets() ) );
 	}
 
+	/** Elementor's own deepest Style-tab control shapes (Typography inside a responsive dimension object) never exceed this — a generous ceiling against a malformed/adversarial payload, not a real-world limit. */
+	private const MAX_VALUE_DEPTH = 8;
+
 	/**
 	 * Style-tab control values are colours, dimension/slider objects
 	 * ({size, unit} or {top,right,bottom,left,unit}), and Typography group
 	 * sub-fields — a recursive sanitizer that preserves numeric leaves and
 	 * runs sanitize_text_field() on string leaves handles every shape
 	 * Elementor's own controls produce, without needing to special-case
-	 * each control type.
+	 * each control type. Depth-bounded so a malformed/adversarial payload
+	 * (still capability + nonce gated, but defense-in-depth regardless)
+	 * can't force unbounded recursion or an unbounded stored option size.
 	 *
 	 * @param mixed $value
 	 * @return mixed
 	 */
-	private static function sanitize_values( $value ) {
+	private static function sanitize_values( $value, int $depth = 0 ) {
 		if ( is_array( $value ) ) {
+			if ( $depth >= self::MAX_VALUE_DEPTH ) {
+				return array();
+			}
 			$out = array();
 			foreach ( $value as $key => $item ) {
-				$out[ sanitize_key( (string) $key ) ] = self::sanitize_values( $item );
+				$out[ sanitize_key( (string) $key ) ] = self::sanitize_values( $item, $depth + 1 );
 			}
 			return $out;
 		}

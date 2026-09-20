@@ -70,7 +70,7 @@ abstract class Profile_Rest_Controller extends Rest_Controller {
 		$post    = get_post( $post_id );
 
 		if ( ! $post || $this->post_type() !== $post->post_type ) {
-			return new \WP_REST_Response( array( 'message' => __( 'Record not found.', 'agency-manager' ) ), 404 );
+			return new \WP_REST_Response( array( 'message' => __( 'Record not found.', 'nettwebs-talent-location-management' ) ), 404 );
 		}
 
 		return new \WP_REST_Response( $this->serialize( $post ) );
@@ -104,7 +104,7 @@ abstract class Profile_Rest_Controller extends Rest_Controller {
 		$post    = get_post( $post_id );
 
 		if ( ! $post || $this->post_type() !== $post->post_type ) {
-			return new \WP_REST_Response( array( 'message' => __( 'Record not found.', 'agency-manager' ) ), 404 );
+			return new \WP_REST_Response( array( 'message' => __( 'Record not found.', 'nettwebs-talent-location-management' ) ), 404 );
 		}
 
 		$html = 'talent' === $this->post_type()
@@ -124,7 +124,7 @@ abstract class Profile_Rest_Controller extends Rest_Controller {
 		$post_id = $this->insert_from_payload( (array) $request->get_json_params() );
 
 		if ( ! $post_id ) {
-			return new \WP_REST_Response( array( 'message' => __( 'Could not create the record.', 'agency-manager' ) ), 500 );
+			return new \WP_REST_Response( array( 'message' => __( 'Could not create the record.', 'nettwebs-talent-location-management' ) ), 500 );
 		}
 
 		return new \WP_REST_Response( array( 'id' => $post_id ), 201 );
@@ -135,7 +135,7 @@ abstract class Profile_Rest_Controller extends Rest_Controller {
 		$post    = get_post( $post_id );
 
 		if ( ! $post || $this->post_type() !== $post->post_type ) {
-			return new \WP_REST_Response( array( 'message' => __( 'Record not found.', 'agency-manager' ) ), 404 );
+			return new \WP_REST_Response( array( 'message' => __( 'Record not found.', 'nettwebs-talent-location-management' ) ), 404 );
 		}
 
 		$this->apply_payload( $post_id, (array) $request->get_json_params() );
@@ -156,7 +156,7 @@ abstract class Profile_Rest_Controller extends Rest_Controller {
 	public function insert_from_payload( array $body ): int {
 		$post_id = wp_insert_post( array(
 			'post_type'    => $this->post_type(),
-			'post_title'   => sanitize_text_field( (string) ( $body['title'] ?? '' ) ) ?: __( 'Untitled', 'agency-manager' ),
+			'post_title'   => sanitize_text_field( (string) ( $body['title'] ?? '' ) ) ?: __( 'Untitled', 'nettwebs-talent-location-management' ),
 			'post_content' => wp_kses_post( (string) ( $body['description'] ?? '' ) ),
 			'post_status'  => $this->sanitize_status( $body['status'] ?? 'draft' ),
 		) );
@@ -219,7 +219,7 @@ abstract class Profile_Rest_Controller extends Rest_Controller {
 		$post    = get_post( $post_id );
 
 		if ( ! $post || $this->post_type() !== $post->post_type ) {
-			return new \WP_REST_Response( array( 'message' => __( 'Record not found.', 'agency-manager' ) ), 404 );
+			return new \WP_REST_Response( array( 'message' => __( 'Record not found.', 'nettwebs-talent-location-management' ) ), 404 );
 		}
 
 		// Trash, not force-delete — recoverable, matches the Forms/Import-Export delete convention elsewhere in this plugin.

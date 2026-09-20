@@ -21,8 +21,8 @@ class Submission_Cpt {
 			'am_submission',
 			array(
 				'labels'       => array(
-					'name'          => __( 'Submissions', 'agency-manager' ),
-					'singular_name' => __( 'Submission', 'agency-manager' ),
+					'name'          => __( 'Submissions', 'nettwebs-talent-location-management' ),
+					'singular_name' => __( 'Submission', 'nettwebs-talent-location-management' ),
 				),
 				'public'       => false,
 				'show_ui'      => false,

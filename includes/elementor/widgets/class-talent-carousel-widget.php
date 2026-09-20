@@ -12,7 +12,7 @@ class Talent_Carousel_Widget extends Base_Grid_Widget {
 	}
 
 	public function get_title(): string {
-		return __( 'Talent Carousel', 'agency-manager' );
+		return __( 'Talent Carousel', 'nettwebs-talent-location-management' );
 	}
 
 	public function get_icon(): string {

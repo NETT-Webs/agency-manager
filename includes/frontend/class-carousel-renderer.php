@@ -58,8 +58,8 @@ class Carousel_Renderer {
 			esc_attr( $layout_class ),
 			esc_attr( 'slider' === $layout ? '1' : '0' ),
 			$inner,
-			esc_attr__( 'Previous', 'agency-manager' ),
-			esc_attr__( 'Next', 'agency-manager' )
+			esc_attr__( 'Previous', 'nettwebs-talent-location-management' ),
+			esc_attr__( 'Next', 'nettwebs-talent-location-management' )
 		);
 	}
 

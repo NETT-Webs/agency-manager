@@ -30,7 +30,7 @@ class Form_Builder_Page {
 		$form = get_post( $form_id );
 
 		if ( ! $form || 'am_form' !== $form->post_type ) {
-			echo '<div class="wrap am-admin-page"><p>' . esc_html__( 'Form not found.', 'agency-manager' ) . '</p></div>';
+			echo '<div class="wrap am-admin-page"><p>' . esc_html__( 'Form not found.', 'nettwebs-talent-location-management' ) . '</p></div>';
 			return;
 		}
 
@@ -51,7 +51,7 @@ class Form_Builder_Page {
 				'formId'       => $form_id,
 				'formTitle'    => $form->post_title,
 				'formType'     => $type,
-				'confirmation' => $confirm ? $confirm : __( 'Thank you — your submission has been received.', 'agency-manager' ),
+				'confirmation' => $confirm ? $confirm : __( 'Thank you — your submission has been received.', 'nettwebs-talent-location-management' ),
 				'fields'       => $fields,
 				'library'      => Field_Types::library(),
 				'types'        => Field_Types::types(),
@@ -60,13 +60,13 @@ class Form_Builder_Page {
 					'location' => Mapping_Targets::get( 'location' ),
 				),
 				'i18n'         => array(
-					'saved'            => __( 'Form saved.', 'agency-manager' ),
-					'error'            => __( 'Something went wrong — please try again.', 'agency-manager' ),
-					'unsavedChanges'   => __( 'You have unsaved changes. Leave this page anyway?', 'agency-manager' ),
-					'confirmDeleteField' => __( 'Remove this field from the form?', 'agency-manager' ),
-					'noFieldSelected'  => __( 'Select a field on the canvas to edit its settings.', 'agency-manager' ),
-					'emptyCanvas'      => __( 'Drag a field from the library on the left to start building your form.', 'agency-manager' ),
-					'copied'           => __( 'Shortcode copied.', 'agency-manager' ),
+					'saved'            => __( 'Form saved.', 'nettwebs-talent-location-management' ),
+					'error'            => __( 'Something went wrong — please try again.', 'nettwebs-talent-location-management' ),
+					'unsavedChanges'   => __( 'You have unsaved changes. Leave this page anyway?', 'nettwebs-talent-location-management' ),
+					'confirmDeleteField' => __( 'Remove this field from the form?', 'nettwebs-talent-location-management' ),
+					'noFieldSelected'  => __( 'Select a field on the canvas to edit its settings.', 'nettwebs-talent-location-management' ),
+					'emptyCanvas'      => __( 'Drag a field from the library on the left to start building your form.', 'nettwebs-talent-location-management' ),
+					'copied'           => __( 'Shortcode copied.', 'nettwebs-talent-location-management' ),
 				),
 			)
 		);
@@ -76,21 +76,21 @@ class Form_Builder_Page {
 				<?php
 				printf(
 					/* translators: %s: form title */
-					esc_html__( 'Edit Form: %s', 'agency-manager' ),
+					esc_html__( 'Edit Form: %s', 'nettwebs-talent-location-management' ),
 					esc_html( $form->post_title )
 				);
 				?>
 			</h1>
 			<p>
-				<a href="<?php echo esc_url( admin_url( 'admin.php?page=agency-manager-forms' ) ); ?>">&larr; <?php esc_html_e( 'All Forms', 'agency-manager' ); ?></a>
+				<a href="<?php echo esc_url( admin_url( 'admin.php?page=agency-manager-forms' ) ); ?>">&larr; <?php esc_html_e( 'All Forms', 'nettwebs-talent-location-management' ); ?></a>
 				&nbsp;&middot;&nbsp;
-				<?php esc_html_e( 'Shortcode:', 'agency-manager' ); ?>
+				<?php esc_html_e( 'Shortcode:', 'nettwebs-talent-location-management' ); ?>
 				<code id="am-fb-shortcode"><?php echo esc_html( $shortcode ); ?></code>
-				<button type="button" class="button button-small" id="am-fb-copy-shortcode" data-shortcode="<?php echo esc_attr( $shortcode ); ?>"><?php esc_html_e( 'Copy', 'agency-manager' ); ?></button>
+				<button type="button" class="button button-small" id="am-fb-copy-shortcode" data-shortcode="<?php echo esc_attr( $shortcode ); ?>"><?php esc_html_e( 'Copy', 'nettwebs-talent-location-management' ); ?></button>
 			</p>
 
 			<div id="am-form-builder-root" class="am-form-builder" data-form-id="<?php echo esc_attr( $form_id ); ?>">
-				<p><?php esc_html_e( 'Loading builder…', 'agency-manager' ); ?></p>
+				<p><?php esc_html_e( 'Loading builder…', 'nettwebs-talent-location-management' ); ?></p>
 			</div>
 		</div>
 		<?php

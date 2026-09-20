@@ -12,7 +12,7 @@ class Location_Submission_Form_Widget extends Base_Form_Widget {
 	}
 
 	public function get_title(): string {
-		return __( 'Location Submission Form', 'agency-manager' );
+		return __( 'Location Submission Form', 'nettwebs-talent-location-management' );
 	}
 
 	public function get_icon(): string {

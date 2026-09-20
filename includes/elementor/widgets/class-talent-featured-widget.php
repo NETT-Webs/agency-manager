@@ -12,7 +12,7 @@ class Talent_Featured_Widget extends Base_Grid_Widget {
 	}
 
 	public function get_title(): string {
-		return __( 'Featured Talent', 'agency-manager' );
+		return __( 'Featured Talent', 'nettwebs-talent-location-management' );
 	}
 
 	public function get_icon(): string {

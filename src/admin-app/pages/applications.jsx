@@ -32,6 +32,13 @@ function formatValue( value ) {
 	return Array.isArray( value ) ? value.map( String ).join( ', ' ) : String( value ?? '' );
 }
 
+function buildCsvExportUrl( formId ) {
+	const adminPostUrl = window.amAdminApp?.importExport?.adminPostUrl || '';
+	const nonce = window.amAdminApp?.applications?.csvExportNonce || '';
+	const params = new URLSearchParams( { action: 'am_export_submissions_csv', form_id: formId, _wpnonce: nonce } );
+	return `${ adminPostUrl }?${ params.toString() }`;
+}
+
 function ApplicationDetail( { row } ) {
 	return (
 		<div className="am-flex am-flex-wrap am-gap-6 am-border-t am-border-border am-bg-secondary/30 am-p-4">
@@ -132,6 +139,7 @@ export function Applications() {
 	}
 
 	const loading = ! rows;
+	const csvForms = ( window.amAdminApp?.applications?.csvForms || [] ).filter( ( f ) => f.type === type );
 
 	return (
 		<div className="am-flex am-flex-col am-gap-6">
@@ -163,6 +171,11 @@ export function Applications() {
 						<SelectItem value="archived">Archived</SelectItem>
 					</SelectContent>
 				</Select>
+				{ csvForms.map( ( f ) => (
+					<Button key={ f.id } as="a" href={ buildCsvExportUrl( f.id ) } size="sm" variant="outline">
+						Export CSV — { f.title }
+					</Button>
+				) ) }
 			</div>
 
 			<Card>

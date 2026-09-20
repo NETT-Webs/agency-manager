@@ -22,8 +22,8 @@ class Form_Cpt {
 			'am_form',
 			array(
 				'labels'       => array(
-					'name'          => __( 'Forms', 'agency-manager' ),
-					'singular_name' => __( 'Form', 'agency-manager' ),
+					'name'          => __( 'Forms', 'nettwebs-talent-location-management' ),
+					'singular_name' => __( 'Form', 'nettwebs-talent-location-management' ),
 				),
 				'public'       => false,
 				'show_ui'      => false,

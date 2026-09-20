@@ -52,13 +52,17 @@ class Admin {
 
 	public function add_menu(): void {
 		add_menu_page(
-			__( 'Agency Manager', 'agency-manager' ),
-			__( 'Agency Manager', 'agency-manager' ),
+			__( 'NettWebs Talent & Location Management', 'nettwebs-talent-location-management' ),
+			__( 'NettWebs Talent & Location Management', 'nettwebs-talent-location-management' ),
 			'manage_options',
 			'agency-manager',
 			array( $this, 'render_dashboard' ),
 			'dashicons-groups',
-			25
+			// 58.5 sits just below WordPress core's own menu block (Comments
+			// is 25; core's own separator is 59) instead of colliding with
+			// it — WordPress.org review flagged the previous position (25)
+			// for competing with core admin positions.
+			58.5
 		);
 
 		// Every screen below (except Forms in builder view, and the two
@@ -71,14 +75,14 @@ class Admin {
 		// fallback references; their admin_init side effects (nonce
 		// handlers, redirects) are still registered from Admin::register()
 		// and are exactly what the REST controllers now call into.
-		add_submenu_page( 'agency-manager', __( 'Dashboard', 'agency-manager' ), __( 'Dashboard', 'agency-manager' ), 'manage_options', 'agency-manager', array( $this, 'render_dashboard' ) );
-		add_submenu_page( 'agency-manager', __( 'Talent', 'agency-manager' ), __( 'Talent', 'agency-manager' ), 'manage_options', 'agency-manager-talent', array( $this, 'render_talent' ) );
-		add_submenu_page( 'agency-manager', __( 'Locations', 'agency-manager' ), __( 'Locations', 'agency-manager' ), 'manage_options', 'agency-manager-locations', array( $this, 'render_locations' ) );
-		add_submenu_page( 'agency-manager', __( 'Applications', 'agency-manager' ), __( 'Applications', 'agency-manager' ), 'manage_options', 'agency-manager-applications', array( $this, 'render_applications' ) );
-		add_submenu_page( 'agency-manager', __( 'Forms', 'agency-manager' ), __( 'Forms', 'agency-manager' ), 'manage_options', 'agency-manager-forms', array( $this, 'render_forms' ) );
-		add_submenu_page( 'agency-manager', __( 'Website Display', 'agency-manager' ), __( 'Website Display', 'agency-manager' ), 'manage_options', 'agency-manager-display', array( $this, 'render_display' ) );
-		add_submenu_page( 'agency-manager', __( 'Import / Export', 'agency-manager' ), __( 'Import / Export', 'agency-manager' ), 'manage_options', 'agency-manager-import-export', array( $this, 'render_import_export' ) );
-		add_submenu_page( 'agency-manager', __( 'Settings', 'agency-manager' ), __( 'Settings', 'agency-manager' ), 'manage_options', 'agency-manager-settings', array( $this, 'render_settings' ) );
+		add_submenu_page( 'agency-manager', __( 'Dashboard', 'nettwebs-talent-location-management' ), __( 'Dashboard', 'nettwebs-talent-location-management' ), 'manage_options', 'agency-manager', array( $this, 'render_dashboard' ) );
+		add_submenu_page( 'agency-manager', __( 'Talent', 'nettwebs-talent-location-management' ), __( 'Talent', 'nettwebs-talent-location-management' ), 'manage_options', 'agency-manager-talent', array( $this, 'render_talent' ) );
+		add_submenu_page( 'agency-manager', __( 'Locations', 'nettwebs-talent-location-management' ), __( 'Locations', 'nettwebs-talent-location-management' ), 'manage_options', 'agency-manager-locations', array( $this, 'render_locations' ) );
+		add_submenu_page( 'agency-manager', __( 'Applications', 'nettwebs-talent-location-management' ), __( 'Applications', 'nettwebs-talent-location-management' ), 'manage_options', 'agency-manager-applications', array( $this, 'render_applications' ) );
+		add_submenu_page( 'agency-manager', __( 'Forms', 'nettwebs-talent-location-management' ), __( 'Forms', 'nettwebs-talent-location-management' ), 'manage_options', 'agency-manager-forms', array( $this, 'render_forms' ) );
+		add_submenu_page( 'agency-manager', __( 'Website Display', 'nettwebs-talent-location-management' ), __( 'Website Display', 'nettwebs-talent-location-management' ), 'manage_options', 'agency-manager-display', array( $this, 'render_display' ) );
+		add_submenu_page( 'agency-manager', __( 'Import / Export', 'nettwebs-talent-location-management' ), __( 'Import / Export', 'nettwebs-talent-location-management' ), 'manage_options', 'agency-manager-import-export', array( $this, 'render_import_export' ) );
+		add_submenu_page( 'agency-manager', __( 'Settings', 'nettwebs-talent-location-management' ), __( 'Settings', 'nettwebs-talent-location-management' ), 'manage_options', 'agency-manager-settings', array( $this, 'render_settings' ) );
 	}
 
 	public function render_dashboard(): void {
@@ -152,7 +156,7 @@ class Admin {
 	}
 
 	public function enqueue_assets( string $hook ): void {
-		if ( false === strpos( (string) $hook, 'agency-manager' ) ) {
+		if ( false === strpos( (string) $hook, 'nettwebs-talent-location-management' ) ) {
 			return;
 		}
 

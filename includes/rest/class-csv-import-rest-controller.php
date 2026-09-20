@@ -85,18 +85,18 @@ class Csv_Import_Rest_Controller extends Rest_Controller {
 
 		$files = $request->get_file_params();
 		if ( empty( $files['file']['tmp_name'] ) || ! is_uploaded_file( $files['file']['tmp_name'] ) ) {
-			return new \WP_REST_Response( array( 'message' => __( 'No file uploaded.', 'agency-manager' ) ), 400 );
+			return new \WP_REST_Response( array( 'message' => __( 'No file uploaded.', 'nettwebs-talent-location-management' ) ), 400 );
 		}
 
 		$file = $files['file'];
 
 		if ( $file['size'] > self::MAX_FILE_SIZE ) {
-			return new \WP_REST_Response( array( 'message' => __( 'File is too large (20MB limit).', 'agency-manager' ) ), 400 );
+			return new \WP_REST_Response( array( 'message' => __( 'File is too large (20MB limit).', 'nettwebs-talent-location-management' ) ), 400 );
 		}
 
 		$ext = strtolower( pathinfo( $file['name'], PATHINFO_EXTENSION ) );
 		if ( 'csv' !== $ext ) {
-			return new \WP_REST_Response( array( 'message' => __( 'Please upload a .csv file.', 'agency-manager' ) ), 400 );
+			return new \WP_REST_Response( array( 'message' => __( 'Please upload a .csv file.', 'nettwebs-talent-location-management' ) ), 400 );
 		}
 
 		$filetype = wp_check_filetype( $file['name'], array( 'csv' => 'text/csv' ) );
@@ -109,13 +109,13 @@ class Csv_Import_Rest_Controller extends Rest_Controller {
 				fclose( $handle ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fclose
 			}
 			if ( false !== strpos( (string) $sample, "\0" ) ) {
-				return new \WP_REST_Response( array( 'message' => __( 'This does not look like a valid CSV file.', 'agency-manager' ) ), 400 );
+				return new \WP_REST_Response( array( 'message' => __( 'This does not look like a valid CSV file.', 'nettwebs-talent-location-management' ) ), 400 );
 			}
 		}
 
 		$session = Import_Session::create( $file['tmp_name'], $file['name'], $type );
 		if ( empty( $session ) ) {
-			return new \WP_REST_Response( array( 'message' => __( 'Could not process the uploaded file.', 'agency-manager' ) ), 500 );
+			return new \WP_REST_Response( array( 'message' => __( 'Could not process the uploaded file.', 'nettwebs-talent-location-management' ) ), 500 );
 		}
 
 		return new \WP_REST_Response( $this->public_session( $session ) );
@@ -126,7 +126,7 @@ class Csv_Import_Rest_Controller extends Rest_Controller {
 	public function get_session( \WP_REST_Request $request ): \WP_REST_Response {
 		$session = Import_Session::get( (string) $request->get_param( 'id' ) );
 		if ( ! $session ) {
-			return new \WP_REST_Response( array( 'message' => __( 'Import session not found or expired.', 'agency-manager' ) ), 404 );
+			return new \WP_REST_Response( array( 'message' => __( 'Import session not found or expired.', 'nettwebs-talent-location-management' ) ), 404 );
 		}
 		return new \WP_REST_Response( $this->public_session( $session ) );
 	}
@@ -141,7 +141,7 @@ class Csv_Import_Rest_Controller extends Rest_Controller {
 		$body    = (array) $request->get_json_params();
 		$session = Import_Session::get( $id );
 		if ( ! $session ) {
-			return new \WP_REST_Response( array( 'message' => __( 'Import session not found or expired.', 'agency-manager' ) ), 404 );
+			return new \WP_REST_Response( array( 'message' => __( 'Import session not found or expired.', 'nettwebs-talent-location-management' ) ), 404 );
 		}
 
 		$column_map = array();
@@ -166,7 +166,7 @@ class Csv_Import_Rest_Controller extends Rest_Controller {
 	public function preview( \WP_REST_Request $request ): \WP_REST_Response {
 		$session = Import_Session::get( (string) $request->get_param( 'id' ) );
 		if ( ! $session ) {
-			return new \WP_REST_Response( array( 'message' => __( 'Import session not found or expired.', 'agency-manager' ) ), 404 );
+			return new \WP_REST_Response( array( 'message' => __( 'Import session not found or expired.', 'nettwebs-talent-location-management' ) ), 404 );
 		}
 
 		$offset = absint( $request->get_param( 'offset' ) ?? 0 );
@@ -178,10 +178,10 @@ class Csv_Import_Rest_Controller extends Rest_Controller {
 	public function run( \WP_REST_Request $request ): \WP_REST_Response {
 		$session = Import_Session::get( (string) $request->get_param( 'id' ) );
 		if ( ! $session ) {
-			return new \WP_REST_Response( array( 'message' => __( 'Import session not found or expired.', 'agency-manager' ) ), 404 );
+			return new \WP_REST_Response( array( 'message' => __( 'Import session not found or expired.', 'nettwebs-talent-location-management' ) ), 404 );
 		}
 		if ( empty( $session['columnMap'] ) ) {
-			return new \WP_REST_Response( array( 'message' => __( 'No column mapping has been saved for this import yet.', 'agency-manager' ) ), 400 );
+			return new \WP_REST_Response( array( 'message' => __( 'No column mapping has been saved for this import yet.', 'nettwebs-talent-location-management' ) ), 400 );
 		}
 
 		$offset = absint( $request->get_param( 'offset' ) ?? 0 );
@@ -228,7 +228,7 @@ class Csv_Import_Rest_Controller extends Rest_Controller {
 		$type = 'location' === ( $body['type'] ?? '' ) ? 'location' : 'talent';
 
 		if ( '' === $name ) {
-			return new \WP_REST_Response( array( 'message' => __( 'Please name this mapping.', 'agency-manager' ) ), 400 );
+			return new \WP_REST_Response( array( 'message' => __( 'Please name this mapping.', 'nettwebs-talent-location-management' ) ), 400 );
 		}
 
 		$column_map = array();
@@ -259,10 +259,10 @@ class Csv_Import_Rest_Controller extends Rest_Controller {
 
 		$settings = Settings::all();
 		if ( ! isset( $settings['csv_mapping_templates'][ $id ] ) ) {
-			return new \WP_REST_Response( array( 'message' => __( 'Mapping template not found.', 'agency-manager' ) ), 404 );
+			return new \WP_REST_Response( array( 'message' => __( 'Mapping template not found.', 'nettwebs-talent-location-management' ) ), 404 );
 		}
 		if ( '' === $name ) {
-			return new \WP_REST_Response( array( 'message' => __( 'Please provide a name.', 'agency-manager' ) ), 400 );
+			return new \WP_REST_Response( array( 'message' => __( 'Please provide a name.', 'nettwebs-talent-location-management' ) ), 400 );
 		}
 
 		$settings['csv_mapping_templates'][ $id ]['name'] = $name;

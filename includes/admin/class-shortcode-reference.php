@@ -43,100 +43,100 @@ class Shortcode_Reference {
 	public static function groups(): array {
 		$groups = array(
 			'talent'    => array(
-				'label'      => __( 'Talent', 'agency-manager' ),
+				'label'      => __( 'Talent', 'nettwebs-talent-location-management' ),
 				'shortcodes' => array(
 					array(
 						'tag'         => 'talent_grid',
 						'example'     => '[talent_grid]',
-						'description' => __( 'Static grid of Talent cards.', 'agency-manager' ),
-						'when'        => __( 'A dedicated Talent archive page, or anywhere you want every (or a filtered subset of) Talent record shown at once.', 'agency-manager' ),
+						'description' => __( 'Static grid of Talent cards.', 'nettwebs-talent-location-management' ),
+						'when'        => __( 'A dedicated Talent archive page, or anywhere you want every (or a filtered subset of) Talent record shown at once.', 'nettwebs-talent-location-management' ),
 						'params'      => array( 'limit', 'columns', 'category', 'group', 'only_featured', 'only_active', 'order', 'mode' ),
 					),
 					array(
 						'tag'         => 'talent_featured',
 						'example'     => '[talent_featured limit="4"]',
-						'description' => __( 'Displays featured Talent cards, using the Homepage Section settings by default.', 'agency-manager' ),
-						'when'        => __( 'The homepage, or any page that should highlight a small hand-picked selection rather than the full roster.', 'agency-manager' ),
+						'description' => __( 'Displays featured Talent cards, using the Homepage Section settings by default.', 'nettwebs-talent-location-management' ),
+						'when'        => __( 'The homepage, or any page that should highlight a small hand-picked selection rather than the full roster.', 'nettwebs-talent-location-management' ),
 						'params'      => array( 'limit', 'columns', 'category', 'group', 'only_active', 'order', 'mode' ),
 					),
 					array(
 						'tag'         => 'talent_carousel',
 						'example'     => '[talent_carousel]',
-						'description' => __( 'Scrollable Talent carousel.', 'agency-manager' ),
-						'when'        => __( 'A narrower page section where a full grid would take up too much space, but you still want to show several Talent at once.', 'agency-manager' ),
+						'description' => __( 'Scrollable Talent carousel.', 'nettwebs-talent-location-management' ),
+						'when'        => __( 'A narrower page section where a full grid would take up too much space, but you still want to show several Talent at once.', 'nettwebs-talent-location-management' ),
 						'params'      => array( 'limit', 'category', 'group', 'only_featured', 'only_active', 'order', 'mode' ),
 					),
 					array(
 						'tag'         => 'talent_slider',
 						'example'     => '[talent_slider]',
-						'description' => __( 'One-at-a-time Talent slider with autoplay.', 'agency-manager' ),
-						'when'        => __( 'A hero/banner-style section that should showcase one Talent at a time, changing automatically.', 'agency-manager' ),
+						'description' => __( 'One-at-a-time Talent slider with autoplay.', 'nettwebs-talent-location-management' ),
+						'when'        => __( 'A hero/banner-style section that should showcase one Talent at a time, changing automatically.', 'nettwebs-talent-location-management' ),
 						'params'      => array( 'limit', 'category', 'group', 'only_featured', 'only_active', 'order', 'mode' ),
 					),
 					array(
 						'tag'         => 'talent_scouting',
 						'example'     => '[talent_scouting limit="3"]',
-						'description' => __( 'Always shows "Now Scouting" Talent placeholder cards, regardless of the global Display Mode.', 'agency-manager' ),
-						'when'        => __( 'A "coming soon" or recruitment teaser section that should always show placeholder cards, even while the rest of the site is Live.', 'agency-manager' ),
+						'description' => __( 'Always shows "Now Scouting" Talent placeholder cards, regardless of the global Display Mode.', 'nettwebs-talent-location-management' ),
+						'when'        => __( 'A "coming soon" or recruitment teaser section that should always show placeholder cards, even while the rest of the site is Live.', 'nettwebs-talent-location-management' ),
 						'params'      => array( 'limit', 'columns' ),
 					),
 				),
 			),
 			'locations' => array(
-				'label'      => __( 'Locations', 'agency-manager' ),
+				'label'      => __( 'Locations', 'nettwebs-talent-location-management' ),
 				'shortcodes' => array(
 					array(
 						'tag'         => 'location_grid',
 						'example'     => '[location_grid]',
-						'description' => __( 'Static grid of Location cards.', 'agency-manager' ),
-						'when'        => __( 'A dedicated Locations archive page, or anywhere you want every (or a filtered subset of) Location shown at once.', 'agency-manager' ),
+						'description' => __( 'Static grid of Location cards.', 'nettwebs-talent-location-management' ),
+						'when'        => __( 'A dedicated Locations archive page, or anywhere you want every (or a filtered subset of) Location shown at once.', 'nettwebs-talent-location-management' ),
 						'params'      => array( 'limit', 'columns', 'type', 'only_featured', 'only_active', 'order', 'mode' ),
 					),
 					array(
 						'tag'         => 'location_featured',
 						'example'     => '[location_featured limit="4"]',
-						'description' => __( 'Displays featured Location cards, using the Homepage Section settings by default.', 'agency-manager' ),
-						'when'        => __( 'The homepage, or any page that should highlight a small hand-picked selection of Locations.', 'agency-manager' ),
+						'description' => __( 'Displays featured Location cards, using the Homepage Section settings by default.', 'nettwebs-talent-location-management' ),
+						'when'        => __( 'The homepage, or any page that should highlight a small hand-picked selection of Locations.', 'nettwebs-talent-location-management' ),
 						'params'      => array( 'limit', 'columns', 'type', 'only_active', 'order', 'mode' ),
 					),
 					array(
 						'tag'         => 'location_carousel',
 						'example'     => '[location_carousel]',
-						'description' => __( 'Scrollable Location carousel.', 'agency-manager' ),
-						'when'        => __( 'A narrower page section where a full grid would take up too much space.', 'agency-manager' ),
+						'description' => __( 'Scrollable Location carousel.', 'nettwebs-talent-location-management' ),
+						'when'        => __( 'A narrower page section where a full grid would take up too much space.', 'nettwebs-talent-location-management' ),
 						'params'      => array( 'limit', 'type', 'only_featured', 'only_active', 'order', 'mode' ),
 					),
 					array(
 						'tag'         => 'location_slider',
 						'example'     => '[location_slider]',
-						'description' => __( 'One-at-a-time Location slider with autoplay.', 'agency-manager' ),
-						'when'        => __( 'A hero/banner-style section that should showcase one Location at a time, changing automatically.', 'agency-manager' ),
+						'description' => __( 'One-at-a-time Location slider with autoplay.', 'nettwebs-talent-location-management' ),
+						'when'        => __( 'A hero/banner-style section that should showcase one Location at a time, changing automatically.', 'nettwebs-talent-location-management' ),
 						'params'      => array( 'limit', 'type', 'only_featured', 'only_active', 'order', 'mode' ),
 					),
 					array(
 						'tag'         => 'location_scouting',
 						'example'     => '[location_scouting limit="3"]',
-						'description' => __( 'Always shows "Now Scouting" Location placeholder cards, regardless of the global Display Mode.', 'agency-manager' ),
-						'when'        => __( 'A "coming soon" or recruitment teaser section for Locations, regardless of the site\'s current Display Mode.', 'agency-manager' ),
+						'description' => __( 'Always shows "Now Scouting" Location placeholder cards, regardless of the global Display Mode.', 'nettwebs-talent-location-management' ),
+						'when'        => __( 'A "coming soon" or recruitment teaser section for Locations, regardless of the site\'s current Display Mode.', 'nettwebs-talent-location-management' ),
 						'params'      => array( 'limit', 'columns' ),
 					),
 				),
 			),
 			'forms'     => array(
-				'label'      => __( 'Forms', 'agency-manager' ),
+				'label'      => __( 'Forms', 'nettwebs-talent-location-management' ),
 				'shortcodes' => array(
 					array(
 						'tag'         => 'talent_application_form',
 						'example'     => '[talent_application_form]',
-						'description' => __( 'The public Talent application form.', 'agency-manager' ),
-						'when'        => __( 'A "Join Us" / "Apply Now" page. Submissions appear on Agency Manager -> Applications (Talent tab) for review.', 'agency-manager' ),
+						'description' => __( 'The public Talent application form.', 'nettwebs-talent-location-management' ),
+						'when'        => __( 'A "Join Us" / "Apply Now" page. Submissions appear on Agency Manager -> Applications (Talent tab) for review.', 'nettwebs-talent-location-management' ),
 						'params'      => array(),
 					),
 					array(
 						'tag'         => 'location_submission_form',
 						'example'     => '[location_submission_form]',
-						'description' => __( 'The public Location submission form.', 'agency-manager' ),
-						'when'        => __( 'A "List Your Location" / "Register" page. Submissions appear on Agency Manager -> Applications (Location tab) for review.', 'agency-manager' ),
+						'description' => __( 'The public Location submission form.', 'nettwebs-talent-location-management' ),
+						'when'        => __( 'A "List Your Location" / "Register" page. Submissions appear on Agency Manager -> Applications (Location tab) for review.', 'nettwebs-talent-location-management' ),
 						'params'      => array(),
 					),
 				),
@@ -174,10 +174,10 @@ class Shortcode_Reference {
 				'example'     => '[agency_form id="' . $form->ID . '"]',
 				'description' => sprintf(
 					/* translators: %s: form title */
-					__( 'Renders the "%s" form built in the Form Builder.', 'agency-manager' ),
+					__( 'Renders the "%s" form built in the Form Builder.', 'nettwebs-talent-location-management' ),
 					$form->post_title
 				),
-				'when'        => __( 'Anywhere you want this specific form to appear — no shortcode attributes needed beyond id.', 'agency-manager' ),
+				'when'        => __( 'Anywhere you want this specific form to appear — no shortcode attributes needed beyond id.', 'nettwebs-talent-location-management' ),
 				'params'      => array(),
 			);
 		}
@@ -191,27 +191,27 @@ class Shortcode_Reference {
 	private static function common_examples(): array {
 		return array(
 			array(
-				'label'   => __( 'Homepage Featured Talent', 'agency-manager' ),
+				'label'   => __( 'Homepage Featured Talent', 'nettwebs-talent-location-management' ),
 				'example' => '[talent_featured limit="4"]',
 			),
 			array(
-				'label'   => __( 'Homepage Featured Locations', 'agency-manager' ),
+				'label'   => __( 'Homepage Featured Locations', 'nettwebs-talent-location-management' ),
 				'example' => '[location_featured limit="4"]',
 			),
 			array(
-				'label'   => __( 'Full Talent Page', 'agency-manager' ),
+				'label'   => __( 'Full Talent Page', 'nettwebs-talent-location-management' ),
 				'example' => '[talent_grid]',
 			),
 			array(
-				'label'   => __( 'Full Location Page', 'agency-manager' ),
+				'label'   => __( 'Full Location Page', 'nettwebs-talent-location-management' ),
 				'example' => '[location_grid]',
 			),
 			array(
-				'label'   => __( 'Now Scouting Talent', 'agency-manager' ),
+				'label'   => __( 'Now Scouting Talent', 'nettwebs-talent-location-management' ),
 				'example' => '[talent_scouting limit="4"]',
 			),
 			array(
-				'label'   => __( 'Now Scouting Locations', 'agency-manager' ),
+				'label'   => __( 'Now Scouting Locations', 'nettwebs-talent-location-management' ),
 				'example' => '[location_scouting limit="4"]',
 			),
 		);
@@ -223,7 +223,7 @@ class Shortcode_Reference {
 		wp_localize_script(
 			'am-shortcode-reference',
 			'amShortcodeReference',
-			array( 'copiedText' => __( 'Shortcode copied.', 'agency-manager' ) )
+			array( 'copiedText' => __( 'Shortcode copied.', 'nettwebs-talent-location-management' ) )
 		);
 	}
 
@@ -247,7 +247,7 @@ class Shortcode_Reference {
 		?>
 		<div class="am-shortcode-reference">
 			<p class="am-shortcode-reference__search">
-				<input type="search" class="regular-text am-shortcode-search" placeholder="<?php esc_attr_e( 'Search shortcodes… e.g. "featured" or "carousel"', 'agency-manager' ); ?>">
+				<input type="search" class="regular-text am-shortcode-search" placeholder="<?php esc_attr_e( 'Search shortcodes… e.g. "featured" or "carousel"', 'nettwebs-talent-location-management' ); ?>">
 			</p>
 
 			<?php foreach ( $groups as $group ) : ?>
@@ -256,20 +256,20 @@ class Shortcode_Reference {
 					<details class="am-shortcode-reference__item" data-search-text="<?php echo esc_attr( strtolower( $shortcode['tag'] . ' ' . $shortcode['description'] ) ); ?>">
 						<summary>
 							<code><?php echo esc_html( $shortcode['example'] ); ?></code>
-							<button type="button" class="button button-small am-shortcode-copy" data-shortcode="<?php echo esc_attr( $shortcode['example'] ); ?>"><?php esc_html_e( 'Copy', 'agency-manager' ); ?></button>
+							<button type="button" class="button button-small am-shortcode-copy" data-shortcode="<?php echo esc_attr( $shortcode['example'] ); ?>"><?php esc_html_e( 'Copy', 'nettwebs-talent-location-management' ); ?></button>
 						</summary>
 
-						<p><strong><?php esc_html_e( 'What it does:', 'agency-manager' ); ?></strong> <?php echo esc_html( $shortcode['description'] ); ?></p>
-						<p><strong><?php esc_html_e( 'When to use it:', 'agency-manager' ); ?></strong> <?php echo esc_html( $shortcode['when'] ); ?></p>
+						<p><strong><?php esc_html_e( 'What it does:', 'nettwebs-talent-location-management' ); ?></strong> <?php echo esc_html( $shortcode['description'] ); ?></p>
+						<p><strong><?php esc_html_e( 'When to use it:', 'nettwebs-talent-location-management' ); ?></strong> <?php echo esc_html( $shortcode['when'] ); ?></p>
 
 						<?php if ( ! empty( $shortcode['params'] ) ) : ?>
 							<p class="am-shortcode-reference__params">
-								<strong><?php esc_html_e( 'Available parameters:', 'agency-manager' ); ?></strong>
+								<strong><?php esc_html_e( 'Available parameters:', 'nettwebs-talent-location-management' ); ?></strong>
 								<?php echo esc_html( implode( ', ', $shortcode['params'] ) ); ?>
 							</p>
 
 							<div class="am-shortcode-builder" data-tag="<?php echo esc_attr( $shortcode['tag'] ); ?>">
-								<p class="am-shortcode-builder__label"><?php esc_html_e( 'Build it:', 'agency-manager' ); ?></p>
+								<p class="am-shortcode-builder__label"><?php esc_html_e( 'Build it:', 'nettwebs-talent-location-management' ); ?></p>
 								<div class="am-shortcode-builder__fields">
 									<?php foreach ( $shortcode['params'] as $param ) : ?>
 										<?php self::render_builder_field( $param ); ?>
@@ -277,7 +277,7 @@ class Shortcode_Reference {
 								</div>
 								<p class="am-shortcode-builder__output">
 									<code class="am-shortcode-builder__code">[<?php echo esc_html( $shortcode['tag'] ); ?>]</code>
-									<button type="button" class="button button-small am-shortcode-copy" data-shortcode="[<?php echo esc_attr( $shortcode['tag'] ); ?>]"><?php esc_html_e( 'Copy', 'agency-manager' ); ?></button>
+									<button type="button" class="button button-small am-shortcode-copy" data-shortcode="[<?php echo esc_attr( $shortcode['tag'] ); ?>]"><?php esc_html_e( 'Copy', 'nettwebs-talent-location-management' ); ?></button>
 								</p>
 							</div>
 						<?php endif; ?>
@@ -285,17 +285,17 @@ class Shortcode_Reference {
 				<?php endforeach; ?>
 			<?php endforeach; ?>
 
-			<p class="am-shortcode-reference__no-results" hidden><?php esc_html_e( 'No shortcodes match your search.', 'agency-manager' ); ?></p>
+			<p class="am-shortcode-reference__no-results" hidden><?php esc_html_e( 'No shortcodes match your search.', 'nettwebs-talent-location-management' ); ?></p>
 
 			<?php if ( $show_common_examples ) : ?>
-				<h4 class="am-shortcode-reference__group"><?php esc_html_e( 'Common Examples', 'agency-manager' ); ?></h4>
+				<h4 class="am-shortcode-reference__group"><?php esc_html_e( 'Common Examples', 'nettwebs-talent-location-management' ); ?></h4>
 				<table class="widefat striped am-shortcode-reference__placements">
 					<tbody>
 						<?php foreach ( self::common_examples() as $row ) : ?>
 							<tr>
 								<td><?php echo esc_html( $row['label'] ); ?></td>
 								<td><code><?php echo esc_html( $row['example'] ); ?></code></td>
-								<td><button type="button" class="button button-small am-shortcode-copy" data-shortcode="<?php echo esc_attr( $row['example'] ); ?>"><?php esc_html_e( 'Copy', 'agency-manager' ); ?></button></td>
+								<td><button type="button" class="button button-small am-shortcode-copy" data-shortcode="<?php echo esc_attr( $row['example'] ); ?>"><?php esc_html_e( 'Copy', 'nettwebs-talent-location-management' ); ?></button></td>
 							</tr>
 						<?php endforeach; ?>
 					</tbody>
@@ -314,7 +314,7 @@ class Shortcode_Reference {
 			<?php if ( 'select' === $control['type'] ) : ?>
 				<select id="<?php echo esc_attr( $id ); ?>" data-param="<?php echo esc_attr( $param ); ?>">
 					<?php foreach ( $control['options'] as $option ) : ?>
-						<option value="<?php echo esc_attr( $option ); ?>"><?php echo esc_html( '' === $option ? __( '(default)', 'agency-manager' ) : $option ); ?></option>
+						<option value="<?php echo esc_attr( $option ); ?>"><?php echo esc_html( '' === $option ? __( '(default)', 'nettwebs-talent-location-management' ) : $option ); ?></option>
 					<?php endforeach; ?>
 				</select>
 			<?php elseif ( 'checkbox' === $control['type'] ) : ?>
@@ -351,7 +351,7 @@ class Shortcode_Reference {
 			return;
 		}
 
-		echo '<div class="notice am-shortcode-reference-notice"><p><strong>' . esc_html__( 'Shortcodes for this section', 'agency-manager' ) . '</strong></p>';
+		echo '<div class="notice am-shortcode-reference-notice"><p><strong>' . esc_html__( 'Shortcodes for this section', 'nettwebs-talent-location-management' ) . '</strong></p>';
 		self::render_panel( array( $group_by_screen[ $screen->id ] ), false );
 		echo '</div>';
 	}

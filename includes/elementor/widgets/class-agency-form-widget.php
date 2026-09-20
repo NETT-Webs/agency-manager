@@ -25,7 +25,7 @@ class Agency_Form_Widget extends Widget_Base {
 	}
 
 	public function get_title(): string {
-		return __( 'Agency Manager Form', 'agency-manager' );
+		return __( 'Agency Manager Form', 'nettwebs-talent-location-management' );
 	}
 
 	public function get_icon(): string {
@@ -33,14 +33,14 @@ class Agency_Form_Widget extends Widget_Base {
 	}
 
 	public function get_categories(): array {
-		return array( 'agency-manager' );
+		return array( 'nettwebs-talent-location-management' );
 	}
 
 	protected function register_controls(): void {
 		$this->start_controls_section(
 			'content_section',
 			array(
-				'label' => __( 'Content', 'agency-manager' ),
+				'label' => __( 'Content', 'nettwebs-talent-location-management' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -48,24 +48,24 @@ class Agency_Form_Widget extends Widget_Base {
 		$this->add_control(
 			'form_id',
 			array(
-				'label'       => __( 'Form', 'agency-manager' ),
+				'label'       => __( 'Form', 'nettwebs-talent-location-management' ),
 				'type'        => Controls_Manager::SELECT2,
 				'options'     => $this->get_form_options(),
 				'default'     => '',
 				'label_block' => true,
-				'description' => __( 'Choose which form (built under Agency Manager -> Forms) to display.', 'agency-manager' ),
+				'description' => __( 'Choose which form (built under Agency Manager -> Forms) to display.', 'nettwebs-talent-location-management' ),
 			)
 		);
 
 		$this->add_control(
 			'hidden_fields',
 			array(
-				'label'       => __( 'Hide Fields', 'agency-manager' ),
+				'label'       => __( 'Hide Fields', 'nettwebs-talent-location-management' ),
 				'type'        => Controls_Manager::SELECT2,
 				'multiple'    => true,
 				'options'     => $this->get_all_field_options(),
 				'default'     => array(),
-				'description' => __( 'Optional — hide specific fields for just this instance. Add, reorder, or require fields in the Form Builder.', 'agency-manager' ),
+				'description' => __( 'Optional — hide specific fields for just this instance. Add, reorder, or require fields in the Form Builder.', 'nettwebs-talent-location-management' ),
 			)
 		);
 
@@ -74,7 +74,7 @@ class Agency_Form_Widget extends Widget_Base {
 		$this->start_controls_section(
 			'style_section',
 			array(
-				'label' => __( 'Style', 'agency-manager' ),
+				'label' => __( 'Style', 'nettwebs-talent-location-management' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -83,7 +83,7 @@ class Agency_Form_Widget extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'label_typography',
-				'label'    => __( 'Label Typography', 'agency-manager' ),
+				'label'    => __( 'Label Typography', 'nettwebs-talent-location-management' ),
 				'selector' => '{{WRAPPER}} .am-form label',
 			)
 		);
@@ -91,7 +91,7 @@ class Agency_Form_Widget extends Widget_Base {
 		$this->add_control(
 			'button_bg',
 			array(
-				'label'     => __( 'Button Background', 'agency-manager' ),
+				'label'     => __( 'Button Background', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array( '{{WRAPPER}} .am-btn' => 'background-color: {{VALUE}};' ),
 			)
@@ -100,7 +100,7 @@ class Agency_Form_Widget extends Widget_Base {
 		$this->add_control(
 			'button_color',
 			array(
-				'label'     => __( 'Button Text Color', 'agency-manager' ),
+				'label'     => __( 'Button Text Color', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array( '{{WRAPPER}} .am-btn' => 'color: {{VALUE}};' ),
 			)
@@ -118,7 +118,7 @@ class Agency_Form_Widget extends Widget_Base {
 			)
 		);
 
-		$options = array( '' => __( '— Select a form —', 'agency-manager' ) );
+		$options = array( '' => __( '— Select a form —', 'nettwebs-talent-location-management' ) );
 		foreach ( $forms as $form ) {
 			$options[ $form->ID ] = $form->post_title;
 		}

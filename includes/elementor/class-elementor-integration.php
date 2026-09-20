@@ -16,7 +16,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Elementor_Integration {
 
 	public function register(): void {
-		add_action( 'elementor/loaded', array( $this, 'init' ) );
+		// `elementor/loaded` fires the first time Elementor's own Plugin
+		// singleton is instantiated — not on a fixed WordPress hook — so it
+		// can fire before this line ever runs if Elementor's plugin file
+		// happens to load earlier in the active-plugins list (alphabetical
+		// by plugin folder name) than this plugin's. Found during this
+		// plugin's rename from "agency-manager" (which sorted before
+		// "elementor") to a name that now sorts after it — the widgets
+		// silently stopped registering, since add_action() never replays a
+		// hook that already fired. Checking did_action() first and calling
+		// init() immediately in that case makes this correct regardless of
+		// plugin load order, rather than depending on alphabetical luck.
+		if ( did_action( 'elementor/loaded' ) ) {
+			$this->init();
+		} else {
+			add_action( 'elementor/loaded', array( $this, 'init' ) );
+		}
 	}
 
 	public function init(): void {
@@ -66,13 +81,13 @@ class Elementor_Integration {
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 				'nonce'   => wp_create_nonce( Widget_Style_Presets::nonce_action() ),
 				'i18n'    => array(
-					'saved'        => __( 'Widget style preset saved.', 'agency-manager' ),
-					'deleted'      => __( 'Widget style preset deleted.', 'agency-manager' ),
-					'renamed'      => __( 'Widget style preset renamed.', 'agency-manager' ),
-					'nameRequired' => __( 'Enter a preset name first.', 'agency-manager' ),
-					'selectFirst'  => __( 'Select a preset first.', 'agency-manager' ),
-					'confirmDelete' => __( 'Delete this widget style preset? This cannot be undone.', 'agency-manager' ),
-					'error'        => __( 'Something went wrong — please try again.', 'agency-manager' ),
+					'saved'        => __( 'Widget style preset saved.', 'nettwebs-talent-location-management' ),
+					'deleted'      => __( 'Widget style preset deleted.', 'nettwebs-talent-location-management' ),
+					'renamed'      => __( 'Widget style preset renamed.', 'nettwebs-talent-location-management' ),
+					'nameRequired' => __( 'Enter a preset name first.', 'nettwebs-talent-location-management' ),
+					'selectFirst'  => __( 'Select a preset first.', 'nettwebs-talent-location-management' ),
+					'confirmDelete' => __( 'Delete this widget style preset? This cannot be undone.', 'nettwebs-talent-location-management' ),
+					'error'        => __( 'Something went wrong — please try again.', 'nettwebs-talent-location-management' ),
 				),
 			)
 		);
@@ -85,7 +100,7 @@ class Elementor_Integration {
 		$elements_manager->add_category(
 			'agency-manager',
 			array(
-				'title' => __( 'Agency Manager', 'agency-manager' ),
+				'title' => __( 'Agency Manager', 'nettwebs-talent-location-management' ),
 				'icon'  => 'fa fa-address-card',
 			)
 		);

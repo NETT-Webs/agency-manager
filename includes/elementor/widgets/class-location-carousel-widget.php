@@ -12,7 +12,7 @@ class Location_Carousel_Widget extends Base_Grid_Widget {
 	}
 
 	public function get_title(): string {
-		return __( 'Location Carousel', 'agency-manager' );
+		return __( 'Location Carousel', 'nettwebs-talent-location-management' );
 	}
 
 	public function get_icon(): string {

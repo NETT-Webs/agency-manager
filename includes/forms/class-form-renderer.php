@@ -108,7 +108,7 @@ class Form_Renderer {
 			<?php wp_nonce_field( self::NONCE_ACTION, 'am_form_nonce' ); ?>
 
 			<?php if ( 'invalid' === $error ) : ?>
-				<div class="am-form-notice am-form-notice--error"><?php esc_html_e( 'Please fill in all required fields and try again.', 'agency-manager' ); ?></div>
+				<div class="am-form-notice am-form-notice--error"><?php esc_html_e( 'Please fill in all required fields and try again.', 'nettwebs-talent-location-management' ); ?></div>
 			<?php endif; ?>
 
 			<?php foreach ( $fields as $field ) : ?>
@@ -120,7 +120,7 @@ class Form_Renderer {
 				<input type="text" id="am_company" name="am_company" tabindex="-1" autocomplete="off">
 			</p>
 
-			<button type="submit" class="am-btn"><?php esc_html_e( 'Submit', 'agency-manager' ); ?></button>
+			<button type="submit" class="am-btn"><?php esc_html_e( 'Submit', 'nettwebs-talent-location-management' ); ?></button>
 		</form>
 		<?php
 
@@ -385,7 +385,7 @@ class Form_Renderer {
 		$submission_id = wp_insert_post(
 			array(
 				'post_type'   => 'am_submission',
-				'post_title'  => $values['full_name'] ?? ( $values['location_name'] ?? __( 'Submission', 'agency-manager' ) ),
+				'post_title'  => $values['full_name'] ?? ( $values['location_name'] ?? __( 'Submission', 'nettwebs-talent-location-management' ) ),
 				'post_status' => 'publish',
 			)
 		);
@@ -532,9 +532,16 @@ class Form_Renderer {
 				if ( empty( $_FILES[ $name ]['name'][ $i ] ) ) {
 					continue;
 				}
+				// The client-supplied filename/type are never trusted for
+				// any security decision — sanitize_file_name() strips path
+				// separators and unsafe characters from the name up front,
+				// and upload_single() below relies on wp_handle_upload()'s
+				// own wp_check_filetype_and_ext() (a real extension + MIME
+				// check against the file's actual contents) to determine
+				// the trusted type, not the 'type' value carried here.
 				$single_file = array(
-					'name'     => $_FILES[ $name ]['name'][ $i ],
-					'type'     => $_FILES[ $name ]['type'][ $i ],
+					'name'     => sanitize_file_name( wp_unslash( $_FILES[ $name ]['name'][ $i ] ) ),
+					'type'     => sanitize_text_field( wp_unslash( $_FILES[ $name ]['type'][ $i ] ) ),
 					'tmp_name' => $_FILES[ $name ]['tmp_name'][ $i ],
 					'error'    => $_FILES[ $name ]['error'][ $i ],
 					'size'     => $_FILES[ $name ]['size'][ $i ],
@@ -558,7 +565,18 @@ class Form_Renderer {
 			return '';
 		}
 
-		$id = $this->upload_single( $_FILES[ $key ], 'image' === $field['type'] );
+		// Same treatment as the multi-file loop above: filename sanitized,
+		// type never trusted (upload_single()/wp_handle_upload() determine
+		// the real type from the file's actual contents).
+		$single_file = array(
+			'name'     => sanitize_file_name( wp_unslash( $_FILES[ $key ]['name'] ) ),
+			'type'     => sanitize_text_field( wp_unslash( $_FILES[ $key ]['type'] ) ),
+			'tmp_name' => $_FILES[ $key ]['tmp_name'],
+			'error'    => $_FILES[ $key ]['error'],
+			'size'     => $_FILES[ $key ]['size'],
+		);
+
+		$id = $this->upload_single( $single_file, 'image' === $field['type'] );
 
 		return $id ? $id : '';
 	}
@@ -654,6 +672,6 @@ class Form_Renderer {
 	private function get_confirmation_message( int $form_id ): string {
 		$message = get_post_meta( $form_id, '_am_form_confirmation_message', true );
 
-		return $message ? (string) $message : __( 'Thank you — your submission has been received.', 'agency-manager' );
+		return $message ? (string) $message : __( 'Thank you — your submission has been received.', 'nettwebs-talent-location-management' );
 	}
 }

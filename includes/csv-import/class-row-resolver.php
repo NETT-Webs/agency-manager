@@ -19,9 +19,9 @@ class Row_Resolver {
 	/** Extra destinations only CSV import offers (not Form Builder mapping targets, but real existing backend fields — see the class doc on why). */
 	public static function extra_targets(): array {
 		return array(
-			array( 'key' => 'description', 'label' => __( 'Description', 'agency-manager' ), 'kind' => 'post_content', 'group' => 'core' ),
-			array( 'key' => 'featured', 'label' => __( 'Featured (yes/no)', 'agency-manager' ), 'kind' => 'flag', 'group' => 'core' ),
-			array( 'key' => 'active', 'label' => __( 'Active (yes/no)', 'agency-manager' ), 'kind' => 'flag', 'group' => 'core' ),
+			array( 'key' => 'description', 'label' => __( 'Description', 'nettwebs-talent-location-management' ), 'kind' => 'post_content', 'group' => 'core' ),
+			array( 'key' => 'featured', 'label' => __( 'Featured (yes/no)', 'nettwebs-talent-location-management' ), 'kind' => 'flag', 'group' => 'core' ),
+			array( 'key' => 'active', 'label' => __( 'Active (yes/no)', 'nettwebs-talent-location-management' ), 'kind' => 'flag', 'group' => 'core' ),
 		);
 	}
 
@@ -89,11 +89,11 @@ class Row_Resolver {
 						$payload['customFields'][ $target_key ] = sanitize_textarea_field( $raw );
 					} else {
 						if ( 'contact_email' === $target_key && ! is_email( $raw ) ) {
-							$errors[] = sprintf( /* translators: %s: the invalid value */ __( 'Invalid email: "%s"', 'agency-manager' ), $raw );
+							$errors[] = sprintf( /* translators: %s: the invalid value */ __( 'Invalid email: "%s"', 'nettwebs-talent-location-management' ), $raw );
 							break;
 						}
 						if ( in_array( $target_key, array( 'video_url', 'map_embed', 'social_instagram', 'social_facebook', 'social_tiktok', 'social_website' ), true ) && ! filter_var( $raw, FILTER_VALIDATE_URL ) ) {
-							$warnings[] = sprintf( /* translators: 1: field label, 2: the value */ __( '%1$s doesn\'t look like a valid URL: "%2$s"', 'agency-manager' ), $target['label'], $raw );
+							$warnings[] = sprintf( /* translators: 1: field label, 2: the value */ __( '%1$s doesn\'t look like a valid URL: "%2$s"', 'nettwebs-talent-location-management' ), $target['label'], $raw );
 						}
 						$payload['meta'][ $target_key ] = sanitize_text_field( $raw );
 					}
@@ -102,7 +102,7 @@ class Row_Resolver {
 		}
 
 		if ( empty( $payload['title'] ) ) {
-			$errors[] = __( 'Name is missing.', 'agency-manager' );
+			$errors[] = __( 'Name is missing.', 'nettwebs-talent-location-management' );
 		}
 
 		return array(

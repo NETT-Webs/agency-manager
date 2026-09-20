@@ -57,7 +57,7 @@ const FULL_BLEED_SCREENS = [ 'form-builder' ];
 export function App() {
 	const Page = PAGES[ screen ] || ComingSoon;
 	return (
-		<Shell title={ TITLES[ screen ] || 'Agency Manager' } fullBleed={ FULL_BLEED_SCREENS.includes( screen ) }>
+		<Shell title={ TITLES[ screen ] || 'NettWebs Talent & Location Management' } fullBleed={ FULL_BLEED_SCREENS.includes( screen ) }>
 			<Page />
 		</Shell>
 	);

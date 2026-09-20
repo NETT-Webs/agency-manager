@@ -20,14 +20,14 @@ abstract class Base_Form_Widget extends Widget_Base {
 	abstract protected function get_form_slug(): string;
 
 	public function get_categories(): array {
-		return array( 'agency-manager' );
+		return array( 'nettwebs-talent-location-management' );
 	}
 
 	protected function register_controls(): void {
 		$this->start_controls_section(
 			'content_section',
 			array(
-				'label' => __( 'Content', 'agency-manager' ),
+				'label' => __( 'Content', 'nettwebs-talent-location-management' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -35,12 +35,12 @@ abstract class Base_Form_Widget extends Widget_Base {
 		$this->add_control(
 			'hidden_fields',
 			array(
-				'label'       => __( 'Hide Fields', 'agency-manager' ),
+				'label'       => __( 'Hide Fields', 'nettwebs-talent-location-management' ),
 				'type'        => Controls_Manager::SELECT2,
 				'multiple'    => true,
 				'options'     => $this->get_field_options(),
 				'default'     => array(),
-				'description' => __( 'Optional — hide specific fields for just this instance. Add, reorder, or require fields under Agency Manager -> Forms.', 'agency-manager' ),
+				'description' => __( 'Optional — hide specific fields for just this instance. Add, reorder, or require fields under Agency Manager -> Forms.', 'nettwebs-talent-location-management' ),
 			)
 		);
 
@@ -49,7 +49,7 @@ abstract class Base_Form_Widget extends Widget_Base {
 		$this->start_controls_section(
 			'style_section',
 			array(
-				'label' => __( 'Style', 'agency-manager' ),
+				'label' => __( 'Style', 'nettwebs-talent-location-management' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -58,7 +58,7 @@ abstract class Base_Form_Widget extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'label_typography',
-				'label'    => __( 'Label Typography', 'agency-manager' ),
+				'label'    => __( 'Label Typography', 'nettwebs-talent-location-management' ),
 				'selector' => '{{WRAPPER}} .am-form label',
 			)
 		);
@@ -66,7 +66,7 @@ abstract class Base_Form_Widget extends Widget_Base {
 		$this->add_control(
 			'button_bg',
 			array(
-				'label'     => __( 'Button Background', 'agency-manager' ),
+				'label'     => __( 'Button Background', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array( '{{WRAPPER}} .am-btn' => 'background-color: {{VALUE}};' ),
 			)
@@ -75,7 +75,7 @@ abstract class Base_Form_Widget extends Widget_Base {
 		$this->add_control(
 			'button_color',
 			array(
-				'label'     => __( 'Button Text Color', 'agency-manager' ),
+				'label'     => __( 'Button Text Color', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array( '{{WRAPPER}} .am-btn' => 'color: {{VALUE}};' ),
 			)

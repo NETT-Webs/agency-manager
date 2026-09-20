@@ -35,9 +35,9 @@ class Notifications {
 
 		$subject = sprintf(
 			/* translators: 1: site name, 2: form title */
-			__( '[%1$s] New submission — %2$s', 'agency-manager' ),
+			__( '[%1$s] New submission — %2$s', 'nettwebs-talent-location-management' ),
 			get_bloginfo( 'name' ),
-			$form ? $form->post_title : __( 'Application', 'agency-manager' )
+			$form ? $form->post_title : __( 'Application', 'nettwebs-talent-location-management' )
 		);
 
 		$lines = array();

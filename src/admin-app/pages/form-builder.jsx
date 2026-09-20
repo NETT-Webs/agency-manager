@@ -52,7 +52,7 @@ function fieldFromLibraryItem( item ) {
 }
 
 /**
- * The Form Builder as a normal screen inside the Agency Manager app shell —
+ * The Form Builder as a normal screen inside the shared app shell —
  * same sidebar/breadcrumbs/design system as every other screen. Loads its
  * data from a thin read-only REST endpoint (Forms_Rest_Controller::
  * get_builder_data(), wraps Form_Renderer::get_fields()/Field_Types::

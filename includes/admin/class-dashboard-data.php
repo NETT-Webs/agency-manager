@@ -115,7 +115,7 @@ class Dashboard_Data {
 
 		foreach ( $recent->posts as $post ) {
 			$items[] = array(
-				'title' => $post->post_title ? $post->post_title : __( '(no title)', 'agency-manager' ),
+				'title' => $post->post_title ? $post->post_title : __( '(no title)', 'nettwebs-talent-location-management' ),
 				'type'  => $post->post_type,
 				'date'  => get_the_date( '', $post ),
 				'url'   => 'am_submission' === $post->post_type

@@ -116,7 +116,7 @@ class Forms_Rest_Controller extends Rest_Controller {
 		$form    = get_post( $form_id );
 
 		if ( ! $form || 'am_form' !== $form->post_type ) {
-			return new \WP_REST_Response( array( 'message' => __( 'Form not found.', 'agency-manager' ) ), 404 );
+			return new \WP_REST_Response( array( 'message' => __( 'Form not found.', 'nettwebs-talent-location-management' ) ), 404 );
 		}
 
 		$type = get_post_meta( $form_id, '_am_form_type', true );
@@ -143,7 +143,7 @@ class Forms_Rest_Controller extends Rest_Controller {
 
 	public function create_form( \WP_REST_Request $request ): \WP_REST_Response {
 		$title    = sanitize_text_field( (string) $request->get_param( 'title' ) );
-		$title    = $title ? $title : __( 'Untitled Form', 'agency-manager' );
+		$title    = $title ? $title : __( 'Untitled Form', 'nettwebs-talent-location-management' );
 		$type     = sanitize_key( (string) $request->get_param( 'type' ) );
 		$type     = in_array( $type, array( 'talent', 'location', 'general' ), true ) ? $type : 'talent';
 		$template = sanitize_key( (string) $request->get_param( 'template' ) );
@@ -151,7 +151,7 @@ class Forms_Rest_Controller extends Rest_Controller {
 		$form_id = wp_insert_post( array( 'post_type' => 'am_form', 'post_title' => $title, 'post_status' => 'publish' ) );
 
 		if ( ! $form_id || is_wp_error( $form_id ) ) {
-			return new \WP_REST_Response( array( 'message' => __( 'Could not create form.', 'agency-manager' ) ), 500 );
+			return new \WP_REST_Response( array( 'message' => __( 'Could not create form.', 'nettwebs-talent-location-management' ) ), 500 );
 		}
 
 		$templates = Form_Schema::templates();
@@ -171,18 +171,18 @@ class Forms_Rest_Controller extends Rest_Controller {
 		$source    = get_post( $source_id );
 
 		if ( ! $source || 'am_form' !== $source->post_type ) {
-			return new \WP_REST_Response( array( 'message' => __( 'Form not found.', 'agency-manager' ) ), 404 );
+			return new \WP_REST_Response( array( 'message' => __( 'Form not found.', 'nettwebs-talent-location-management' ) ), 404 );
 		}
 
 		$new_id = wp_insert_post( array(
 			'post_type'   => 'am_form',
 			/* translators: %s: original form title */
-			'post_title'  => sprintf( __( '%s (Copy)', 'agency-manager' ), $source->post_title ),
+			'post_title'  => sprintf( __( '%s (Copy)', 'nettwebs-talent-location-management' ), $source->post_title ),
 			'post_status' => 'publish',
 		) );
 
 		if ( ! $new_id || is_wp_error( $new_id ) ) {
-			return new \WP_REST_Response( array( 'message' => __( 'Could not duplicate form.', 'agency-manager' ) ), 500 );
+			return new \WP_REST_Response( array( 'message' => __( 'Could not duplicate form.', 'nettwebs-talent-location-management' ) ), 500 );
 		}
 
 		update_post_meta( $new_id, '_am_form_type', get_post_meta( $source_id, '_am_form_type', true ) );
@@ -200,7 +200,7 @@ class Forms_Rest_Controller extends Rest_Controller {
 		$form    = get_post( $form_id );
 
 		if ( ! $form || 'am_form' !== $form->post_type ) {
-			return new \WP_REST_Response( array( 'message' => __( 'Form not found.', 'agency-manager' ) ), 404 );
+			return new \WP_REST_Response( array( 'message' => __( 'Form not found.', 'nettwebs-talent-location-management' ) ), 404 );
 		}
 
 		// Trash, not force-delete — recoverable, matches the classic page's caution.

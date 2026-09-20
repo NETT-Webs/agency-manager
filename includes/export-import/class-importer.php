@@ -25,7 +25,7 @@ class Importer {
 
 	public function handle_import_request(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'agency-manager' ) );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'nettwebs-talent-location-management' ) );
 		}
 
 		$referer = wp_get_referer() ? wp_get_referer() : admin_url( 'admin.php?page=agency-manager-import-export' );

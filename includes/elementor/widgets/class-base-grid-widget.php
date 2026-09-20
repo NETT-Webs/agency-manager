@@ -37,14 +37,14 @@ abstract class Base_Grid_Widget extends Widget_Base {
 	abstract protected function is_featured_widget(): bool;
 
 	public function get_categories(): array {
-		return array( 'agency-manager' );
+		return array( 'nettwebs-talent-location-management' );
 	}
 
 	protected function register_controls(): void {
 		$this->start_controls_section(
 			'content_section',
 			array(
-				'label' => __( 'Content', 'agency-manager' ),
+				'label' => __( 'Content', 'nettwebs-talent-location-management' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -53,10 +53,10 @@ abstract class Base_Grid_Widget extends Widget_Base {
 			$this->add_control(
 				'inherit_settings',
 				array(
-					'label'       => __( 'Use Homepage Settings', 'agency-manager' ),
+					'label'       => __( 'Use Homepage Settings', 'nettwebs-talent-location-management' ),
 					'type'        => Controls_Manager::SWITCHER,
 					'default'     => 'yes',
-					'description' => __( 'On by default so the homepage never needs Elementor edits (Agency Manager -> Settings). Switch off to override count/mode for just this widget instance.', 'agency-manager' ),
+					'description' => __( 'On by default so the homepage never needs Elementor edits (Agency Manager -> Settings). Switch off to override count/mode for just this widget instance.', 'nettwebs-talent-location-management' ),
 				)
 			);
 		}
@@ -69,7 +69,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'count',
 			array(
-				'label'     => __( 'Number of Cards', 'agency-manager' ),
+				'label'     => __( 'Number of Cards', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => $this->default_count(),
 				'condition' => $count_condition,
@@ -80,24 +80,24 @@ abstract class Base_Grid_Widget extends Widget_Base {
 			$this->add_control(
 				'category',
 				array(
-					'label'       => __( 'Category Filter', 'agency-manager' ),
+					'label'       => __( 'Category Filter', 'nettwebs-talent-location-management' ),
 					'type'        => Controls_Manager::SELECT2,
 					'options'     => $this->term_options( 'talent_category' ),
 					'default'     => array(),
 					'label_block' => true,
-					'description' => __( 'Leave blank to show all categories.', 'agency-manager' ),
+					'description' => __( 'Leave blank to show all categories.', 'nettwebs-talent-location-management' ),
 					'condition'   => $count_condition,
 				)
 			);
 			$this->add_control(
 				'group',
 				array(
-					'label'       => __( 'Group Filter', 'agency-manager' ),
+					'label'       => __( 'Group Filter', 'nettwebs-talent-location-management' ),
 					'type'        => Controls_Manager::SELECT2,
 					'options'     => $this->term_options( 'talent_group' ),
 					'default'     => array(),
 					'label_block' => true,
-					'description' => __( 'Leave blank to show all groups.', 'agency-manager' ),
+					'description' => __( 'Leave blank to show all groups.', 'nettwebs-talent-location-management' ),
 					'condition'   => $count_condition,
 				)
 			);
@@ -105,12 +105,12 @@ abstract class Base_Grid_Widget extends Widget_Base {
 			$this->add_control(
 				'type',
 				array(
-					'label'       => __( 'Type Filter', 'agency-manager' ),
+					'label'       => __( 'Type Filter', 'nettwebs-talent-location-management' ),
 					'type'        => Controls_Manager::SELECT2,
 					'options'     => $this->term_options( 'location_type' ),
 					'default'     => array(),
 					'label_block' => true,
-					'description' => __( 'Leave blank to show all types.', 'agency-manager' ),
+					'description' => __( 'Leave blank to show all types.', 'nettwebs-talent-location-management' ),
 					'condition'   => $count_condition,
 				)
 			);
@@ -119,11 +119,11 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'only_featured',
 			array(
-				'label'        => __( 'Only Featured', 'agency-manager' ),
+				'label'        => __( 'Only Featured', 'nettwebs-talent-location-management' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'default'      => '',
-				'label_on'     => __( 'Yes', 'agency-manager' ),
-				'label_off'    => __( 'No', 'agency-manager' ),
+				'label_on'     => __( 'Yes', 'nettwebs-talent-location-management' ),
+				'label_off'    => __( 'No', 'nettwebs-talent-location-management' ),
 				'return_value' => 'yes',
 				'condition'    => $count_condition,
 			)
@@ -132,13 +132,13 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'order',
 			array(
-				'label'     => __( 'Sort Order', 'agency-manager' ),
+				'label'     => __( 'Sort Order', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'newest',
 				'options'   => array(
-					'newest' => __( 'Newest First', 'agency-manager' ),
-					'oldest' => __( 'Oldest First', 'agency-manager' ),
-					'random' => __( 'Random', 'agency-manager' ),
+					'newest' => __( 'Newest First', 'nettwebs-talent-location-management' ),
+					'oldest' => __( 'Oldest First', 'nettwebs-talent-location-management' ),
+					'random' => __( 'Random', 'nettwebs-talent-location-management' ),
 				),
 				'condition' => $count_condition,
 			)
@@ -147,11 +147,11 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'only_active',
 			array(
-				'label'        => __( 'Only Active', 'agency-manager' ),
+				'label'        => __( 'Only Active', 'nettwebs-talent-location-management' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'default'      => 'yes',
-				'label_on'     => __( 'Yes', 'agency-manager' ),
-				'label_off'    => __( 'No', 'agency-manager' ),
+				'label_on'     => __( 'Yes', 'nettwebs-talent-location-management' ),
+				'label_off'    => __( 'No', 'nettwebs-talent-location-management' ),
 				'return_value' => 'yes',
 			)
 		);
@@ -159,16 +159,16 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'mode',
 			array(
-				'label'       => __( 'Display Mode', 'agency-manager' ),
+				'label'       => __( 'Display Mode', 'nettwebs-talent-location-management' ),
 				'type'        => Controls_Manager::SELECT,
 				'default'     => 'inherit',
 				'options'     => array(
-					'inherit'  => __( 'Auto (use global Display Mode)', 'agency-manager' ),
-					'hidden'   => __( 'Hidden', 'agency-manager' ),
-					'scouting' => __( 'Force Now Scouting', 'agency-manager' ),
-					'live'     => __( 'Live', 'agency-manager' ),
+					'inherit'  => __( 'Auto (use global Display Mode)', 'nettwebs-talent-location-management' ),
+					'hidden'   => __( 'Hidden', 'nettwebs-talent-location-management' ),
+					'scouting' => __( 'Force Now Scouting', 'nettwebs-talent-location-management' ),
+					'live'     => __( 'Live', 'nettwebs-talent-location-management' ),
 				),
-				'description' => __( 'Auto follows Website Display\'s global setting for this type. Force Now Scouting always shows placeholder cards here, regardless of the global mode — for placing a scouting section anywhere on demand.', 'agency-manager' ),
+				'description' => __( 'Auto follows Website Display\'s global setting for this type. Force Now Scouting always shows placeholder cards here, regardless of the global mode — for placing a scouting section anywhere on demand.', 'nettwebs-talent-location-management' ),
 				'condition'   => $count_condition,
 			)
 		);
@@ -178,7 +178,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->start_controls_section(
 			'layout_section',
 			array(
-				'label' => __( 'Layout', 'agency-manager' ),
+				'label' => __( 'Layout', 'nettwebs-talent-location-management' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -187,7 +187,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 			$this->add_responsive_control(
 				'columns',
 				array(
-					'label'     => __( 'Columns', 'agency-manager' ),
+					'label'     => __( 'Columns', 'nettwebs-talent-location-management' ),
 					'type'      => Controls_Manager::SELECT,
 					'default'   => '3',
 					'tablet_default' => '2',
@@ -208,14 +208,14 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'card_hover',
 			array(
-				'label'        => __( 'Card Hover', 'agency-manager' ),
+				'label'        => __( 'Card Hover', 'nettwebs-talent-location-management' ),
 				'type'         => Controls_Manager::SELECT,
 				'default'      => 'none',
 				'options'      => array(
-					'none' => __( 'None', 'agency-manager' ),
-					'lift' => __( 'Lift', 'agency-manager' ),
-					'zoom' => __( 'Zoom', 'agency-manager' ),
-					'fade' => __( 'Fade', 'agency-manager' ),
+					'none' => __( 'None', 'nettwebs-talent-location-management' ),
+					'lift' => __( 'Lift', 'nettwebs-talent-location-management' ),
+					'zoom' => __( 'Zoom', 'nettwebs-talent-location-management' ),
+					'fade' => __( 'Fade', 'nettwebs-talent-location-management' ),
 				),
 				'prefix_class' => 'am-card-hover-',
 			)
@@ -253,7 +253,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->start_controls_section(
 			'widget_style_preset_section',
 			array(
-				'label' => __( 'Widget Style', 'agency-manager' ),
+				'label' => __( 'Widget Style', 'nettwebs-talent-location-management' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -261,7 +261,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'widget_style_preset_select',
 			array(
-				'label'   => __( 'Preset', 'agency-manager' ),
+				'label'   => __( 'Preset', 'nettwebs-talent-location-management' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => '',
 				'options' => $this->widget_style_preset_options(),
@@ -271,10 +271,10 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'widget_style_preset_name',
 			array(
-				'label'       => __( 'Preset Name', 'agency-manager' ),
+				'label'       => __( 'Preset Name', 'nettwebs-talent-location-management' ),
 				'type'        => Controls_Manager::TEXT,
-				'placeholder' => __( 'e.g. Luxury Cards', 'agency-manager' ),
-				'description' => __( 'Used by "Save Current" (creates or overwrites a preset with this name) and "Rename" (renames the preset selected above to this name).', 'agency-manager' ),
+				'placeholder' => __( 'e.g. Luxury Cards', 'nettwebs-talent-location-management' ),
+				'description' => __( 'Used by "Save Current" (creates or overwrites a preset with this name) and "Rename" (renames the preset selected above to this name).', 'nettwebs-talent-location-management' ),
 			)
 		);
 
@@ -282,8 +282,8 @@ abstract class Base_Grid_Widget extends Widget_Base {
 			'widget_style_load',
 			array(
 				'type'  => Controls_Manager::BUTTON,
-				'label' => __( 'Load', 'agency-manager' ),
-				'text'  => __( 'Load Selected Preset', 'agency-manager' ),
+				'label' => __( 'Load', 'nettwebs-talent-location-management' ),
+				'text'  => __( 'Load Selected Preset', 'nettwebs-talent-location-management' ),
 				'event' => 'am:widget_style_load',
 			)
 		);
@@ -292,8 +292,8 @@ abstract class Base_Grid_Widget extends Widget_Base {
 			'widget_style_save',
 			array(
 				'type'  => Controls_Manager::BUTTON,
-				'label' => __( 'Save', 'agency-manager' ),
-				'text'  => __( 'Save Current Widget Style', 'agency-manager' ),
+				'label' => __( 'Save', 'nettwebs-talent-location-management' ),
+				'text'  => __( 'Save Current Widget Style', 'nettwebs-talent-location-management' ),
 				'event' => 'am:widget_style_save',
 			)
 		);
@@ -302,8 +302,8 @@ abstract class Base_Grid_Widget extends Widget_Base {
 			'widget_style_rename',
 			array(
 				'type'  => Controls_Manager::BUTTON,
-				'label' => __( 'Rename', 'agency-manager' ),
-				'text'  => __( 'Rename Selected Preset', 'agency-manager' ),
+				'label' => __( 'Rename', 'nettwebs-talent-location-management' ),
+				'text'  => __( 'Rename Selected Preset', 'nettwebs-talent-location-management' ),
 				'event' => 'am:widget_style_rename',
 			)
 		);
@@ -312,11 +312,11 @@ abstract class Base_Grid_Widget extends Widget_Base {
 			'widget_style_delete',
 			array(
 				'type'        => Controls_Manager::BUTTON,
-				'label'       => __( 'Delete', 'agency-manager' ),
-				'text'        => __( 'Delete Selected Preset', 'agency-manager' ),
+				'label'       => __( 'Delete', 'nettwebs-talent-location-management' ),
+				'text'        => __( 'Delete Selected Preset', 'nettwebs-talent-location-management' ),
 				'button_type' => 'danger',
 				'event'       => 'am:widget_style_delete',
-				'description' => __( 'Save Current / Rename / Delete affect this named preset everywhere it is used, on any widget. Load only affects the widget you are currently editing.', 'agency-manager' ),
+				'description' => __( 'Save Current / Rename / Delete affect this named preset everywhere it is used, on any widget. Load only affects the widget you are currently editing.', 'nettwebs-talent-location-management' ),
 			)
 		);
 
@@ -325,7 +325,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->start_controls_section(
 			'style_reset_section',
 			array(
-				'label' => __( 'Reset', 'agency-manager' ),
+				'label' => __( 'Reset', 'nettwebs-talent-location-management' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -334,11 +334,11 @@ abstract class Base_Grid_Widget extends Widget_Base {
 			'reset_style_defaults',
 			array(
 				'type'        => Controls_Manager::BUTTON,
-				'label'       => __( 'Reset to Theme Defaults', 'agency-manager' ),
-				'text'        => __( 'Reset to Theme Defaults', 'agency-manager' ),
+				'label'       => __( 'Reset to Theme Defaults', 'nettwebs-talent-location-management' ),
+				'text'        => __( 'Reset to Theme Defaults', 'nettwebs-talent-location-management' ),
 				'button_type' => 'default',
 				'event'       => 'am:reset_style_defaults',
-				'description' => __( 'Restores every Style control above on THIS widget only back to its original default. Other widgets, pages, and the theme itself are never affected.', 'agency-manager' ),
+				'description' => __( 'Restores every Style control above on THIS widget only back to its original default. Other widgets, pages, and the theme itself are never affected.', 'nettwebs-talent-location-management' ),
 			)
 		);
 
@@ -347,7 +347,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->start_controls_section(
 			'style_image_section',
 			array(
-				'label' => __( 'Image', 'agency-manager' ),
+				'label' => __( 'Image', 'nettwebs-talent-location-management' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -355,13 +355,13 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'image_ratio',
 			array(
-				'label'     => __( 'Image Aspect Ratio', 'agency-manager' ),
+				'label'     => __( 'Image Aspect Ratio', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => '3/4',
 				'options'   => array(
-					'3/4' => __( 'Portrait (3:4)', 'agency-manager' ),
-					'1/1' => __( 'Square (1:1)', 'agency-manager' ),
-					'4/3' => __( 'Landscape (4:3)', 'agency-manager' ),
+					'3/4' => __( 'Portrait (3:4)', 'nettwebs-talent-location-management' ),
+					'1/1' => __( 'Square (1:1)', 'nettwebs-talent-location-management' ),
+					'4/3' => __( 'Landscape (4:3)', 'nettwebs-talent-location-management' ),
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .am-talent-card__media, {{WRAPPER}} .am-location-card__media' => 'aspect-ratio: {{VALUE}};',
@@ -372,18 +372,18 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'image_height_enable',
 			array(
-				'label'        => __( 'Custom Image Height', 'agency-manager' ),
+				'label'        => __( 'Custom Image Height', 'nettwebs-talent-location-management' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'default'      => '',
 				'return_value' => 'yes',
-				'description'  => __( 'Off by default so Image Aspect Ratio (above) controls the image height. Switch on to set an exact pixel height instead.', 'agency-manager' ),
+				'description'  => __( 'Off by default so Image Aspect Ratio (above) controls the image height. Switch on to set an exact pixel height instead.', 'nettwebs-talent-location-management' ),
 			)
 		);
 
 		$this->add_responsive_control(
 			'image_height',
 			array(
-				'label'     => __( 'Image Height (px)', 'agency-manager' ),
+				'label'     => __( 'Image Height (px)', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array( 'px' => array( 'min' => 100, 'max' => 800 ) ),
 				'default'   => array( 'size' => 320 ),
@@ -397,7 +397,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'image_border_radius',
 			array(
-				'label'      => __( 'Image Border Radius', 'agency-manager' ),
+				'label'      => __( 'Image Border Radius', 'nettwebs-talent-location-management' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%' ),
 				'selectors'  => array(
@@ -409,12 +409,12 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'image_object_fit',
 			array(
-				'label'     => __( 'Object Fit', 'agency-manager' ),
+				'label'     => __( 'Object Fit', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'cover',
 				'options'   => array(
-					'cover'   => __( 'Cover', 'agency-manager' ),
-					'contain' => __( 'Contain', 'agency-manager' ),
+					'cover'   => __( 'Cover', 'nettwebs-talent-location-management' ),
+					'contain' => __( 'Contain', 'nettwebs-talent-location-management' ),
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .am-talent-card__media img, {{WRAPPER}} .am-location-card__media img' => 'object-fit: {{VALUE}};',
@@ -427,7 +427,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->start_controls_section(
 			'style_card_section',
 			array(
-				'label' => __( 'Card', 'agency-manager' ),
+				'label' => __( 'Card', 'nettwebs-talent-location-management' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -435,7 +435,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'card_bg',
 			array(
-				'label'     => __( 'Card Background Colour', 'agency-manager' ),
+				'label'     => __( 'Card Background Colour', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .am-talent-card, {{WRAPPER}} .am-location-card' => 'background: {{VALUE}};',
@@ -446,7 +446,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'card_border_color',
 			array(
-				'label'     => __( 'Card Border Colour', 'agency-manager' ),
+				'label'     => __( 'Card Border Colour', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .am-talent-card, {{WRAPPER}} .am-location-card' => 'border-color: {{VALUE}};',
@@ -457,7 +457,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'card_border_width',
 			array(
-				'label'      => __( 'Card Border Width', 'agency-manager' ),
+				'label'      => __( 'Card Border Width', 'nettwebs-talent-location-management' ),
 				'type'       => Controls_Manager::SLIDER,
 				'range'      => array( 'px' => array( 'min' => 0, 'max' => 10 ) ),
 				'selectors'  => array(
@@ -469,7 +469,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'card_border_radius',
 			array(
-				'label'      => __( 'Card Border Radius', 'agency-manager' ),
+				'label'      => __( 'Card Border Radius', 'nettwebs-talent-location-management' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%' ),
 				'selectors'  => array(
@@ -481,10 +481,10 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'card_padding',
 			array(
-				'label'      => __( 'Card Padding', 'agency-manager' ),
+				'label'      => __( 'Card Padding', 'nettwebs-talent-location-management' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%' ),
-				'description' => __( 'Padding around the whole card, outside the image.', 'agency-manager' ),
+				'description' => __( 'Padding around the whole card, outside the image.', 'nettwebs-talent-location-management' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .am-talent-card, {{WRAPPER}} .am-location-card' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
@@ -494,14 +494,14 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'card_shadow_preset',
 			array(
-				'label'     => __( 'Card Shadow', 'agency-manager' ),
+				'label'     => __( 'Card Shadow', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => '',
 				'options'   => array(
-					''                                 => __( 'None', 'agency-manager' ),
-					'0 2px 8px rgba(0,0,0,0.08)'       => __( 'Small', 'agency-manager' ),
-					'0 8px 24px rgba(0,0,0,0.12)'      => __( 'Medium', 'agency-manager' ),
-					'0 16px 40px rgba(0,0,0,0.18)'     => __( 'Large', 'agency-manager' ),
+					''                                 => __( 'None', 'nettwebs-talent-location-management' ),
+					'0 2px 8px rgba(0,0,0,0.08)'       => __( 'Small', 'nettwebs-talent-location-management' ),
+					'0 8px 24px rgba(0,0,0,0.12)'      => __( 'Medium', 'nettwebs-talent-location-management' ),
+					'0 16px 40px rgba(0,0,0,0.18)'     => __( 'Large', 'nettwebs-talent-location-management' ),
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .am-talent-card, {{WRAPPER}} .am-location-card' => 'box-shadow: {{VALUE}};',
@@ -514,7 +514,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->start_controls_section(
 			'style_button_section',
 			array(
-				'label' => __( 'Button', 'agency-manager' ),
+				'label' => __( 'Button', 'nettwebs-talent-location-management' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -522,12 +522,12 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'button_width',
 			array(
-				'label'     => __( 'Button Width', 'agency-manager' ),
+				'label'     => __( 'Button Width', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'display:inline-block;width:auto;',
 				'options'   => array(
-					'display:inline-block;width:auto;' => __( 'Auto', 'agency-manager' ),
-					'display:block;width:100%;'        => __( 'Full Width', 'agency-manager' ),
+					'display:inline-block;width:auto;' => __( 'Auto', 'nettwebs-talent-location-management' ),
+					'display:block;width:100%;'        => __( 'Full Width', 'nettwebs-talent-location-management' ),
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .am-btn' => '{{VALUE}}',
@@ -538,7 +538,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_responsive_control(
 			'button_height',
 			array(
-				'label'     => __( 'Button Height', 'agency-manager' ),
+				'label'     => __( 'Button Height', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array( 'px' => array( 'min' => 20, 'max' => 100 ) ),
 				'selectors' => array(
@@ -550,7 +550,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'button_border_radius',
 			array(
-				'label'      => __( 'Button Border Radius', 'agency-manager' ),
+				'label'      => __( 'Button Border Radius', 'nettwebs-talent-location-management' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%' ),
 				'selectors'  => array(
@@ -562,7 +562,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_responsive_control(
 			'button_text_size',
 			array(
-				'label'     => __( 'Button Text Size', 'agency-manager' ),
+				'label'     => __( 'Button Text Size', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array( 'px' => array( 'min' => 10, 'max' => 30 ) ),
 				'selectors' => array(
@@ -574,7 +574,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'button_bg',
 			array(
-				'label'     => __( 'Button Background Colour', 'agency-manager' ),
+				'label'     => __( 'Button Background Colour', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array( '{{WRAPPER}} .am-btn' => 'background-color: {{VALUE}};' ),
 			)
@@ -583,7 +583,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'button_color',
 			array(
-				'label'     => __( 'Button Text Colour', 'agency-manager' ),
+				'label'     => __( 'Button Text Colour', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array( '{{WRAPPER}} .am-btn' => 'color: {{VALUE}};' ),
 			)
@@ -592,7 +592,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'button_border_color',
 			array(
-				'label'     => __( 'Button Border Colour', 'agency-manager' ),
+				'label'     => __( 'Button Border Colour', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array( '{{WRAPPER}} .am-btn' => 'border-color: {{VALUE}};' ),
 			)
@@ -601,7 +601,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'button_hover_bg',
 			array(
-				'label'     => __( 'Button Hover Background', 'agency-manager' ),
+				'label'     => __( 'Button Hover Background', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array( '{{WRAPPER}} .am-btn:hover' => 'background-color: {{VALUE}};' ),
 			)
@@ -610,7 +610,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'button_hover_color',
 			array(
-				'label'     => __( 'Button Hover Text Colour', 'agency-manager' ),
+				'label'     => __( 'Button Hover Text Colour', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array( '{{WRAPPER}} .am-btn:hover' => 'color: {{VALUE}};' ),
 			)
@@ -621,16 +621,16 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->start_controls_section(
 			'style_badge_section',
 			array(
-				'label'       => __( 'Badge', 'agency-manager' ),
+				'label'       => __( 'Badge', 'nettwebs-talent-location-management' ),
 				'tab'         => Controls_Manager::TAB_STYLE,
-				'description' => __( 'The "Now Scouting" badge shown on placeholder cards only.', 'agency-manager' ),
+				'description' => __( 'The "Now Scouting" badge shown on placeholder cards only.', 'nettwebs-talent-location-management' ),
 			)
 		);
 
 		$this->add_control(
 			'badge_bg',
 			array(
-				'label'     => __( 'Badge Background', 'agency-manager' ),
+				'label'     => __( 'Badge Background', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array( '{{WRAPPER}} .am-scouting-card__badge' => 'background: {{VALUE}};' ),
 			)
@@ -639,7 +639,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'badge_color',
 			array(
-				'label'     => __( 'Badge Text Colour', 'agency-manager' ),
+				'label'     => __( 'Badge Text Colour', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array( '{{WRAPPER}} .am-scouting-card__badge' => 'color: {{VALUE}};' ),
 			)
@@ -648,7 +648,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'badge_border_color',
 			array(
-				'label'     => __( 'Badge Border Colour', 'agency-manager' ),
+				'label'     => __( 'Badge Border Colour', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array( '{{WRAPPER}} .am-scouting-card__badge' => 'border: 1px solid {{VALUE}};' ),
 			)
@@ -659,7 +659,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->start_controls_section(
 			'style_typography_section',
 			array(
-				'label' => __( 'Typography', 'agency-manager' ),
+				'label' => __( 'Typography', 'nettwebs-talent-location-management' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -668,7 +668,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'title_typography',
-				'label'    => __( 'Title Typography', 'agency-manager' ),
+				'label'    => __( 'Title Typography', 'nettwebs-talent-location-management' ),
 				'selector' => '{{WRAPPER}} .am-talent-card__meta h3, {{WRAPPER}} .am-location-card__meta h3',
 			)
 		);
@@ -676,7 +676,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'title_color',
 			array(
-				'label'     => __( 'Title Colour', 'agency-manager' ),
+				'label'     => __( 'Title Colour', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .am-talent-card__meta h3, {{WRAPPER}} .am-location-card__meta h3' => 'color: {{VALUE}};',
@@ -688,7 +688,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'subtitle_typography',
-				'label'    => __( 'Subtitle Typography', 'agency-manager' ),
+				'label'    => __( 'Subtitle Typography', 'nettwebs-talent-location-management' ),
 				'selector' => '{{WRAPPER}} .am-talent-card__sub, {{WRAPPER}} .am-location-card__sub',
 			)
 		);
@@ -696,7 +696,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'subtitle_color',
 			array(
-				'label'     => __( 'Subtitle Colour', 'agency-manager' ),
+				'label'     => __( 'Subtitle Colour', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .am-talent-card__sub, {{WRAPPER}} .am-location-card__sub' => 'color: {{VALUE}};',
@@ -708,8 +708,8 @@ abstract class Base_Grid_Widget extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'        => 'description_typography',
-				'label'       => __( 'Description Typography', 'agency-manager' ),
-				'description' => __( 'Applies to the status line on placeholder ("Now Scouting") cards, e.g. "Applications Open".', 'agency-manager' ),
+				'label'       => __( 'Description Typography', 'nettwebs-talent-location-management' ),
+				'description' => __( 'Applies to the status line on placeholder ("Now Scouting") cards, e.g. "Applications Open".', 'nettwebs-talent-location-management' ),
 				'selector'    => '{{WRAPPER}} .am-scouting-card__status',
 			)
 		);
@@ -717,7 +717,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_control(
 			'description_color',
 			array(
-				'label'     => __( 'Description Colour', 'agency-manager' ),
+				'label'     => __( 'Description Colour', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .am-scouting-card__status' => 'color: {{VALUE}};',
@@ -730,7 +730,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->start_controls_section(
 			'style_spacing_section',
 			array(
-				'label' => __( 'Spacing', 'agency-manager' ),
+				'label' => __( 'Spacing', 'nettwebs-talent-location-management' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -738,11 +738,11 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_responsive_control(
 			'card_gap',
 			array(
-				'label'       => __( 'Card Gap', 'agency-manager' ),
+				'label'       => __( 'Card Gap', 'nettwebs-talent-location-management' ),
 				'type'        => Controls_Manager::SLIDER,
 				'range'       => array( 'px' => array( 'min' => 0, 'max' => 60 ) ),
 				'default'     => array( 'size' => 24 ),
-				'description' => __( 'Space between cards in the grid/carousel.', 'agency-manager' ),
+				'description' => __( 'Space between cards in the grid/carousel.', 'nettwebs-talent-location-management' ),
 				'selectors'   => array(
 					'{{WRAPPER}} .am-talent-grid, {{WRAPPER}} .am-location-grid, {{WRAPPER}} .am-carousel__track' => 'gap: {{SIZE}}{{UNIT}};',
 				),
@@ -752,10 +752,10 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_responsive_control(
 			'internal_padding',
 			array(
-				'label'       => __( 'Internal Padding', 'agency-manager' ),
+				'label'       => __( 'Internal Padding', 'nettwebs-talent-location-management' ),
 				'type'        => Controls_Manager::SLIDER,
 				'range'       => array( 'px' => array( 'min' => 0, 'max' => 60 ) ),
-				'description' => __( 'Padding inside the card\'s text area (title/subtitle), separate from Card Padding.', 'agency-manager' ),
+				'description' => __( 'Padding inside the card\'s text area (title/subtitle), separate from Card Padding.', 'nettwebs-talent-location-management' ),
 				'selectors'   => array(
 					'{{WRAPPER}} .am-talent-card__meta, {{WRAPPER}} .am-location-card__meta' => 'padding: {{SIZE}}{{UNIT}};',
 				),
@@ -765,7 +765,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		$this->add_responsive_control(
 			'button_margin',
 			array(
-				'label'     => __( 'Button Margin', 'agency-manager' ),
+				'label'     => __( 'Button Margin', 'nettwebs-talent-location-management' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array( 'px' => array( 'min' => 0, 'max' => 60 ) ),
 				'selectors' => array(
@@ -834,7 +834,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 	 * @return array<string,string> preset name => preset name (Elementor SELECT options are value => label)
 	 */
 	private function widget_style_preset_options(): array {
-		$options = array( '' => __( '— Select —', 'agency-manager' ) );
+		$options = array( '' => __( '— Select —', 'nettwebs-talent-location-management' ) );
 
 		foreach ( array_keys( Widget_Style_Presets::all() ) as $name ) {
 			$options[ $name ] = $name;
@@ -858,7 +858,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 			return array();
 		}
 
-		$options = array( '' => __( 'All', 'agency-manager' ) );
+		$options = array( '' => __( 'All', 'nettwebs-talent-location-management' ) );
 		foreach ( $terms as $term ) {
 			$options[ $term->slug ] = $term->name;
 		}

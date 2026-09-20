@@ -188,7 +188,7 @@ export function Sidebar() {
 					<div className="am-flex am-h-7 am-w-7 am-shrink-0 am-items-center am-justify-center am-rounded-md am-bg-primary am-text-sm am-font-bold am-text-primary-foreground">
 						A
 					</div>
-					{ ! collapsed && <span className="am-truncate am-text-sm am-font-semibold">Agency Manager</span> }
+					{ ! collapsed && <span className="am-truncate am-text-sm am-font-semibold">NettWebs Talent &amp; Location Management</span> }
 				</div>
 
 				<nav className="am-flex am-flex-1 am-flex-col am-gap-1 am-overflow-y-auto am-p-2">

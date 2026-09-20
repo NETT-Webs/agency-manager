@@ -15,11 +15,11 @@ class Exporter {
 
 	public function handle_export_request(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'agency-manager' ) );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'nettwebs-talent-location-management' ) );
 		}
 
 		if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'am_export' ) ) {
-			wp_die( esc_html__( 'Security check failed.', 'agency-manager' ) );
+			wp_die( esc_html__( 'Security check failed.', 'nettwebs-talent-location-management' ) );
 		}
 
 		$requested = isset( $_GET['sections'] ) ? array_map( 'sanitize_key', (array) wp_unslash( $_GET['sections'] ) ) : array();

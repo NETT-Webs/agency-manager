@@ -77,6 +77,25 @@ class Admin_App_Page {
 					'exportNonce'   => wp_create_nonce( 'am_export' ),
 					'importNonce'   => wp_create_nonce( 'am_import' ),
 				),
+				'applications' => array(
+					'csvExportNonce' => wp_create_nonce( 'am_export_csv' ),
+					'csvForms'       => array_map(
+						static function ( $form ) {
+							return array(
+								'id'    => $form->ID,
+								'title' => $form->post_title,
+								'type'  => get_post_meta( $form->ID, '_am_form_type', true ),
+							);
+						},
+						get_posts(
+							array(
+								'post_type'   => 'am_form',
+								'post_status' => 'any',
+								'numberposts' => -1,
+							)
+						)
+					),
+				),
 				'formBuilder' => array(
 					'formId'  => $form_id,
 					'ajaxUrl' => admin_url( 'admin-ajax.php' ),
@@ -115,7 +134,7 @@ class Admin_App_Page {
 	public function render( string $screen = 'dashboard' ): void {
 		$this->enqueue( $screen );
 		echo '<div id="agency-manager-root" class="am-admin-app-root">';
-		echo '<noscript>' . esc_html__( 'Agency Manager requires JavaScript to be enabled.', 'agency-manager' ) . '</noscript>';
+		echo '<noscript>' . esc_html__( 'Agency Manager requires JavaScript to be enabled.', 'nettwebs-talent-location-management' ) . '</noscript>';
 		echo '</div>';
 	}
 }

@@ -22,7 +22,7 @@ class Backup_Page {
 		);
 		?>
 		<p>
-			<a class="button" href="<?php echo esc_url( $export_url ); ?>"><?php esc_html_e( 'Backup Settings', 'agency-manager' ); ?></a>
+			<a class="button" href="<?php echo esc_url( $export_url ); ?>"><?php esc_html_e( 'Backup Settings', 'nettwebs-talent-location-management' ); ?></a>
 		</p>
 		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" enctype="multipart/form-data" style="margin-top:8px;">
 			<input type="hidden" name="action" value="am_import">
@@ -31,7 +31,7 @@ class Backup_Page {
 			<?php endforeach; ?>
 			<?php wp_nonce_field( 'am_import', 'am_import_nonce' ); ?>
 			<input type="file" name="am_import_file" accept="application/json">
-			<button type="submit" class="button"><?php esc_html_e( 'Restore Settings', 'agency-manager' ); ?></button>
+			<button type="submit" class="button"><?php esc_html_e( 'Restore Settings', 'nettwebs-talent-location-management' ); ?></button>
 		</form>
 		<?php
 	}

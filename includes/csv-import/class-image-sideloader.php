@@ -70,7 +70,7 @@ class Image_Sideloader {
 		}
 
 		if ( ! filter_var( $url, FILTER_VALIDATE_URL ) || ! preg_match( '#^https?://#i', $url ) ) {
-			return array( 'id' => 0, 'error' => __( 'Not a valid image URL.', 'agency-manager' ) );
+			return array( 'id' => 0, 'error' => __( 'Not a valid image URL.', 'nettwebs-talent-location-management' ) );
 		}
 
 		$existing = self::find_existing( $url );
@@ -96,7 +96,7 @@ class Image_Sideloader {
 		$type = wp_check_filetype( $file_array['name'] );
 		if ( empty( $type['type'] ) || 0 !== strpos( (string) $type['type'], 'image/' ) ) {
 			wp_delete_file( $tmp );
-			return array( 'id' => 0, 'error' => __( 'URL did not point to a supported image file.', 'agency-manager' ) );
+			return array( 'id' => 0, 'error' => __( 'URL did not point to a supported image file.', 'nettwebs-talent-location-management' ) );
 		}
 
 		// Unmodified Core pipeline — original file + every registered size

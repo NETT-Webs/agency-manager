@@ -51,8 +51,8 @@ class Setup_Wizard {
 		// URL-only admin screen in WordPress.
 		add_submenu_page(
 			null,
-			__( 'Agency Manager Setup', 'agency-manager' ),
-			__( 'Setup', 'agency-manager' ),
+			__( 'Agency Manager Setup', 'nettwebs-talent-location-management' ),
+			__( 'Setup', 'nettwebs-talent-location-management' ),
 			'manage_options',
 			self::PAGE_SLUG,
 			array( $this, 'render' )
@@ -104,16 +104,16 @@ class Setup_Wizard {
 		$created_pages = array();
 
 		if ( ! empty( $_POST['create_talent_page'] ) ) {
-			$created_pages[] = $this->create_page_if_missing( __( 'Talent', 'agency-manager' ), 'talent-roster', '[talent_grid]' );
+			$created_pages[] = $this->create_page_if_missing( __( 'Talent', 'nettwebs-talent-location-management' ), 'talent-roster', '[talent_grid]' );
 		}
 		if ( ! empty( $_POST['create_location_page'] ) ) {
-			$created_pages[] = $this->create_page_if_missing( __( 'Locations', 'agency-manager' ), 'location-portfolio', '[location_grid]' );
+			$created_pages[] = $this->create_page_if_missing( __( 'Locations', 'nettwebs-talent-location-management' ), 'location-portfolio', '[location_grid]' );
 		}
 		if ( ! empty( $_POST['create_talent_form_page'] ) ) {
-			$created_pages[] = $this->create_page_if_missing( __( 'Apply as Talent', 'agency-manager' ), 'apply-as-talent', '[talent_application_form]' );
+			$created_pages[] = $this->create_page_if_missing( __( 'Apply as Talent', 'nettwebs-talent-location-management' ), 'apply-as-talent', '[talent_application_form]' );
 		}
 		if ( ! empty( $_POST['create_location_form_page'] ) ) {
-			$created_pages[] = $this->create_page_if_missing( __( 'Register Your Location', 'agency-manager' ), 'register-your-location', '[location_submission_form]' );
+			$created_pages[] = $this->create_page_if_missing( __( 'Register Your Location', 'nettwebs-talent-location-management' ), 'register-your-location', '[location_submission_form]' );
 		}
 
 		$this->maybe_add_to_menu( array_filter( $created_pages ) );
@@ -187,11 +187,11 @@ class Setup_Wizard {
 		$step = isset( $_GET['step'] ) ? sanitize_key( wp_unslash( $_GET['step'] ) ) : 'agency_type';
 		?>
 		<div class="am-wizard-wrap">
-			<h1><?php esc_html_e( 'Welcome to Agency Manager', 'agency-manager' ); ?></h1>
+			<h1><?php esc_html_e( 'Welcome to Agency Manager', 'nettwebs-talent-location-management' ); ?></h1>
 			<div class="am-wizard-steps">
-				<span class="<?php echo 'agency_type' === $step ? 'is-current' : ''; ?>">1. <?php esc_html_e( 'Agency Type', 'agency-manager' ); ?></span>
-				<span class="<?php echo 'content' === $step ? 'is-current' : ''; ?>">2. <?php esc_html_e( 'Starter Content', 'agency-manager' ); ?></span>
-				<span class="<?php echo 'done' === $step ? 'is-current' : ''; ?>">3. <?php esc_html_e( 'Done', 'agency-manager' ); ?></span>
+				<span class="<?php echo 'agency_type' === $step ? 'is-current' : ''; ?>">1. <?php esc_html_e( 'Agency Type', 'nettwebs-talent-location-management' ); ?></span>
+				<span class="<?php echo 'content' === $step ? 'is-current' : ''; ?>">2. <?php esc_html_e( 'Starter Content', 'nettwebs-talent-location-management' ); ?></span>
+				<span class="<?php echo 'done' === $step ? 'is-current' : ''; ?>">3. <?php esc_html_e( 'Done', 'nettwebs-talent-location-management' ); ?></span>
 			</div>
 
 			<?php if ( 'content' === $step ) : ?>
@@ -207,17 +207,17 @@ class Setup_Wizard {
 
 	private function render_agency_type_step(): void {
 		$types = array(
-			'talent'   => __( 'Talent Agency', 'agency-manager' ),
-			'location' => __( 'Location Agency', 'agency-manager' ),
-			'casting'  => __( 'Casting Agency', 'agency-manager' ),
-			'model'    => __( 'Model Agency', 'agency-manager' ),
-			'both'     => __( 'Combined Agency', 'agency-manager' ),
+			'talent'   => __( 'Talent Agency', 'nettwebs-talent-location-management' ),
+			'location' => __( 'Location Agency', 'nettwebs-talent-location-management' ),
+			'casting'  => __( 'Casting Agency', 'nettwebs-talent-location-management' ),
+			'model'    => __( 'Model Agency', 'nettwebs-talent-location-management' ),
+			'both'     => __( 'Combined Agency', 'nettwebs-talent-location-management' ),
 		);
 		?>
 		<form method="post">
 			<?php wp_nonce_field( 'am_wizard_step', 'am_wizard_nonce' ); ?>
 			<input type="hidden" name="am_wizard_step" value="agency_type">
-			<p><?php esc_html_e( 'What kind of agency is this?', 'agency-manager' ); ?></p>
+			<p><?php esc_html_e( 'What kind of agency is this?', 'nettwebs-talent-location-management' ); ?></p>
 			<div class="am-wizard-agency-types">
 				<?php foreach ( $types as $value => $label ) : ?>
 					<label>
@@ -226,7 +226,7 @@ class Setup_Wizard {
 					</label>
 				<?php endforeach; ?>
 			</div>
-			<?php submit_button( __( 'Continue', 'agency-manager' ) ); ?>
+			<?php submit_button( __( 'Continue', 'nettwebs-talent-location-management' ) ); ?>
 		</form>
 		<?php
 	}
@@ -236,20 +236,20 @@ class Setup_Wizard {
 		<form method="post">
 			<?php wp_nonce_field( 'am_wizard_step', 'am_wizard_nonce' ); ?>
 			<input type="hidden" name="am_wizard_step" value="content">
-			<p><?php esc_html_e( 'Create starter pages? Each embeds the matching shortcode, so it works immediately and respects your Display settings.', 'agency-manager' ); ?></p>
-			<p><label><input type="checkbox" name="create_talent_page" value="1" checked> <?php esc_html_e( 'Talent page — [talent_grid]', 'agency-manager' ); ?></label></p>
-			<p><label><input type="checkbox" name="create_location_page" value="1" checked> <?php esc_html_e( 'Locations page — [location_grid]', 'agency-manager' ); ?></label></p>
-			<p><label><input type="checkbox" name="create_talent_form_page" value="1" checked> <?php esc_html_e( 'Apply as Talent page — [talent_application_form]', 'agency-manager' ); ?></label></p>
-			<p><label><input type="checkbox" name="create_location_form_page" value="1" checked> <?php esc_html_e( 'Register Your Location page — [location_submission_form]', 'agency-manager' ); ?></label></p>
-			<?php submit_button( __( 'Continue', 'agency-manager' ) ); ?>
+			<p><?php esc_html_e( 'Create starter pages? Each embeds the matching shortcode, so it works immediately and respects your Display settings.', 'nettwebs-talent-location-management' ); ?></p>
+			<p><label><input type="checkbox" name="create_talent_page" value="1" checked> <?php esc_html_e( 'Talent page — [talent_grid]', 'nettwebs-talent-location-management' ); ?></label></p>
+			<p><label><input type="checkbox" name="create_location_page" value="1" checked> <?php esc_html_e( 'Locations page — [location_grid]', 'nettwebs-talent-location-management' ); ?></label></p>
+			<p><label><input type="checkbox" name="create_talent_form_page" value="1" checked> <?php esc_html_e( 'Apply as Talent page — [talent_application_form]', 'nettwebs-talent-location-management' ); ?></label></p>
+			<p><label><input type="checkbox" name="create_location_form_page" value="1" checked> <?php esc_html_e( 'Register Your Location page — [location_submission_form]', 'nettwebs-talent-location-management' ); ?></label></p>
+			<?php submit_button( __( 'Continue', 'nettwebs-talent-location-management' ) ); ?>
 		</form>
 		<?php
 	}
 
 	private function render_done_step(): void {
 		?>
-		<p><?php esc_html_e( "You're all set. Manage everything from the Agency Manager dashboard — no code, no Elementor required.", 'agency-manager' ); ?></p>
-		<p><a class="button button-primary" href="<?php echo esc_url( admin_url( 'admin.php?page=agency-manager' ) ); ?>"><?php esc_html_e( 'Go to Dashboard', 'agency-manager' ); ?></a></p>
+		<p><?php esc_html_e( "You're all set. Manage everything from the Agency Manager dashboard — no code, no Elementor required.", 'nettwebs-talent-location-management' ); ?></p>
+		<p><a class="button button-primary" href="<?php echo esc_url( admin_url( 'admin.php?page=agency-manager' ) ); ?>"><?php esc_html_e( 'Go to Dashboard', 'nettwebs-talent-location-management' ); ?></a></p>
 		<?php
 	}
 }

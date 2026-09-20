@@ -26,23 +26,23 @@ class Form_Builder_Ajax {
 
 	public function ajax_save(): void {
 		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), self::NONCE_ACTION ) ) {
-			wp_send_json_error( array( 'message' => __( 'Security check failed.', 'agency-manager' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'Security check failed.', 'nettwebs-talent-location-management' ) ), 403 );
 		}
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'You do not have permission to do this.', 'agency-manager' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'You do not have permission to do this.', 'nettwebs-talent-location-management' ) ), 403 );
 		}
 
 		$form_id = isset( $_POST['form_id'] ) ? absint( $_POST['form_id'] ) : 0;
 		$form    = $form_id ? get_post( $form_id ) : null;
 
 		if ( ! $form || 'am_form' !== $form->post_type ) {
-			wp_send_json_error( array( 'message' => __( 'Form not found.', 'agency-manager' ) ), 404 );
+			wp_send_json_error( array( 'message' => __( 'Form not found.', 'nettwebs-talent-location-management' ) ), 404 );
 		}
 
 		$raw_fields = isset( $_POST['fields'] ) ? json_decode( wp_unslash( $_POST['fields'] ), true ) : array();
 		if ( ! is_array( $raw_fields ) ) {
-			wp_send_json_error( array( 'message' => __( 'Malformed field data.', 'agency-manager' ) ), 400 );
+			wp_send_json_error( array( 'message' => __( 'Malformed field data.', 'nettwebs-talent-location-management' ) ), 400 );
 		}
 
 		$fields = Form_Schema::normalize_fields( $this->sanitize_raw_fields( $raw_fields ) );
@@ -78,7 +78,7 @@ class Form_Builder_Ajax {
 
 		wp_send_json_success(
 			array(
-				'message' => __( 'Form saved.', 'agency-manager' ),
+				'message' => __( 'Form saved.', 'nettwebs-talent-location-management' ),
 				'fields'  => $fields,
 			)
 		);

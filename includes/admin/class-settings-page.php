@@ -41,32 +41,32 @@ class Settings_Page {
 	}
 
 	public function render_saved_notice(): void {
-		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Settings saved.', 'agency-manager' ) . '</p></div>';
+		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Settings saved.', 'nettwebs-talent-location-management' ) . '</p></div>';
 	}
 
 	public function render(): void {
 		$settings = Settings::all();
 		?>
 		<div class="wrap am-admin-page">
-			<h1><?php esc_html_e( 'Settings', 'agency-manager' ); ?></h1>
+			<h1><?php esc_html_e( 'Settings', 'nettwebs-talent-location-management' ); ?></h1>
 
 			<form method="post">
 				<?php wp_nonce_field( self::NONCE_ACTION, 'am_settings_nonce' ); ?>
 
-				<h2><?php esc_html_e( 'Agency', 'agency-manager' ); ?></h2>
+				<h2><?php esc_html_e( 'Agency', 'nettwebs-talent-location-management' ); ?></h2>
 				<table class="form-table">
 					<tr>
-						<th><label for="agency_type"><?php esc_html_e( 'Agency Type', 'agency-manager' ); ?></label></th>
+						<th><label for="agency_type"><?php esc_html_e( 'Agency Type', 'nettwebs-talent-location-management' ); ?></label></th>
 						<td>
 							<select id="agency_type" name="agency_type">
 								<?php
 								foreach (
 									array(
-										'talent'   => __( 'Talent Agency', 'agency-manager' ),
-										'location' => __( 'Location Agency', 'agency-manager' ),
-										'casting'  => __( 'Casting Agency', 'agency-manager' ),
-										'model'    => __( 'Model Agency', 'agency-manager' ),
-										'both'     => __( 'Combined Agency', 'agency-manager' ),
+										'talent'   => __( 'Talent Agency', 'nettwebs-talent-location-management' ),
+										'location' => __( 'Location Agency', 'nettwebs-talent-location-management' ),
+										'casting'  => __( 'Casting Agency', 'nettwebs-talent-location-management' ),
+										'model'    => __( 'Model Agency', 'nettwebs-talent-location-management' ),
+										'both'     => __( 'Combined Agency', 'nettwebs-talent-location-management' ),
 									) as $value => $label
 								) :
 									?>
@@ -76,17 +76,17 @@ class Settings_Page {
 						</td>
 					</tr>
 					<tr>
-						<th><label for="notification_email"><?php esc_html_e( 'Notification Email', 'agency-manager' ); ?></label></th>
+						<th><label for="notification_email"><?php esc_html_e( 'Notification Email', 'nettwebs-talent-location-management' ); ?></label></th>
 						<td><input type="email" id="notification_email" class="regular-text" name="notification_email" value="<?php echo esc_attr( $settings['notification_email'] ); ?>"></td>
 					</tr>
 				</table>
 
-				<?php submit_button( __( 'Save Settings', 'agency-manager' ) ); ?>
+				<?php submit_button( __( 'Save Settings', 'nettwebs-talent-location-management' ) ); ?>
 			</form>
 
 			<hr>
-			<h2><?php esc_html_e( 'Backup & Restore', 'agency-manager' ); ?></h2>
-			<p class="description"><?php esc_html_e( 'A one-click backup of just your Settings and Forms (not Talent/Location content) — useful before making big configuration changes.', 'agency-manager' ); ?></p>
+			<h2><?php esc_html_e( 'Backup & Restore', 'nettwebs-talent-location-management' ); ?></h2>
+			<p class="description"><?php esc_html_e( 'A one-click backup of just your Settings and Forms (not Talent/Location content) — useful before making big configuration changes.', 'nettwebs-talent-location-management' ); ?></p>
 			<?php ( new Backup_Page() )->render_buttons(); ?>
 		</div>
 		<?php

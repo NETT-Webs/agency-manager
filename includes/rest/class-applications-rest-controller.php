@@ -84,7 +84,7 @@ class Applications_Rest_Controller extends Rest_Controller {
 				'id'              => $submission->ID,
 				'formTitle'       => $form ? $form->post_title : '',
 				'date'            => get_the_date( '', $submission ),
-				'name'            => $name ?: __( 'Untitled', 'agency-manager' ),
+				'name'            => $name ?: __( 'Untitled', 'nettwebs-talent-location-management' ),
 				'email'           => $values['email'] ?? '',
 				'status'          => $status ?: 'submitted',
 				'values'          => $values,
@@ -102,12 +102,12 @@ class Applications_Rest_Controller extends Rest_Controller {
 		$status = sanitize_key( (string) $request->get_param( 'status' ) );
 
 		if ( ! in_array( $status, Workflow::STATUSES, true ) ) {
-			return new \WP_REST_Response( array( 'message' => __( 'Invalid status.', 'agency-manager' ) ), 400 );
+			return new \WP_REST_Response( array( 'message' => __( 'Invalid status.', 'nettwebs-talent-location-management' ) ), 400 );
 		}
 
 		$submission = get_post( $id );
 		if ( ! $submission || 'am_submission' !== $submission->post_type ) {
-			return new \WP_REST_Response( array( 'message' => __( 'Application not found.', 'agency-manager' ) ), 404 );
+			return new \WP_REST_Response( array( 'message' => __( 'Application not found.', 'nettwebs-talent-location-management' ) ), 404 );
 		}
 
 		( new Workflow() )->set_status( $id, $status );
@@ -120,13 +120,13 @@ class Applications_Rest_Controller extends Rest_Controller {
 
 		$submission = get_post( $id );
 		if ( ! $submission || 'am_submission' !== $submission->post_type ) {
-			return new \WP_REST_Response( array( 'message' => __( 'Application not found.', 'agency-manager' ) ), 404 );
+			return new \WP_REST_Response( array( 'message' => __( 'Application not found.', 'nettwebs-talent-location-management' ) ), 404 );
 		}
 
 		$post_id = ( new Workflow() )->publish_submission( $id );
 
 		if ( ! $post_id ) {
-			return new \WP_REST_Response( array( 'message' => __( 'This application must be Approved before it can be published.', 'agency-manager' ) ), 400 );
+			return new \WP_REST_Response( array( 'message' => __( 'This application must be Approved before it can be published.', 'nettwebs-talent-location-management' ) ), 400 );
 		}
 
 		return new \WP_REST_Response(

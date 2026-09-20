@@ -21,8 +21,8 @@ class Media_Picker_Assets {
 			'am-admin-meta-boxes',
 			'amMediaPicker',
 			array(
-				'selectImagesTitle' => __( 'Select Images', 'agency-manager' ),
-				'selectFileTitle'   => __( 'Select File', 'agency-manager' ),
+				'selectImagesTitle' => __( 'Select Images', 'nettwebs-talent-location-management' ),
+				'selectFileTitle'   => __( 'Select File', 'nettwebs-talent-location-management' ),
 			)
 		);
 	}

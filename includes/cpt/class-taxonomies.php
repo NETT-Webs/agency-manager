@@ -26,8 +26,8 @@ class Taxonomies {
 			array(
 				'hierarchical'      => true,
 				'labels'            => array(
-					'name'          => __( 'Talent Categories', 'agency-manager' ),
-					'singular_name' => __( 'Talent Category', 'agency-manager' ),
+					'name'          => __( 'Talent Categories', 'nettwebs-talent-location-management' ),
+					'singular_name' => __( 'Talent Category', 'nettwebs-talent-location-management' ),
 				),
 				'public'            => true,
 				'show_admin_column' => true,
@@ -42,8 +42,8 @@ class Taxonomies {
 			array(
 				'hierarchical'      => true,
 				'labels'            => array(
-					'name'          => __( 'Talent Groups', 'agency-manager' ),
-					'singular_name' => __( 'Talent Group', 'agency-manager' ),
+					'name'          => __( 'Talent Groups', 'nettwebs-talent-location-management' ),
+					'singular_name' => __( 'Talent Group', 'nettwebs-talent-location-management' ),
 				),
 				'public'            => true,
 				'show_admin_column' => true,
@@ -62,9 +62,9 @@ class Taxonomies {
 				// `location_type` — renaming the key would mean a data
 				// migration for zero benefit, this is a display-only choice.
 				'labels'            => array(
-					'name'          => __( 'Categories', 'agency-manager' ),
-					'singular_name' => __( 'Category', 'agency-manager' ),
-					'menu_name'     => __( 'Categories', 'agency-manager' ),
+					'name'          => __( 'Categories', 'nettwebs-talent-location-management' ),
+					'singular_name' => __( 'Category', 'nettwebs-talent-location-management' ),
+					'menu_name'     => __( 'Categories', 'nettwebs-talent-location-management' ),
 				),
 				'public'            => true,
 				'show_admin_column' => true,

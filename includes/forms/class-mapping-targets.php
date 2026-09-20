@@ -28,55 +28,55 @@ class Mapping_Targets {
 	 */
 	public static function get( string $type ): array {
 		$targets = array(
-			array( 'key' => 'post_title', 'label' => __( 'Name', 'agency-manager' ), 'kind' => 'post_title', 'group' => 'core' ),
-			array( 'key' => 'featured_image', 'label' => __( 'Featured Image', 'agency-manager' ), 'kind' => 'featured_image', 'group' => 'core' ),
-			array( 'key' => 'gallery_ids', 'label' => __( 'Gallery', 'agency-manager' ), 'kind' => 'gallery', 'group' => 'core' ),
-			array( 'key' => 'contact_email', 'label' => __( 'Contact Email', 'agency-manager' ), 'kind' => 'meta', 'group' => 'core' ),
-			array( 'key' => 'contact_phone', 'label' => __( 'Contact Phone', 'agency-manager' ), 'kind' => 'meta', 'group' => 'core' ),
-			array( 'key' => 'notes', 'label' => __( 'Notes', 'agency-manager' ), 'kind' => 'meta', 'group' => 'core' ),
-			array( 'key' => 'city', 'label' => __( 'City', 'agency-manager' ), 'kind' => 'meta', 'group' => 'core' ),
+			array( 'key' => 'post_title', 'label' => __( 'Name', 'nettwebs-talent-location-management' ), 'kind' => 'post_title', 'group' => 'core' ),
+			array( 'key' => 'featured_image', 'label' => __( 'Featured Image', 'nettwebs-talent-location-management' ), 'kind' => 'featured_image', 'group' => 'core' ),
+			array( 'key' => 'gallery_ids', 'label' => __( 'Gallery', 'nettwebs-talent-location-management' ), 'kind' => 'gallery', 'group' => 'core' ),
+			array( 'key' => 'contact_email', 'label' => __( 'Contact Email', 'nettwebs-talent-location-management' ), 'kind' => 'meta', 'group' => 'core' ),
+			array( 'key' => 'contact_phone', 'label' => __( 'Contact Phone', 'nettwebs-talent-location-management' ), 'kind' => 'meta', 'group' => 'core' ),
+			array( 'key' => 'notes', 'label' => __( 'Notes', 'nettwebs-talent-location-management' ), 'kind' => 'meta', 'group' => 'core' ),
+			array( 'key' => 'city', 'label' => __( 'City', 'nettwebs-talent-location-management' ), 'kind' => 'meta', 'group' => 'core' ),
 		);
 
 		if ( 'talent' === $type ) {
 			$talent_fields = array(
-				'age'              => __( 'Age', 'agency-manager' ),
-				'availability'     => __( 'Availability', 'agency-manager' ),
-				'languages'        => __( 'Languages', 'agency-manager' ),
-				'skills'           => __( 'Skills', 'agency-manager' ),
-				'experience'       => __( 'Experience', 'agency-manager' ),
-				'video_url'        => __( 'Video URL', 'agency-manager' ),
-				'height'           => __( 'Height', 'agency-manager' ),
-				'body_type'        => __( 'Body Type', 'agency-manager' ),
-				'hair_color'       => __( 'Hair Colour', 'agency-manager' ),
-				'eye_color'        => __( 'Eye Colour', 'agency-manager' ),
-				'measurements'     => __( 'Measurements', 'agency-manager' ),
-				'social_instagram' => __( 'Social Links → Instagram', 'agency-manager' ),
-				'social_facebook'  => __( 'Social Links → Facebook', 'agency-manager' ),
-				'social_tiktok'    => __( 'Social Links → TikTok', 'agency-manager' ),
-				'social_website'   => __( 'Social Links → Website / Portfolio', 'agency-manager' ),
+				'age'              => __( 'Age', 'nettwebs-talent-location-management' ),
+				'availability'     => __( 'Availability', 'nettwebs-talent-location-management' ),
+				'languages'        => __( 'Languages', 'nettwebs-talent-location-management' ),
+				'skills'           => __( 'Skills', 'nettwebs-talent-location-management' ),
+				'experience'       => __( 'Experience', 'nettwebs-talent-location-management' ),
+				'video_url'        => __( 'Video URL', 'nettwebs-talent-location-management' ),
+				'height'           => __( 'Height', 'nettwebs-talent-location-management' ),
+				'body_type'        => __( 'Body Type', 'nettwebs-talent-location-management' ),
+				'hair_color'       => __( 'Hair Colour', 'nettwebs-talent-location-management' ),
+				'eye_color'        => __( 'Eye Colour', 'nettwebs-talent-location-management' ),
+				'measurements'     => __( 'Measurements', 'nettwebs-talent-location-management' ),
+				'social_instagram' => __( 'Social Links → Instagram', 'nettwebs-talent-location-management' ),
+				'social_facebook'  => __( 'Social Links → Facebook', 'nettwebs-talent-location-management' ),
+				'social_tiktok'    => __( 'Social Links → TikTok', 'nettwebs-talent-location-management' ),
+				'social_website'   => __( 'Social Links → Website / Portfolio', 'nettwebs-talent-location-management' ),
 			);
 			foreach ( $talent_fields as $key => $label ) {
 				$targets[] = array( 'key' => $key, 'label' => $label, 'kind' => 'meta', 'group' => 'talent' );
 			}
-			$targets[] = array( 'key' => 'talent_category', 'label' => __( 'Category', 'agency-manager' ), 'kind' => 'taxonomy', 'group' => 'talent' );
-			$targets[] = array( 'key' => 'talent_group', 'label' => __( 'Group', 'agency-manager' ), 'kind' => 'taxonomy', 'group' => 'talent' );
+			$targets[] = array( 'key' => 'talent_category', 'label' => __( 'Category', 'nettwebs-talent-location-management' ), 'kind' => 'taxonomy', 'group' => 'talent' );
+			$targets[] = array( 'key' => 'talent_group', 'label' => __( 'Group', 'nettwebs-talent-location-management' ), 'kind' => 'taxonomy', 'group' => 'talent' );
 		} else {
 			$location_fields = array(
-				'parking'   => __( 'Parking', 'agency-manager' ),
-				'power'     => __( 'Power', 'agency-manager' ),
-				'amenities' => __( 'Amenities', 'agency-manager' ),
-				'map_embed' => __( 'Map Embed URL', 'agency-manager' ),
+				'parking'   => __( 'Parking', 'nettwebs-talent-location-management' ),
+				'power'     => __( 'Power', 'nettwebs-talent-location-management' ),
+				'amenities' => __( 'Amenities', 'nettwebs-talent-location-management' ),
+				'map_embed' => __( 'Map Embed URL', 'nettwebs-talent-location-management' ),
 			);
 			foreach ( $location_fields as $key => $label ) {
 				$targets[] = array( 'key' => $key, 'label' => $label, 'kind' => 'meta', 'group' => 'location' );
 			}
-			$targets[] = array( 'key' => 'location_type', 'label' => __( 'Location Type', 'agency-manager' ), 'kind' => 'taxonomy', 'group' => 'location' );
+			$targets[] = array( 'key' => 'location_type', 'label' => __( 'Location Type', 'nettwebs-talent-location-management' ), 'kind' => 'taxonomy', 'group' => 'location' );
 		}
 
 		foreach ( Settings::get_custom_fields( $type ) as $key => $custom ) {
 			$targets[] = array(
 				'key'   => $key,
-				'label' => ( $custom['label'] ?? $key ) . ' (' . __( 'custom', 'agency-manager' ) . ')',
+				'label' => ( $custom['label'] ?? $key ) . ' (' . __( 'custom', 'nettwebs-talent-location-management' ) . ')',
 				'kind'  => 'meta',
 				'group' => 'custom',
 			);
