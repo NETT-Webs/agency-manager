@@ -12,6 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- this file is loaded exactly once per request, as the terminal leaf of WordPress core's own `template_include` chain (see Template_Loader::maybe_override()), the same mechanism every theme's single.php uses — its local variables are conventionally unprefixed throughout WordPress core and every theme for exactly this reason, and it may also be copied verbatim into a theme's agency-manager/ override folder, where theme developers expect ordinary WordPress template variable names, not a plugin-specific prefix.
+
 get_header();
 
 while ( have_posts() ) :
@@ -20,16 +22,16 @@ while ( have_posts() ) :
 	$post_id = get_the_ID();
 
 	$fields = array(
-		'city'         => __( 'City', 'agency-manager' ),
-		'parking'      => __( 'Parking', 'agency-manager' ),
-		'power'        => __( 'Power', 'agency-manager' ),
-		'amenities'    => __( 'Facilities', 'agency-manager' ),
-		'availability' => __( 'Availability', 'agency-manager' ),
+		'city'         => __( 'City', 'nettwebs-talent-location-management' ),
+		'parking'      => __( 'Parking', 'nettwebs-talent-location-management' ),
+		'power'        => __( 'Power', 'nettwebs-talent-location-management' ),
+		'amenities'    => __( 'Facilities', 'nettwebs-talent-location-management' ),
+		'availability' => __( 'Availability', 'nettwebs-talent-location-management' ),
 	);
 
-	$gallery_ids = \AgencyManager\Frontend\Meta_Resolver::get( $post_id, 'location', 'gallery_ids' );
+	$gallery_ids = \Nettalo\TalentLocationManagement\Frontend\Meta_Resolver::get( $post_id, 'location', 'gallery_ids' );
 	$gallery_ids = $gallery_ids ? array_filter( array_map( 'intval', array_map( 'trim', explode( ',', $gallery_ids ) ) ) ) : array();
-	$map_embed   = \AgencyManager\Frontend\Meta_Resolver::get( $post_id, 'location', 'map_embed' );
+	$map_embed   = \Nettalo\TalentLocationManagement\Frontend\Meta_Resolver::get( $post_id, 'location', 'map_embed' );
 	?>
 	<article <?php post_class( 'am-single-location' ); ?>>
 		<div class="am-single-location__media">
@@ -56,7 +58,7 @@ while ( have_posts() ) :
 
 			<dl class="am-single-location__facts">
 				<?php foreach ( $fields as $key => $label ) : ?>
-					<?php $value = \AgencyManager\Frontend\Meta_Resolver::get( $post_id, 'location', $key ); ?>
+					<?php $value = \Nettalo\TalentLocationManagement\Frontend\Meta_Resolver::get( $post_id, 'location', $key ); ?>
 					<?php if ( '' !== $value ) : ?>
 						<div class="am-single-location__fact">
 							<dt><?php echo esc_html( $label ); ?></dt>

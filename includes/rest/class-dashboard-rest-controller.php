@@ -1,8 +1,8 @@
 <?php
-namespace AgencyManager\Rest;
+namespace Nettalo\TalentLocationManagement\Rest;
 
-use AgencyManager\Admin\Dashboard_Data;
-use AgencyManager\Admin\Shortcode_Reference;
+use Nettalo\TalentLocationManagement\Admin\Dashboard_Data;
+use Nettalo\TalentLocationManagement\Admin\Shortcode_Reference;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

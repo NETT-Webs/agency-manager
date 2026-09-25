@@ -1,7 +1,7 @@
 <?php
 /**
- * Lightweight autoloader for the AgencyManager\ namespace — no Composer step.
- * Maps AgencyManager\Sub_Namespace\Class_Name to includes/sub-namespace/class-class-name.php
+ * Lightweight autoloader for the Nettalo\TalentLocationManagement\ namespace — no Composer step.
+ * Maps Nettalo\TalentLocationManagement\Sub_Namespace\Class_Name to includes/sub-namespace/class-class-name.php
  * (underscores in any segment become hyphens, mirroring WordPress's own file-naming convention).
  */
 
@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 spl_autoload_register(
 	function ( $class ) {
-		$prefix = 'AgencyManager\\';
+		$prefix = 'Nettalo\TalentLocationManagement\\';
 
 		if ( 0 !== strpos( $class, $prefix ) ) {
 			return;
@@ -28,7 +28,7 @@ spl_autoload_register(
 
 		$file_name = 'class-' . array_pop( $segments ) . '.php';
 		$sub_path  = $segments ? implode( '/', $segments ) . '/' : '';
-		$path      = AM_PLUGIN_DIR . 'includes/' . $sub_path . $file_name;
+		$path      = NETTALO_PLUGIN_DIR . 'includes/' . $sub_path . $file_name;
 
 		if ( file_exists( $path ) ) {
 			require_once $path;

@@ -7,6 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- this file is only ever `include`d from inside Templates::render(), a class method (not the true global scope), via extract()+include — its local variables never leak beyond that one method call, so a plugin-wide prefix would add noise without addressing any real scope-pollution risk.
 $config = $config ?? array();
 ?>
 <div class="am-location-card am-scouting-card">
@@ -21,8 +22,8 @@ $config = $config ?? array();
 		<?php endif; ?>
 	</div>
 	<div class="am-location-card__meta">
-		<h3><?php esc_html_e( 'Location Partner', 'agency-manager' ); ?></h3>
-		<p class="am-scouting-card__status"><?php esc_html_e( 'Applications Open', 'agency-manager' ); ?></p>
+		<h3><?php esc_html_e( 'Location Partner', 'nettwebs-talent-location-management' ); ?></h3>
+		<p class="am-scouting-card__status"><?php esc_html_e( 'Applications Open', 'nettwebs-talent-location-management' ); ?></p>
 		<?php if ( ! empty( $config['button_text'] ) ) : ?>
 			<a href="<?php echo esc_url( ! empty( $config['button_link'] ) ? $config['button_link'] : home_url( '/' ) ); ?>" class="am-btn am-btn--outline"><?php echo esc_html( $config['button_text'] ); ?></a>
 		<?php endif; ?>

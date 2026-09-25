@@ -1,5 +1,5 @@
 <?php
-namespace AgencyManager\Admin;
+namespace Nettalo\TalentLocationManagement\Admin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -30,7 +30,7 @@ class Admin_App_Page {
 	}
 
 	public function enqueue( string $screen ): void {
-		$asset_file = AM_PLUGIN_DIR . 'build/index.asset.php';
+		$asset_file = NETTALO_PLUGIN_DIR . 'build/index.asset.php';
 
 		if ( ! file_exists( $asset_file ) ) {
 			return;
@@ -48,7 +48,7 @@ class Admin_App_Page {
 
 		wp_enqueue_script(
 			'am-admin-app',
-			AM_PLUGIN_URL . 'build/index.js',
+			NETTALO_PLUGIN_URL . 'build/index.js',
 			$asset['dependencies'],
 			$asset['version'],
 			true
@@ -56,8 +56,8 @@ class Admin_App_Page {
 
 		// wp-scripts names the extracted stylesheet after the webpack chunk
 		// ("style-index.css"), not after the entry file ("index.css").
-		if ( file_exists( AM_PLUGIN_DIR . 'build/style-index.css' ) ) {
-			wp_enqueue_style( 'am-admin-app', AM_PLUGIN_URL . 'build/style-index.css', array(), $asset['version'] );
+		if ( file_exists( NETTALO_PLUGIN_DIR . 'build/style-index.css' ) ) {
+			wp_enqueue_style( 'am-admin-app', NETTALO_PLUGIN_URL . 'build/style-index.css', array(), $asset['version'] );
 		}
 
 		$current_user = wp_get_current_user();

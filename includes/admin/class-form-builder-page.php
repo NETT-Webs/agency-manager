@@ -1,9 +1,9 @@
 <?php
-namespace AgencyManager\Admin;
+namespace Nettalo\TalentLocationManagement\Admin;
 
-use AgencyManager\Forms\Field_Types;
-use AgencyManager\Forms\Form_Renderer;
-use AgencyManager\Forms\Mapping_Targets;
+use Nettalo\TalentLocationManagement\Forms\Field_Types;
+use Nettalo\TalentLocationManagement\Forms\Form_Renderer;
+use Nettalo\TalentLocationManagement\Forms\Mapping_Targets;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -22,8 +22,8 @@ class Form_Builder_Page {
 	public function enqueue(): void {
 		Media_Picker_Assets::enqueue();
 
-		wp_enqueue_style( 'am-form-builder', AM_PLUGIN_URL . 'assets/admin/form-builder.css', array( 'am-admin' ), AM_VERSION );
-		wp_enqueue_script( 'am-form-builder', AM_PLUGIN_URL . 'assets/admin/form-builder.js', array( 'jquery' ), AM_VERSION, true );
+		wp_enqueue_style( 'am-form-builder', NETTALO_PLUGIN_URL . 'assets/admin/form-builder.css', array( 'am-admin' ), NETTALO_VERSION );
+		wp_enqueue_script( 'am-form-builder', NETTALO_PLUGIN_URL . 'assets/admin/form-builder.js', array( 'jquery' ), NETTALO_VERSION, true );
 	}
 
 	public function render( int $form_id ): void {

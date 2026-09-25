@@ -1,8 +1,8 @@
 <?php
-namespace AgencyManager\Admin;
+namespace Nettalo\TalentLocationManagement\Admin;
 
-use AgencyManager\Forms\Form_Schema;
-use AgencyManager\Settings;
+use Nettalo\TalentLocationManagement\Forms\Form_Schema;
+use Nettalo\TalentLocationManagement\Settings;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -40,8 +40,18 @@ class Form_Builder_Ajax {
 			wp_send_json_error( array( 'message' => __( 'Form not found.', 'nettwebs-talent-location-management' ) ), 404 );
 		}
 
-		$raw_fields = isset( $_POST['fields'] ) ? json_decode( wp_unslash( $_POST['fields'] ), true ) : array();
-		if ( ! is_array( $raw_fields ) ) {
+		if ( ! isset( $_POST['fields'] ) || ! is_string( $_POST['fields'] ) ) {
+			wp_send_json_error( array( 'message' => __( 'Missing field data.', 'nettwebs-talent-location-management' ) ), 400 );
+		}
+
+		// This is a JSON payload, not a text field — sanitize_text_field()
+		// would corrupt valid JSON. It is instead decoded, checked with
+		// json_last_error(), confirmed to be an array, then every field is
+		// whitelisted by key (sanitize_raw_fields()) and every value
+		// sanitized per its type (Form_Schema::normalize_fields()) below
+		// before anything is stored.
+		$raw_fields = json_decode( wp_unslash( $_POST['fields'] ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		if ( JSON_ERROR_NONE !== json_last_error() || ! is_array( $raw_fields ) ) {
 			wp_send_json_error( array( 'message' => __( 'Malformed field data.', 'nettwebs-talent-location-management' ) ), 400 );
 		}
 

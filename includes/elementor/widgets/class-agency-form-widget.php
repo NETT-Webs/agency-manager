@@ -1,10 +1,10 @@
 <?php
-namespace AgencyManager\Elementor\Widgets;
+namespace Nettalo\TalentLocationManagement\Elementor\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;
-use AgencyManager\Forms\Form_Renderer;
+use Nettalo\TalentLocationManagement\Forms\Form_Renderer;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

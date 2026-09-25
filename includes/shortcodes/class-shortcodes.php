@@ -1,8 +1,8 @@
 <?php
-namespace AgencyManager\Shortcodes;
+namespace Nettalo\TalentLocationManagement\Shortcodes;
 
-use AgencyManager\Frontend\Carousel_Renderer;
-use AgencyManager\Settings;
+use Nettalo\TalentLocationManagement\Frontend\Carousel_Renderer;
+use Nettalo\TalentLocationManagement\Settings;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

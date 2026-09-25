@@ -1,7 +1,7 @@
 <?php
-namespace AgencyManager\Admin;
+namespace Nettalo\TalentLocationManagement\Admin;
 
-use AgencyManager\Forms\Workflow;
+use Nettalo\TalentLocationManagement\Forms\Workflow;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

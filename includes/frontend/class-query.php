@@ -1,5 +1,5 @@
 <?php
-namespace AgencyManager\Frontend;
+namespace Nettalo\TalentLocationManagement\Frontend;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -59,7 +59,11 @@ class Query {
 		 * @param array $query_args
 		 * @param array $args Args passed in before defaults were applied.
 		 */
-		return apply_filters( 'am_talent_query_args', self::build_args( 'talent', $tax_filters, $args ), $args );
+		$query_args = apply_filters( 'nettalo_talent_query_args', self::build_args( 'talent', $tax_filters, $args ), $args );
+
+		// Legacy alias — kept working for any integration still hooking the
+		// pre-1.7.0 filter name; see docs/REBRAND.md.
+		return apply_filters_deprecated( 'am_talent_query_args', array( $query_args, $args ), '1.7.0', 'nettalo_talent_query_args' );
 	}
 
 	public static function location_args( array $args = array() ): array {
@@ -81,7 +85,11 @@ class Query {
 		 * @param array $query_args
 		 * @param array $args Args passed in before defaults were applied.
 		 */
-		return apply_filters( 'am_location_query_args', self::build_args( 'location', $tax_filters, $args ), $args );
+		$query_args = apply_filters( 'nettalo_location_query_args', self::build_args( 'location', $tax_filters, $args ), $args );
+
+		// Legacy alias — kept working for any integration still hooking the
+		// pre-1.7.0 filter name; see docs/REBRAND.md.
+		return apply_filters_deprecated( 'am_location_query_args', array( $query_args, $args ), '1.7.0', 'nettalo_location_query_args' );
 	}
 
 	private static function build_args( string $post_type, array $tax_filters, array $args ): array {

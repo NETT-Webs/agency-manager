@@ -1,5 +1,5 @@
 <?php
-namespace AgencyManager\Forms;
+namespace Nettalo\TalentLocationManagement\Forms;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -276,7 +276,11 @@ class Form_Schema {
 		 *
 		 * @param array $templates
 		 */
-		return apply_filters( 'am_form_templates', $templates );
+		$templates = apply_filters( 'nettalo_form_templates', $templates );
+
+		// Legacy alias — kept working for any integration still hooking the
+		// pre-1.7.0 filter name; see docs/REBRAND.md.
+		return apply_filters_deprecated( 'am_form_templates', array( $templates ), '1.7.0', 'nettalo_form_templates' );
 	}
 
 	private static function field( string $key, string $label, string $type, bool $required, ?array $mapping, array $options = array() ): array {

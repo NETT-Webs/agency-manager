@@ -1,5 +1,5 @@
 <?php
-namespace AgencyManager\Admin;
+namespace Nettalo\TalentLocationManagement\Admin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -218,8 +218,8 @@ class Shortcode_Reference {
 	}
 
 	public function maybe_enqueue( string $hook ): void {
-		wp_enqueue_style( 'am-admin', AM_PLUGIN_URL . 'assets/admin/admin.css', array(), AM_VERSION );
-		wp_enqueue_script( 'am-shortcode-reference', AM_PLUGIN_URL . 'assets/admin/shortcode-reference.js', array(), AM_VERSION, true );
+		wp_enqueue_style( 'am-admin', NETTALO_PLUGIN_URL . 'assets/admin/admin.css', array(), NETTALO_VERSION );
+		wp_enqueue_script( 'am-shortcode-reference', NETTALO_PLUGIN_URL . 'assets/admin/shortcode-reference.js', array(), NETTALO_VERSION, true );
 		wp_localize_script(
 			'am-shortcode-reference',
 			'amShortcodeReference',

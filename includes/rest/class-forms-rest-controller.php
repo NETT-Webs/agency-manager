@@ -1,10 +1,10 @@
 <?php
-namespace AgencyManager\Rest;
+namespace Nettalo\TalentLocationManagement\Rest;
 
-use AgencyManager\Forms\Field_Types;
-use AgencyManager\Forms\Form_Renderer;
-use AgencyManager\Forms\Form_Schema;
-use AgencyManager\Forms\Mapping_Targets;
+use Nettalo\TalentLocationManagement\Forms\Field_Types;
+use Nettalo\TalentLocationManagement\Forms\Form_Renderer;
+use Nettalo\TalentLocationManagement\Forms\Form_Schema;
+use Nettalo\TalentLocationManagement\Forms\Mapping_Targets;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

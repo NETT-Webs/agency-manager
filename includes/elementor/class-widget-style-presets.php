@@ -1,7 +1,7 @@
 <?php
-namespace AgencyManager\Elementor;
+namespace Nettalo\TalentLocationManagement\Elementor;
 
-use AgencyManager\Settings;
+use Nettalo\TalentLocationManagement\Settings;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -57,11 +57,16 @@ class Widget_Style_Presets {
 		$this->verify_request();
 
 		$name       = isset( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : '';
-		$values_raw = isset( $_POST['values'] ) ? wp_unslash( $_POST['values'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- json_decode()d below, then every value sanitized individually.
-		$values     = json_decode( (string) $values_raw, true );
+		// This is a JSON payload, not a text field — sanitize_text_field()
+		// would corrupt valid JSON (braces/quotes/colons). It is instead
+		// decoded, checked with json_last_error(), confirmed to be an array,
+		// and every individual value sanitized/depth-bounded by
+		// self::sanitize_values() below before it's ever stored.
+		$values_raw = isset( $_POST['values'] ) && is_string( $_POST['values'] ) ? wp_unslash( $_POST['values'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$values     = '' !== $values_raw ? json_decode( $values_raw, true ) : null;
 
-		if ( '' === $name || ! is_array( $values ) ) {
-			wp_send_json_error( array( 'message' => __( 'A preset name and style values are required.', 'nettwebs-talent-location-management' ) ), 400 );
+		if ( '' === $name || '' === $values_raw || JSON_ERROR_NONE !== json_last_error() || ! is_array( $values ) ) {
+			wp_send_json_error( array( 'message' => __( 'A preset name and valid style values are required.', 'nettwebs-talent-location-management' ) ), 400 );
 		}
 
 		$settings = Settings::all();

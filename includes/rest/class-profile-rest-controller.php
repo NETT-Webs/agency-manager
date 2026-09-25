@@ -1,11 +1,11 @@
 <?php
-namespace AgencyManager\Rest;
+namespace Nettalo\TalentLocationManagement\Rest;
 
-use AgencyManager\Frontend\Card_Renderer;
-use AgencyManager\Frontend\Meta_Resolver;
-use AgencyManager\Frontend\Templates;
-use AgencyManager\Forms\Form_Renderer;
-use AgencyManager\Settings;
+use Nettalo\TalentLocationManagement\Frontend\Card_Renderer;
+use Nettalo\TalentLocationManagement\Frontend\Meta_Resolver;
+use Nettalo\TalentLocationManagement\Frontend\Templates;
+use Nettalo\TalentLocationManagement\Forms\Form_Renderer;
+use Nettalo\TalentLocationManagement\Settings;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -114,7 +114,7 @@ abstract class Profile_Rest_Controller extends Rest_Controller {
 		return new \WP_REST_Response( array(
 			'html'        => $html,
 			'themeCssUrl' => get_stylesheet_uri(),
-			'pluginCssUrl' => AM_PLUGIN_URL . 'assets/css/frontend.css',
+			'pluginCssUrl' => NETTALO_PLUGIN_URL . 'assets/css/frontend.css',
 		) );
 	}
 

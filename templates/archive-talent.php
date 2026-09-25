@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use AgencyManager\Frontend\Carousel_Renderer;
+use Nettalo\TalentLocationManagement\Frontend\Carousel_Renderer;
 
 get_header();
 ?>

@@ -1,5 +1,5 @@
 <?php
-namespace AgencyManager\Admin;
+namespace Nettalo\TalentLocationManagement\Admin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -14,8 +14,8 @@ class Media_Picker_Assets {
 
 	public static function enqueue(): void {
 		wp_enqueue_media();
-		wp_enqueue_script( 'am-admin-meta-boxes', AM_PLUGIN_URL . 'assets/admin/admin.js', array( 'jquery' ), AM_VERSION, true );
-		wp_enqueue_style( 'am-admin', AM_PLUGIN_URL . 'assets/admin/admin.css', array(), AM_VERSION );
+		wp_enqueue_script( 'am-admin-meta-boxes', NETTALO_PLUGIN_URL . 'assets/admin/admin.js', array( 'jquery' ), NETTALO_VERSION, true );
+		wp_enqueue_style( 'am-admin', NETTALO_PLUGIN_URL . 'assets/admin/admin.css', array(), NETTALO_VERSION );
 
 		wp_localize_script(
 			'am-admin-meta-boxes',

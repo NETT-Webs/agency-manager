@@ -1,7 +1,7 @@
 <?php
-namespace AgencyManager\Cpt;
+namespace Nettalo\TalentLocationManagement\Cpt;
 
-use AgencyManager\Compat\Registration_Guard;
+use Nettalo\TalentLocationManagement\Compat\Registration_Guard;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

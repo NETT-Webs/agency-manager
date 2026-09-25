@@ -12,6 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- this file is loaded exactly once per request, as the terminal leaf of WordPress core's own `template_include` chain (see Template_Loader::maybe_override()), the same mechanism every theme's single.php uses — its local variables are conventionally unprefixed throughout WordPress core and every theme for exactly this reason, and it may also be copied verbatim into a theme's agency-manager/ override folder, where theme developers expect ordinary WordPress template variable names, not a plugin-specific prefix.
+
 get_header();
 
 while ( have_posts() ) :
@@ -20,29 +22,29 @@ while ( have_posts() ) :
 	$post_id = get_the_ID();
 
 	$fields = array(
-		'city'          => __( 'City', 'agency-manager' ),
-		'age'           => __( 'Age', 'agency-manager' ),
-		'availability'  => __( 'Availability', 'agency-manager' ),
-		'height'        => __( 'Height', 'agency-manager' ),
-		'body_type'     => __( 'Body Type', 'agency-manager' ),
-		'hair_color'    => __( 'Hair Colour', 'agency-manager' ),
-		'eye_color'     => __( 'Eye Colour', 'agency-manager' ),
-		'measurements'  => __( 'Measurements', 'agency-manager' ),
-		'languages'     => __( 'Languages', 'agency-manager' ),
-		'skills'        => __( 'Skills', 'agency-manager' ),
-		'experience'    => __( 'Experience', 'agency-manager' ),
+		'city'          => __( 'City', 'nettwebs-talent-location-management' ),
+		'age'           => __( 'Age', 'nettwebs-talent-location-management' ),
+		'availability'  => __( 'Availability', 'nettwebs-talent-location-management' ),
+		'height'        => __( 'Height', 'nettwebs-talent-location-management' ),
+		'body_type'     => __( 'Body Type', 'nettwebs-talent-location-management' ),
+		'hair_color'    => __( 'Hair Colour', 'nettwebs-talent-location-management' ),
+		'eye_color'     => __( 'Eye Colour', 'nettwebs-talent-location-management' ),
+		'measurements'  => __( 'Measurements', 'nettwebs-talent-location-management' ),
+		'languages'     => __( 'Languages', 'nettwebs-talent-location-management' ),
+		'skills'        => __( 'Skills', 'nettwebs-talent-location-management' ),
+		'experience'    => __( 'Experience', 'nettwebs-talent-location-management' ),
 	);
 
 	$social = array(
-		'social_instagram' => __( 'Instagram', 'agency-manager' ),
-		'social_facebook'  => __( 'Facebook', 'agency-manager' ),
-		'social_tiktok'    => __( 'TikTok', 'agency-manager' ),
-		'social_website'   => __( 'Website', 'agency-manager' ),
+		'social_instagram' => __( 'Instagram', 'nettwebs-talent-location-management' ),
+		'social_facebook'  => __( 'Facebook', 'nettwebs-talent-location-management' ),
+		'social_tiktok'    => __( 'TikTok', 'nettwebs-talent-location-management' ),
+		'social_website'   => __( 'Website', 'nettwebs-talent-location-management' ),
 	);
 
-	$gallery_ids = \AgencyManager\Frontend\Meta_Resolver::get( $post_id, 'talent', 'gallery_ids' );
+	$gallery_ids = \Nettalo\TalentLocationManagement\Frontend\Meta_Resolver::get( $post_id, 'talent', 'gallery_ids' );
 	$gallery_ids = $gallery_ids ? array_filter( array_map( 'intval', array_map( 'trim', explode( ',', $gallery_ids ) ) ) ) : array();
-	$video_url   = \AgencyManager\Frontend\Meta_Resolver::get( $post_id, 'talent', 'video_url' );
+	$video_url   = \Nettalo\TalentLocationManagement\Frontend\Meta_Resolver::get( $post_id, 'talent', 'video_url' );
 	?>
 	<article <?php post_class( 'am-single-talent' ); ?>>
 		<div class="am-single-talent__media">
@@ -69,7 +71,7 @@ while ( have_posts() ) :
 
 			<dl class="am-single-talent__facts">
 				<?php foreach ( $fields as $key => $label ) : ?>
-					<?php $value = \AgencyManager\Frontend\Meta_Resolver::get( $post_id, 'talent', $key ); ?>
+					<?php $value = \Nettalo\TalentLocationManagement\Frontend\Meta_Resolver::get( $post_id, 'talent', $key ); ?>
 					<?php if ( '' !== $value ) : ?>
 						<div class="am-single-talent__fact">
 							<dt><?php echo esc_html( $label ); ?></dt>
@@ -80,13 +82,13 @@ while ( have_posts() ) :
 			</dl>
 
 			<?php if ( $video_url ) : ?>
-				<p class="am-single-talent__video"><a href="<?php echo esc_url( $video_url ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Watch Reel', 'agency-manager' ); ?></a></p>
+				<p class="am-single-talent__video"><a href="<?php echo esc_url( $video_url ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Watch Reel', 'nettwebs-talent-location-management' ); ?></a></p>
 			<?php endif; ?>
 
 			<?php
 			$social_links = array();
 			foreach ( $social as $key => $label ) {
-				$url = \AgencyManager\Frontend\Meta_Resolver::get( $post_id, 'talent', $key );
+				$url = \Nettalo\TalentLocationManagement\Frontend\Meta_Resolver::get( $post_id, 'talent', $key );
 				if ( $url ) {
 					$social_links[ $label ] = $url;
 				}

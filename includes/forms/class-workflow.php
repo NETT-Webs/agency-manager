@@ -1,5 +1,5 @@
 <?php
-namespace AgencyManager\Forms;
+namespace Nettalo\TalentLocationManagement\Forms;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -32,7 +32,10 @@ class Workflow {
 		 * @param string $status     The new status.
 		 * @param string $old_status The previous status.
 		 */
-		do_action( 'am_submission_status_changed', $submission_id, $status, $old_status );
+		do_action( 'nettalo_submission_status_changed', $submission_id, $status, $old_status );
+		// Legacy alias — kept working for any integration still hooking the
+		// pre-1.7.0 action name; see docs/REBRAND.md.
+		do_action_deprecated( 'am_submission_status_changed', array( $submission_id, $status, $old_status ), '1.7.0', 'nettalo_submission_status_changed' );
 
 		return true;
 	}
@@ -91,7 +94,10 @@ class Workflow {
 		 * @param int $post_id       The new talent/location post ID.
 		 * @param int $submission_id The source submission ID.
 		 */
-		do_action( 'am_submission_published', $post_id, $submission_id );
+		do_action( 'nettalo_submission_published', $post_id, $submission_id );
+		// Legacy alias — kept working for any integration still hooking the
+		// pre-1.7.0 action name; see docs/REBRAND.md.
+		do_action_deprecated( 'am_submission_published', array( $post_id, $submission_id ), '1.7.0', 'nettalo_submission_published' );
 
 		return (int) $post_id;
 	}

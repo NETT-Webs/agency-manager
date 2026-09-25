@@ -1,5 +1,5 @@
 <?php
-namespace AgencyManager\Csv_Import;
+namespace Nettalo\TalentLocationManagement\Csv_Import;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

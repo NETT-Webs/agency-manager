@@ -1,5 +1,5 @@
 <?php
-namespace AgencyManager\Forms;
+namespace Nettalo\TalentLocationManagement\Forms;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -224,6 +224,10 @@ class Field_Types {
 		 *
 		 * @param array $library
 		 */
-		return apply_filters( 'am_field_library', $library );
+		$library = apply_filters( 'nettalo_field_library', $library );
+
+		// Legacy alias — kept working for any integration still hooking the
+		// pre-1.7.0 filter name; see docs/REBRAND.md.
+		return apply_filters_deprecated( 'am_field_library', array( $library ), '1.7.0', 'nettalo_field_library' );
 	}
 }

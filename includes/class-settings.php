@@ -1,5 +1,5 @@
 <?php
-namespace AgencyManager;
+namespace Nettalo\TalentLocationManagement;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -85,7 +85,11 @@ class Settings {
 		 *
 		 * @param array $defaults
 		 */
-		return apply_filters( 'am_settings_defaults', $defaults );
+		$defaults = apply_filters( 'nettalo_settings_defaults', $defaults );
+
+		// Legacy alias — kept working for any integration still hooking the
+		// pre-1.7.0 filter name; see docs/REBRAND.md.
+		return apply_filters_deprecated( 'am_settings_defaults', array( $defaults ), '1.7.0', 'nettalo_settings_defaults' );
 	}
 
 	/**

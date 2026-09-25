@@ -1,5 +1,5 @@
 <?php
-namespace AgencyManager\Forms;
+namespace Nettalo\TalentLocationManagement\Forms;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -322,6 +322,30 @@ class Form_Renderer {
 			exit;
 		}
 
+		$fields = $this->get_fields( $form_id );
+
+		// Fields an Elementor widget instance chose to hide are exempt from
+		// required-field validation here too — the visitor never saw them.
+		$hidden_fields = isset( $_POST['am_hidden_fields'] )
+			? array_filter( array_map( 'sanitize_key', explode( ',', sanitize_text_field( wp_unslash( $_POST['am_hidden_fields'] ) ) ) ) )
+			: array();
+
+		// Pass 1: sanitize every visible field's raw value, before enforcing
+		// required-ness — a field's conditional may depend on any other
+		// field regardless of order, so required-checks (pass 2) need every
+		// value resolved first. File/image fields are deliberately skipped
+		// here and sanitized separately below, after the submission-allowed
+		// filter runs — sanitizing a file field actually uploads it, and a
+		// submission the filter goes on to reject should never leave an
+		// uploaded file/attachment behind.
+		$raw_values = array();
+		foreach ( $fields as $field ) {
+			if ( in_array( $field['key'], $hidden_fields, true ) || Field_Types::is_non_input_type( $field['type'] ) || Field_Types::is_file_type( $field['type'] ) ) {
+				continue;
+			}
+			$raw_values[ $field['key'] ] = $this->sanitize_field_value( $field );
+		}
+
 		/**
 		 * Lets an integration reject a submission before it's stored (e.g. a
 		 * rate-limiter or third-party spam check). Return false (or a
@@ -329,29 +353,32 @@ class Form_Renderer {
 		 *
 		 * @param bool  $allowed
 		 * @param int   $form_id
-		 * @param array $post_data Raw, unsanitized $_POST (read-only use only).
+		 * @param array $field_values Every visible non-file field's value,
+		 *                            already sanitized per its field type by
+		 *                            sanitize_field_value() (text fields via
+		 *                            sanitize_text_field()/sanitize_textarea_field(),
+		 *                            email via sanitize_email(), URLs via
+		 *                            esc_url_raw(), choice fields validated
+		 *                            against their allowed options) — never
+		 *                            raw $_POST. File/image fields are not
+		 *                            included: they aren't uploaded until
+		 *                            after this filter allows the submission,
+		 *                            so a rejected submission never uploads
+		 *                            a file.
 		 */
-		$allowed = apply_filters( 'am_form_submission_allowed', true, $form_id, $_POST );
+		$allowed = apply_filters( 'nettalo_form_submission_allowed', true, $form_id, $raw_values );
+		// Legacy alias — kept working for any integration still hooking the
+		// pre-1.7.0 filter name; see docs/REBRAND.md.
+		$allowed = apply_filters_deprecated( 'am_form_submission_allowed', array( $allowed, $form_id, $raw_values ), '1.7.0', 'nettalo_form_submission_allowed' );
 		if ( ! $allowed || is_wp_error( $allowed ) ) {
 			wp_safe_redirect( add_query_arg( 'am_error', 'invalid', $redirect ) );
 			exit;
 		}
 
-		$fields = $this->get_fields( $form_id );
-
-		// Fields an Elementor widget instance chose to hide are exempt from
-		// required-field validation here too — the visitor never saw them.
-		$hidden_fields = isset( $_POST['am_hidden_fields'] )
-			? array_filter( array_map( 'sanitize_key', explode( ',', wp_unslash( $_POST['am_hidden_fields'] ) ) ) )
-			: array();
-
-		// Pass 1: sanitize every visible field's raw value, before enforcing
-		// required-ness — a field's conditional may depend on any other
-		// field regardless of order, so required-checks (pass 2) need every
-		// value resolved first.
-		$raw_values = array();
+		// Pass 1b: now that the submission is allowed, sanitize (and, for
+		// file/image fields, actually upload) the remaining fields.
 		foreach ( $fields as $field ) {
-			if ( in_array( $field['key'], $hidden_fields, true ) || Field_Types::is_non_input_type( $field['type'] ) ) {
+			if ( in_array( $field['key'], $hidden_fields, true ) || Field_Types::is_non_input_type( $field['type'] ) || ! Field_Types::is_file_type( $field['type'] ) ) {
 				continue;
 			}
 			$raw_values[ $field['key'] ] = $this->sanitize_field_value( $field );
@@ -405,7 +432,10 @@ class Form_Renderer {
 			 * here rather than being called directly, so this class stays
 			 * unaware of how (or whether) notifications are delivered.
 			 */
-			do_action( 'am_submission_created', $submission_id );
+			do_action( 'nettalo_submission_created', $submission_id );
+			// Legacy alias — kept working for any integration still hooking
+			// the pre-1.7.0 action name; see docs/REBRAND.md.
+			do_action_deprecated( 'am_submission_created', array( $submission_id ), '1.7.0', 'nettalo_submission_created' );
 		}
 
 		wp_safe_redirect( remove_query_arg( 'am_error', add_query_arg( array( 'am_sent' => '1', 'am_form' => $form_id ), $redirect ) ) );
@@ -477,7 +507,11 @@ class Form_Renderer {
 			return 'checkbox' === $type ? 0 : '';
 		}
 
-		$raw = wp_unslash( $_POST[ $name ] );
+		// Unslashed here, then sanitized per field type by the switch below —
+		// email via sanitize_email(), URLs via esc_url_raw(), textarea via
+		// sanitize_textarea_field(), everything else via sanitize_text_field()
+		// — never returned or stored before passing through one of these.
+		$raw = wp_unslash( $_POST[ $name ] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		if ( is_array( $raw ) ) {
 			$raw = '';
 		}
@@ -541,10 +575,10 @@ class Form_Renderer {
 				// the trusted type, not the 'type' value carried here.
 				$single_file = array(
 					'name'     => sanitize_file_name( wp_unslash( $_FILES[ $name ]['name'][ $i ] ) ),
-					'type'     => sanitize_text_field( wp_unslash( $_FILES[ $name ]['type'][ $i ] ) ),
-					'tmp_name' => $_FILES[ $name ]['tmp_name'][ $i ],
-					'error'    => $_FILES[ $name ]['error'][ $i ],
-					'size'     => $_FILES[ $name ]['size'][ $i ],
+					'type'     => isset( $_FILES[ $name ]['type'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES[ $name ]['type'][ $i ] ) ) : '',
+					'tmp_name' => isset( $_FILES[ $name ]['tmp_name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES[ $name ]['tmp_name'][ $i ] ) ) : '',
+					'error'    => isset( $_FILES[ $name ]['error'][ $i ] ) ? (int) $_FILES[ $name ]['error'][ $i ] : UPLOAD_ERR_NO_FILE,
+					'size'     => isset( $_FILES[ $name ]['size'][ $i ] ) ? (int) $_FILES[ $name ]['size'][ $i ] : 0,
 				);
 				if ( ! empty( $single_file['size'] ) && $single_file['size'] > $this->max_bytes( $field ) ) {
 					continue;
@@ -570,10 +604,10 @@ class Form_Renderer {
 		// the real type from the file's actual contents).
 		$single_file = array(
 			'name'     => sanitize_file_name( wp_unslash( $_FILES[ $key ]['name'] ) ),
-			'type'     => sanitize_text_field( wp_unslash( $_FILES[ $key ]['type'] ) ),
-			'tmp_name' => $_FILES[ $key ]['tmp_name'],
-			'error'    => $_FILES[ $key ]['error'],
-			'size'     => $_FILES[ $key ]['size'],
+			'type'     => isset( $_FILES[ $key ]['type'] ) ? sanitize_text_field( wp_unslash( $_FILES[ $key ]['type'] ) ) : '',
+			'tmp_name' => isset( $_FILES[ $key ]['tmp_name'] ) ? sanitize_text_field( wp_unslash( $_FILES[ $key ]['tmp_name'] ) ) : '',
+			'error'    => isset( $_FILES[ $key ]['error'] ) ? (int) $_FILES[ $key ]['error'] : UPLOAD_ERR_NO_FILE,
+			'size'     => isset( $_FILES[ $key ]['size'] ) ? (int) $_FILES[ $key ]['size'] : 0,
 		);
 
 		$id = $this->upload_single( $single_file, 'image' === $field['type'] );
@@ -666,7 +700,11 @@ class Form_Renderer {
 		 * @param array $fields  Normalized field definitions.
 		 * @param int   $form_id The `am_form` post ID.
 		 */
-		return apply_filters( 'am_form_fields', $fields, $form_id );
+		$fields = apply_filters( 'nettalo_form_fields', $fields, $form_id );
+
+		// Legacy alias — kept working for any integration still hooking the
+		// pre-1.7.0 filter name; see docs/REBRAND.md.
+		return apply_filters_deprecated( 'am_form_fields', array( $fields, $form_id ), '1.7.0', 'nettalo_form_fields' );
 	}
 
 	private function get_confirmation_message( int $form_id ): string {

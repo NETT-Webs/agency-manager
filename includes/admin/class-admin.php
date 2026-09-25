@@ -1,5 +1,5 @@
 <?php
-namespace AgencyManager\Admin;
+namespace Nettalo\TalentLocationManagement\Admin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -160,6 +160,6 @@ class Admin {
 			return;
 		}
 
-		wp_enqueue_style( 'am-admin', AM_PLUGIN_URL . 'assets/admin/admin.css', array(), AM_VERSION );
+		wp_enqueue_style( 'am-admin', NETTALO_PLUGIN_URL . 'assets/admin/admin.css', array(), NETTALO_VERSION );
 	}
 }

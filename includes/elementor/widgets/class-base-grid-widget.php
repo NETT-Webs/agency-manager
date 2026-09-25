@@ -1,12 +1,12 @@
 <?php
-namespace AgencyManager\Elementor\Widgets;
+namespace Nettalo\TalentLocationManagement\Elementor\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;
-use AgencyManager\Elementor\Widget_Style_Presets;
-use AgencyManager\Frontend\Carousel_Renderer;
-use AgencyManager\Settings;
+use Nettalo\TalentLocationManagement\Elementor\Widget_Style_Presets;
+use Nettalo\TalentLocationManagement\Frontend\Carousel_Renderer;
+use Nettalo\TalentLocationManagement\Settings;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

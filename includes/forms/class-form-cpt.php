@@ -1,5 +1,5 @@
 <?php
-namespace AgencyManager\Forms;
+namespace Nettalo\TalentLocationManagement\Forms;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

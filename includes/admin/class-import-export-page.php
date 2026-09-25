@@ -1,7 +1,7 @@
 <?php
-namespace AgencyManager\Admin;
+namespace Nettalo\TalentLocationManagement\Admin;
 
-use AgencyManager\Export_Import\Importer;
+use Nettalo\TalentLocationManagement\Export_Import\Importer;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

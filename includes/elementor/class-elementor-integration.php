@@ -1,7 +1,7 @@
 <?php
-namespace AgencyManager\Elementor;
+namespace Nettalo\TalentLocationManagement\Elementor;
 
-use AgencyManager\Settings;
+use Nettalo\TalentLocationManagement\Settings;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -59,17 +59,17 @@ class Elementor_Integration {
 		// app has finished bootstrapping, regardless of script load order.
 		wp_enqueue_script(
 			'am-reset-style-defaults',
-			AM_PLUGIN_URL . 'assets/elementor/reset-style-defaults.js',
+			NETTALO_PLUGIN_URL . 'assets/elementor/reset-style-defaults.js',
 			array( 'jquery' ),
-			AM_VERSION,
+			NETTALO_VERSION,
 			true
 		);
 
 		wp_enqueue_script(
 			'am-widget-style-presets',
-			AM_PLUGIN_URL . 'assets/elementor/widget-style-presets.js',
+			NETTALO_PLUGIN_URL . 'assets/elementor/widget-style-presets.js',
 			array( 'jquery' ),
-			AM_VERSION,
+			NETTALO_VERSION,
 			true
 		);
 

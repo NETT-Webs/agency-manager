@@ -2,7 +2,7 @@
 
 Talent, casting, model, and location management for agency websites — one coherent admin experience for Talent, Locations, Applications, and Website Display, not a collection of raw custom-post-type screens. Works standalone on any WordPress site; no theme dependency.
 
-**Version:** 1.6.5
+**Version:** 1.7.0
 **Requires:** WordPress 6.0+, PHP 7.4+ (tested on 8.2 and 8.3)
 **Elementor:** optional — shortcodes and the admin work without it; the 10 Elementor widgets require Elementor to be active.
 **Source:** https://github.com/NETT-Webs/agency-manager

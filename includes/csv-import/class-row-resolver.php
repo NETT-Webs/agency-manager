@@ -1,7 +1,7 @@
 <?php
-namespace AgencyManager\Csv_Import;
+namespace Nettalo\TalentLocationManagement\Csv_Import;
 
-use AgencyManager\Forms\Mapping_Targets;
+use Nettalo\TalentLocationManagement\Forms\Mapping_Targets;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

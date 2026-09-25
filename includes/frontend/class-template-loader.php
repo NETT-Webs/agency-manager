@@ -1,5 +1,5 @@
 <?php
-namespace AgencyManager\Frontend;
+namespace Nettalo\TalentLocationManagement\Frontend;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

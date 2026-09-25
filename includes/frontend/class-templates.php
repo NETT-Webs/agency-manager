@@ -1,5 +1,5 @@
 <?php
-namespace AgencyManager\Frontend;
+namespace Nettalo\TalentLocationManagement\Frontend;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -19,10 +19,10 @@ class Templates {
 	}
 
 	public function register_assets(): void {
-		wp_register_style( 'am-frontend', AM_PLUGIN_URL . 'assets/css/frontend.css', array(), AM_VERSION );
-		wp_register_style( 'am-carousel', AM_PLUGIN_URL . 'assets/css/carousel.css', array( 'am-frontend' ), AM_VERSION );
-		wp_register_script( 'am-carousel', AM_PLUGIN_URL . 'assets/js/carousel.js', array(), AM_VERSION, true );
-		wp_register_script( 'am-form-conditional', AM_PLUGIN_URL . 'assets/js/form-conditional.js', array(), AM_VERSION, true );
+		wp_register_style( 'am-frontend', NETTALO_PLUGIN_URL . 'assets/css/frontend.css', array(), NETTALO_VERSION );
+		wp_register_style( 'am-carousel', NETTALO_PLUGIN_URL . 'assets/css/carousel.css', array( 'am-frontend' ), NETTALO_VERSION );
+		wp_register_script( 'am-carousel', NETTALO_PLUGIN_URL . 'assets/js/carousel.js', array(), NETTALO_VERSION, true );
+		wp_register_script( 'am-form-conditional', NETTALO_PLUGIN_URL . 'assets/js/form-conditional.js', array(), NETTALO_VERSION, true );
 
 		// Small and scoped to .am-* classes — safe to enqueue unconditionally
 		// rather than trying to detect shortcode/widget presence up front.
@@ -40,7 +40,7 @@ class Templates {
 			return $theme_path;
 		}
 
-		return AM_PLUGIN_DIR . 'templates/' . $name . '.php';
+		return NETTALO_PLUGIN_DIR . 'templates/' . $name . '.php';
 	}
 
 	/**
@@ -66,7 +66,7 @@ class Templates {
 			return $native;
 		}
 
-		return AM_PLUGIN_DIR . 'templates/' . $name . '.php';
+		return NETTALO_PLUGIN_DIR . 'templates/' . $name . '.php';
 	}
 
 	public static function render( string $name, array $vars = array() ): string {

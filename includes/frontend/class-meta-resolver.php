@@ -1,5 +1,5 @@
 <?php
-namespace AgencyManager\Frontend;
+namespace Nettalo\TalentLocationManagement\Frontend;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -54,6 +54,11 @@ class Meta_Resolver {
 		 * @param string $type    'talent'|'location'.
 		 * @param int    $post_id
 		 */
-		return (array) apply_filters( 'am_meta_fallback_map', array(), $type, $post_id );
+		$map = apply_filters( 'nettalo_meta_fallback_map', array(), $type, $post_id );
+
+		// Legacy alias — kept working for any integration (e.g. a theme's own
+		// agency-manager-compat.php) still hooking the pre-1.7.0 filter name;
+		// see docs/REBRAND.md.
+		return (array) apply_filters_deprecated( 'am_meta_fallback_map', array( $map, $type, $post_id ), '1.7.0', 'nettalo_meta_fallback_map' );
 	}
 }

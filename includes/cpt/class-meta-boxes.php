@@ -1,8 +1,8 @@
 <?php
-namespace AgencyManager\Cpt;
+namespace Nettalo\TalentLocationManagement\Cpt;
 
-use AgencyManager\Compat\Registration_Guard;
-use AgencyManager\Frontend\Card_Renderer;
+use Nettalo\TalentLocationManagement\Compat\Registration_Guard;
+use Nettalo\TalentLocationManagement\Frontend\Card_Renderer;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -61,8 +61,8 @@ class Meta_Boxes {
 			return;
 		}
 
-		\AgencyManager\Admin\Media_Picker_Assets::enqueue();
-		wp_enqueue_script( 'am-admin-tabs', AM_PLUGIN_URL . 'assets/admin/tabs.js', array(), AM_VERSION, true );
+		\Nettalo\TalentLocationManagement\Admin\Media_Picker_Assets::enqueue();
+		wp_enqueue_script( 'am-admin-tabs', NETTALO_PLUGIN_URL . 'assets/admin/tabs.js', array(), NETTALO_VERSION, true );
 	}
 
 	public function add_meta_boxes(): void {
@@ -451,7 +451,7 @@ class Meta_Boxes {
 		foreach ( $ids as $id ) {
 			$thumb = wp_get_attachment_image( (int) $id, 'thumbnail' );
 			if ( $thumb ) {
-				echo '<span class="am-media-thumb">' . $thumb . '</span>';
+				echo '<span class="am-media-thumb">' . wp_kses_post( $thumb ) . '</span>';
 			}
 		}
 		echo '</span><br>';

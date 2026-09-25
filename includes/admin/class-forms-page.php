@@ -1,8 +1,8 @@
 <?php
-namespace AgencyManager\Admin;
+namespace Nettalo\TalentLocationManagement\Admin;
 
-use AgencyManager\Forms\Form_Renderer;
-use AgencyManager\Forms\Form_Schema;
+use Nettalo\TalentLocationManagement\Forms\Form_Renderer;
+use Nettalo\TalentLocationManagement\Forms\Form_Schema;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

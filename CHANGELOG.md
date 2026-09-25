@@ -2,6 +2,23 @@
 
 All notable changes to NettWebs Talent & Location Management (formerly "Agency Manager") are documented in this file.
 
+## [1.7.0] — 2026-09-23
+
+Second corrective release addressing WordPress.org Plugin Review Team feedback (internationalization, input sanitization/validation, output escaping, and generic global-identifier prefixing).
+
+### Changed
+
+- **Internal PHP namespace** moved from `AgencyManager\` to `Nettalo\TalentLocationManagement\` across the entire codebase — the primary implementation namespace per review feedback that `AgencyManager\` wasn't a sufficiently unique/plugin-specific prefix. No public identifier (shortcodes, REST namespace, admin page slugs, Elementor widget slugs, meta keys, the `am_settings` option, post types, taxonomies, AJAX actions) changed as a result — see `docs/REBRAND.md`.
+- **Internal PHP constants** `AM_VERSION`, `AM_PLUGIN_FILE`, `AM_PLUGIN_DIR`, `AM_PLUGIN_URL`, `AM_PLUGIN_BASENAME` replaced as the primary implementation constants by `NETTALO_VERSION`, `NETTALO_PLUGIN_FILE`, `NETTALO_PLUGIN_DIR`, `NETTALO_PLUGIN_URL`, `NETTALO_PLUGIN_BASENAME`. The old `AM_*` names remain defined as deprecated compatibility aliases (identical values) for any external code that referenced them.
+- **14 internal hook names** (`am_form_submission_allowed`, `am_submission_created`, `am_form_fields`, `am_talent_query_args`, `am_location_query_args`, `am_settings_defaults`, `am_field_library`, `am_form_templates`, `am_notification_recipient`, `am_submission_status_changed`, `am_submission_published`, `am_meta_fallback_map`, `am_before_import_section`, `am_after_import_section`) now fire under a `nettalo_`-prefixed primary name, with the original `am_*` name still fired via `apply_filters_deprecated()`/`do_action_deprecated()` for any existing integration (including a theme's own `agency-manager-compat.php`) that hooks the old name — see `docs/REBRAND.md`.
+- Remaining 25 uses of the old `agency-manager` text domain in template files replaced with the plugin's actual slug/text domain, `nettwebs-talent-location-management`.
+
+### Security
+
+- `am_form_submission_allowed` no longer receives raw, unsanitized `$_POST` — it now receives every visible field's value already sanitized per its field type (file/image fields are sanitized, and only uploaded, after this filter allows the submission).
+- Added `json_last_error()` validation to the two JSON-payload AJAX endpoints (Form Builder save, Elementor widget style presets) that were decoding client-supplied JSON without checking for decode failure.
+- Fixed 1 genuine unescaped-output case (an attachment thumbnail rendered via a variable, which broke static-analysis recognition of `wp_get_attachment_image()`'s already-safe output) and hardened file-upload superglobal access (`$_FILES`) with explicit `isset()` guards and per-field sanitization throughout the form submission and JSON/plugin-data import paths.
+
 ## [1.6.5] — 2026-09-14
 
 Corrective release addressing WordPress.org Plugin Review Team feedback on the 1.6.4 submission.

@@ -1,8 +1,8 @@
 <?php
-namespace AgencyManager\Csv_Import;
+namespace Nettalo\TalentLocationManagement\Csv_Import;
 
-use AgencyManager\Rest\Location_Rest_Controller;
-use AgencyManager\Rest\Talent_Rest_Controller;
+use Nettalo\TalentLocationManagement\Rest\Location_Rest_Controller;
+use Nettalo\TalentLocationManagement\Rest\Talent_Rest_Controller;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

@@ -1,7 +1,7 @@
 <?php
-namespace AgencyManager\Export_Import;
+namespace Nettalo\TalentLocationManagement\Export_Import;
 
-use AgencyManager\Settings;
+use Nettalo\TalentLocationManagement\Settings;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -35,18 +35,33 @@ class Importer {
 			exit;
 		}
 
-		if ( empty( $_FILES['am_import_file']['tmp_name'] ) || ! is_uploaded_file( $_FILES['am_import_file']['tmp_name'] ) ) {
+		if ( empty( $_FILES['am_import_file']['tmp_name'] ) ) {
 			wp_safe_redirect( add_query_arg( 'am_import_error', 'missing_file', $referer ) );
 			exit;
 		}
 
-		$filetype = wp_check_filetype( $_FILES['am_import_file']['name'], array( 'json' => 'application/json' ) );
-		if ( 'json' !== $filetype['ext'] || $_FILES['am_import_file']['size'] > 10 * MB_IN_BYTES ) {
+		// $_FILES's 'tmp_name', 'name', 'size' entries for one uploaded file are
+		// all populated together by PHP itself from the same request, so once
+		// 'tmp_name' is confirmed present (above), the sibling keys are too —
+		// still sanitized individually here per field type (a server-generated
+		// path, a client-supplied filename never trusted for anything but
+		// display, and a numeric size) rather than trusted verbatim.
+		$tmp_name = isset( $_FILES['am_import_file']['tmp_name'] ) ? sanitize_text_field( wp_unslash( $_FILES['am_import_file']['tmp_name'] ) ) : '';
+		$name     = isset( $_FILES['am_import_file']['name'] ) ? sanitize_file_name( wp_unslash( $_FILES['am_import_file']['name'] ) ) : '';
+		$size     = isset( $_FILES['am_import_file']['size'] ) ? (int) $_FILES['am_import_file']['size'] : 0;
+
+		if ( ! is_uploaded_file( $tmp_name ) ) {
+			wp_safe_redirect( add_query_arg( 'am_import_error', 'missing_file', $referer ) );
+			exit;
+		}
+
+		$filetype = wp_check_filetype( $name, array( 'json' => 'application/json' ) );
+		if ( 'json' !== $filetype['ext'] || $size > 10 * MB_IN_BYTES ) {
 			wp_safe_redirect( add_query_arg( 'am_import_error', 'invalid_file', $referer ) );
 			exit;
 		}
 
-		$raw  = file_get_contents( $_FILES['am_import_file']['tmp_name'] ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- local tmp upload, not a remote request.
+		$raw  = file_get_contents( $tmp_name ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- local tmp upload, not a remote request.
 		$data = json_decode( (string) $raw, true );
 
 		if ( ! is_array( $data ) || empty( $data['schema_version'] ) || empty( $data['sections'] ) || ! is_array( $data['sections'] ) ) {
@@ -81,7 +96,10 @@ class Importer {
 		 * @param string $section One of Schema::SECTIONS.
 		 * @param mixed  $payload The raw (still unvalidated per-item) section payload.
 		 */
-		do_action( 'am_before_import_section', $section, $payload );
+		do_action( 'nettalo_before_import_section', $section, $payload );
+		// Legacy alias — kept working for any integration still hooking the
+		// pre-1.7.0 action name; see docs/REBRAND.md.
+		do_action_deprecated( 'am_before_import_section', array( $section, $payload ), '1.7.0', 'nettalo_before_import_section' );
 
 		switch ( $section ) {
 			case 'categories':
@@ -129,7 +147,10 @@ class Importer {
 		 *
 		 * @param string $section
 		 */
-		do_action( 'am_after_import_section', $section, $this->report[ $section ] ?? array() );
+		do_action( 'nettalo_after_import_section', $section, $this->report[ $section ] ?? array() );
+		// Legacy alias — kept working for any integration still hooking the
+		// pre-1.7.0 action name; see docs/REBRAND.md.
+		do_action_deprecated( 'am_after_import_section', array( $section, $this->report[ $section ] ?? array() ), '1.7.0', 'nettalo_after_import_section' );
 	}
 
 	private function import_terms( string $taxonomy, $items ): void {

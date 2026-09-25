@@ -4,15 +4,15 @@ Tags: talent, casting, locations, elementor, csv import
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.6.5
+Stable tag: 1.7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Talent and location management for agencies — profiles, application forms, CSV import, and Elementor widgets, from one admin screen.
-
-Formerly published as "Agency Manager." Renamed to establish a distinctive plugin identity; no functionality, shortcodes, Elementor widgets, or stored data changed as a result of the rename — see the Changelog for details.
+Talent and location management for agencies — profiles, application forms, CSV import, and Elementor widgets.
 
 == Description ==
+
+Formerly published as "Agency Manager." Renamed to establish a distinctive plugin identity; no functionality, shortcodes, Elementor widgets, or stored data changed as a result of the rename — see the Changelog for details.
 
 NettWebs Talent & Location Management gives a talent, casting, or location agency a self-contained management system inside WordPress: a React/Tailwind admin application (Dashboard, Talent, Locations, Applications, Forms, Website Display, Import/Export, Settings), Talent and Location profiles, public application forms with a review workflow and a drag-and-drop Form Builder, CSV import for bulk Talent/Location data, three Display Modes (Hidden / Now Scouting / Live), Elementor widgets, shortcodes, and JSON import/export.
 
@@ -98,6 +98,9 @@ Because these forms can collect personal data, if your site is subject to GDPR o
 18. Location cards on the front end.
 
 == Changelog ==
+
+= 1.7.0 =
+Second corrective release addressing WordPress.org Plugin Review Team feedback. Replaced 25 remaining uses of the old "agency-manager" text domain with the plugin's actual slug. The `am_form_submission_allowed` filter no longer receives raw, unsanitized `$_POST` — it now receives already-sanitized field values. Added missing `json_last_error()` validation to two JSON-payload AJAX endpoints. Fixed a genuine unescaped-output case and hardened file-upload input handling throughout. Migrated the plugin's internal PHP namespace, five internal constants, and fourteen internal hook names to a unique `Nettalo`/`nettalo_` prefix, per review feedback that the previous internal prefix was too generic — every old constant and hook name remains available as a backward-compatible alias, and no public identifier (shortcodes, REST routes, Elementor widgets, meta keys, options, post types, AJAX actions) changed. No database schema changes, no functionality removed.
 
 = 1.6.5 =
 Corrective release addressing WordPress.org Plugin Review Team feedback. Renamed from "Agency Manager" to "NettWebs Talent & Location Management" to establish a distinctive plugin identity (plugin name, slug, and text domain only — every shortcode, Elementor widget identifier, REST route, and stored meta/option key is unchanged, so existing content and pages continue to work exactly as before). Hardened the public form-upload path to sanitize the uploaded filename and stop trusting the client-supplied file type before use (the real type is still determined the same way it always was, via WordPress's own upload validation). Added explicit per-field schema validation to the Form Builder's save handler and the Elementor Widget Style Preset save handler, so malformed submitted data is normalized or rejected rather than merely decoded. Moved the admin menu from position 25 (which collided with a core WordPress menu position) to a position below WordPress's own core menu items. Removed a manual translation-loading call that is unnecessary now that the plugin's text domain matches its WordPress.org slug. No database schema changes, no functionality removed.

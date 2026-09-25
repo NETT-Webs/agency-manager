@@ -1,7 +1,7 @@
 <?php
-namespace AgencyManager\Cpt;
+namespace Nettalo\TalentLocationManagement\Cpt;
 
-use AgencyManager\Compat\Registration_Guard;
+use Nettalo\TalentLocationManagement\Compat\Registration_Guard;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -50,7 +50,7 @@ class Term_Meta {
 			return;
 		}
 
-		\AgencyManager\Admin\Media_Picker_Assets::enqueue();
+		\Nettalo\TalentLocationManagement\Admin\Media_Picker_Assets::enqueue();
 	}
 
 	public function render_add_fields(): void {

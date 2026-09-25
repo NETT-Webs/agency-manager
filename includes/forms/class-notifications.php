@@ -1,7 +1,7 @@
 <?php
-namespace AgencyManager\Forms;
+namespace Nettalo\TalentLocationManagement\Forms;
 
-use AgencyManager\Settings;
+use Nettalo\TalentLocationManagement\Settings;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Notifications {
 
 	public function register(): void {
-		add_action( 'am_submission_created', array( $this, 'notify' ) );
+		add_action( 'nettalo_submission_created', array( $this, 'notify' ) );
 	}
 
 	public function notify( int $submission_id ): void {
@@ -22,7 +22,11 @@ class Notifications {
 		 * @param string $to            Recipient email address.
 		 * @param int    $submission_id
 		 */
-		$to = apply_filters( 'am_notification_recipient', $to, $submission_id );
+		$to = apply_filters( 'nettalo_notification_recipient', $to, $submission_id );
+
+		// Legacy alias — kept working for any integration still hooking the
+		// pre-1.7.0 filter name; see docs/REBRAND.md.
+		$to = apply_filters_deprecated( 'am_notification_recipient', array( $to, $submission_id ), '1.7.0', 'nettalo_notification_recipient' );
 
 		if ( ! $to ) {
 			return;

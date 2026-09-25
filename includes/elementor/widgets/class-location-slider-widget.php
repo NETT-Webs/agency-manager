@@ -1,5 +1,5 @@
 <?php
-namespace AgencyManager\Elementor\Widgets;
+namespace Nettalo\TalentLocationManagement\Elementor\Widgets;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

@@ -1,11 +1,11 @@
 <?php
-namespace AgencyManager\Rest;
+namespace Nettalo\TalentLocationManagement\Rest;
 
-use AgencyManager\Csv_Import\Column_Mapper;
-use AgencyManager\Csv_Import\Importer;
-use AgencyManager\Csv_Import\Import_Session;
-use AgencyManager\Csv_Import\Row_Resolver;
-use AgencyManager\Settings;
+use Nettalo\TalentLocationManagement\Csv_Import\Column_Mapper;
+use Nettalo\TalentLocationManagement\Csv_Import\Importer;
+use Nettalo\TalentLocationManagement\Csv_Import\Import_Session;
+use Nettalo\TalentLocationManagement\Csv_Import\Row_Resolver;
+use Nettalo\TalentLocationManagement\Settings;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

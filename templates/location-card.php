@@ -7,9 +7,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- this file is only ever `include`d from inside Templates::render(), a class method (not the true global scope), via extract()+include — its local variables never leak beyond that one method call, so a plugin-wide prefix would add noise without addressing any real scope-pollution risk.
 $post_id  = $post_id ?? 0;
-$image_id = \AgencyManager\Frontend\Card_Renderer::get_card_image_id( $post_id, 'location' );
-$city     = \AgencyManager\Frontend\Meta_Resolver::get( $post_id, 'location', 'city' );
+$image_id = \Nettalo\TalentLocationManagement\Frontend\Card_Renderer::get_card_image_id( $post_id, 'location' );
+$city     = \Nettalo\TalentLocationManagement\Frontend\Meta_Resolver::get( $post_id, 'location', 'city' );
 $type     = wp_get_post_terms( $post_id, 'location_type', array( 'fields' => 'names' ) );
 $type     = is_wp_error( $type ) ? array() : $type;
 ?>
