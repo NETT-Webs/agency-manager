@@ -29,7 +29,7 @@ class Schema {
 	public static function envelope( array $sections ): array {
 		return array(
 			'schema_version'  => self::VERSION,
-			'generator'       => 'Agency Manager ' . NETTALO_VERSION,
+			'generator'       => 'NettWebs Talent & Location Management ' . NETTALO_VERSION,
 			'exported_at'     => gmdate( 'c' ),
 			'source_site_url' => home_url(),
 			'sections'        => $sections,

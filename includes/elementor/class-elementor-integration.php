@@ -97,10 +97,16 @@ class Elementor_Integration {
 	 * @param \Elementor\Elements_Manager $elements_manager
 	 */
 	public function register_category( $elements_manager ): void {
+		// The category id below must match the string every widget's
+		// get_categories() returns (see Agency_Form_Widget, Base_Form_Widget,
+		// Base_Grid_Widget) — a prior mismatch here ('agency-manager' vs.
+		// 'nettwebs-talent-location-management') left every widget without a
+		// registered category, so they never got a proper group header in
+		// Elementor's panel when browsing by category (only search worked).
 		$elements_manager->add_category(
-			'agency-manager',
+			'nettwebs-talent-location-management',
 			array(
-				'title' => __( 'Agency Manager', 'nettwebs-talent-location-management' ),
+				'title' => __( 'NettWebs Talent & Location', 'nettwebs-talent-location-management' ),
 				'icon'  => 'fa fa-address-card',
 			)
 		);

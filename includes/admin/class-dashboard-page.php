@@ -17,7 +17,7 @@ class Dashboard_Page {
 		$activity = $this->get_recent_activity();
 		?>
 		<div class="wrap am-admin-page">
-			<h1><?php esc_html_e( 'Agency Manager', 'nettwebs-talent-location-management' ); ?></h1>
+			<h1><?php esc_html_e( 'NettWebs Talent & Location Management', 'nettwebs-talent-location-management' ); ?></h1>
 
 			<div class="am-dashboard-tiles">
 				<?php foreach ( $this->get_tiles() as $tile ) : ?>
@@ -57,7 +57,7 @@ class Dashboard_Page {
 			</div>
 
 			<h2><?php esc_html_e( 'Shortcodes', 'nettwebs-talent-location-management' ); ?></h2>
-			<p class="description"><?php esc_html_e( 'Every shortcode available in Agency Manager, grouped by section. Click Copy, then paste into any Elementor Text/Shortcode widget, block editor Shortcode block, or classic editor.', 'nettwebs-talent-location-management' ); ?></p>
+			<p class="description"><?php esc_html_e( 'Every shortcode available, grouped by section. Click Copy, then paste into any Elementor Text/Shortcode widget, block editor Shortcode block, or classic editor.', 'nettwebs-talent-location-management' ); ?></p>
 			<?php Shortcode_Reference::render_panel(); ?>
 		</div>
 		<?php

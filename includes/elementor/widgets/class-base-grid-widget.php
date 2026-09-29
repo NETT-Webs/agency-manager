@@ -56,7 +56,7 @@ abstract class Base_Grid_Widget extends Widget_Base {
 					'label'       => __( 'Use Homepage Settings', 'nettwebs-talent-location-management' ),
 					'type'        => Controls_Manager::SWITCHER,
 					'default'     => 'yes',
-					'description' => __( 'On by default so the homepage never needs Elementor edits (Agency Manager -> Settings). Switch off to override count/mode for just this widget instance.', 'nettwebs-talent-location-management' ),
+					'description' => __( 'On by default so the homepage never needs Elementor edits (Settings in the admin). Switch off to override count/mode for just this widget instance.', 'nettwebs-talent-location-management' ),
 				)
 			);
 		}

@@ -51,7 +51,7 @@ class Setup_Wizard {
 		// URL-only admin screen in WordPress.
 		add_submenu_page(
 			null,
-			__( 'Agency Manager Setup', 'nettwebs-talent-location-management' ),
+			__( 'NettWebs Talent & Location Management Setup', 'nettwebs-talent-location-management' ),
 			__( 'Setup', 'nettwebs-talent-location-management' ),
 			'manage_options',
 			self::PAGE_SLUG,
@@ -187,7 +187,7 @@ class Setup_Wizard {
 		$step = isset( $_GET['step'] ) ? sanitize_key( wp_unslash( $_GET['step'] ) ) : 'agency_type';
 		?>
 		<div class="am-wizard-wrap">
-			<h1><?php esc_html_e( 'Welcome to Agency Manager', 'nettwebs-talent-location-management' ); ?></h1>
+			<h1><?php esc_html_e( 'Welcome to NettWebs Talent & Location Management', 'nettwebs-talent-location-management' ); ?></h1>
 			<div class="am-wizard-steps">
 				<span class="<?php echo 'agency_type' === $step ? 'is-current' : ''; ?>">1. <?php esc_html_e( 'Agency Type', 'nettwebs-talent-location-management' ); ?></span>
 				<span class="<?php echo 'content' === $step ? 'is-current' : ''; ?>">2. <?php esc_html_e( 'Starter Content', 'nettwebs-talent-location-management' ); ?></span>
@@ -248,7 +248,7 @@ class Setup_Wizard {
 
 	private function render_done_step(): void {
 		?>
-		<p><?php esc_html_e( "You're all set. Manage everything from the Agency Manager dashboard — no code, no Elementor required.", 'nettwebs-talent-location-management' ); ?></p>
+		<p><?php esc_html_e( "You're all set. Manage everything from the Dashboard — no code, no Elementor required.", 'nettwebs-talent-location-management' ); ?></p>
 		<p><a class="button button-primary" href="<?php echo esc_url( admin_url( 'admin.php?page=agency-manager' ) ); ?>"><?php esc_html_e( 'Go to Dashboard', 'nettwebs-talent-location-management' ); ?></a></p>
 		<?php
 	}

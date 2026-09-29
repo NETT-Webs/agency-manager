@@ -25,7 +25,7 @@ class Agency_Form_Widget extends Widget_Base {
 	}
 
 	public function get_title(): string {
-		return __( 'Agency Manager Form', 'nettwebs-talent-location-management' );
+		return __( 'Talent & Location Form', 'nettwebs-talent-location-management' );
 	}
 
 	public function get_icon(): string {
@@ -53,7 +53,7 @@ class Agency_Form_Widget extends Widget_Base {
 				'options'     => $this->get_form_options(),
 				'default'     => '',
 				'label_block' => true,
-				'description' => __( 'Choose which form (built under Agency Manager -> Forms) to display.', 'nettwebs-talent-location-management' ),
+				'description' => __( 'Choose which form (built under Forms in the admin) to display.', 'nettwebs-talent-location-management' ),
 			)
 		);
 

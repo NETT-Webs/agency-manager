@@ -40,7 +40,7 @@ abstract class Base_Form_Widget extends Widget_Base {
 				'multiple'    => true,
 				'options'     => $this->get_field_options(),
 				'default'     => array(),
-				'description' => __( 'Optional — hide specific fields for just this instance. Add, reorder, or require fields under Agency Manager -> Forms.', 'nettwebs-talent-location-management' ),
+				'description' => __( 'Optional — hide specific fields for just this instance. Add, reorder, or require fields under Forms in the admin.', 'nettwebs-talent-location-management' ),
 			)
 		);
 

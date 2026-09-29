@@ -31,7 +31,7 @@ export function PageHeader( { title, description, breadcrumbs, actions, classNam
 				<h2 className="am-text-xl am-font-semibold am-tracking-tight am-text-foreground">{ title }</h2>
 				{ description && <p className="am-mt-1 am-max-w-2xl am-text-sm am-text-muted-foreground">{ description }</p> }
 			</div>
-			{ actions && <div className="am-flex am-shrink-0 am-items-center am-gap-2">{ actions }</div> }
+			{ actions && <div className="am-flex am-flex-wrap am-items-center am-gap-2">{ actions }</div> }
 		</div>
 	);
 }

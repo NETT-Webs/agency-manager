@@ -134,7 +134,7 @@ class Admin_App_Page {
 	public function render( string $screen = 'dashboard' ): void {
 		$this->enqueue( $screen );
 		echo '<div id="agency-manager-root" class="am-admin-app-root">';
-		echo '<noscript>' . esc_html__( 'Agency Manager requires JavaScript to be enabled.', 'nettwebs-talent-location-management' ) . '</noscript>';
+		echo '<noscript>' . esc_html__( 'NettWebs Talent & Location Management requires JavaScript to be enabled.', 'nettwebs-talent-location-management' ) . '</noscript>';
 		echo '</div>';
 	}
 }
