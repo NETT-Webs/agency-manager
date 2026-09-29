@@ -19,7 +19,7 @@ class Activator {
 
 		self::seed_default_forms();
 
-		set_transient( 'am_activation_redirect', 1, 30 );
+		set_transient( 'nettalo_activation_redirect', 1, 30 );
 
 		flush_rewrite_rules();
 	}

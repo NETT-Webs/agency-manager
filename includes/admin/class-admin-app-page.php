@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * screen. Each `add_submenu_page()` entry in `Admin::add_menu()` calls
  * `render( $screen )` with its own screen key (e.g. 'applications',
  * 'forms'); the same `build/index.js` is enqueued every time, and the
- * localized `amAdminApp.screen` value tells the client-side app (see
+ * localized `nettaloAdminApp.screen` value tells the client-side app (see
  * src/admin-app/app.js) which page component to mount inside the shared
  * Shell. There is no client-side router — every screen is still a full
  * WordPress admin-menu navigation, matching how wp-admin already works.
@@ -47,7 +47,7 @@ class Admin_App_Page {
 		$asset = require $asset_file;
 
 		wp_enqueue_script(
-			'am-admin-app',
+			'nettalo-admin-app',
 			NETTALO_PLUGIN_URL . 'build/index.js',
 			$asset['dependencies'],
 			$asset['version'],
@@ -57,7 +57,7 @@ class Admin_App_Page {
 		// wp-scripts names the extracted stylesheet after the webpack chunk
 		// ("style-index.css"), not after the entry file ("index.css").
 		if ( file_exists( NETTALO_PLUGIN_DIR . 'build/style-index.css' ) ) {
-			wp_enqueue_style( 'am-admin-app', NETTALO_PLUGIN_URL . 'build/style-index.css', array(), $asset['version'] );
+			wp_enqueue_style( 'nettalo-admin-app', NETTALO_PLUGIN_URL . 'build/style-index.css', array(), $asset['version'] );
 		}
 
 		$current_user = wp_get_current_user();
@@ -65,8 +65,8 @@ class Admin_App_Page {
 		$form_id      = isset( $_GET['form_id'] ) ? absint( $_GET['form_id'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only, selects which form the builder screen loads.
 
 		wp_localize_script(
-			'am-admin-app',
-			'amAdminApp',
+			'nettalo-admin-app',
+			'nettaloAdminApp',
 			array(
 				'screen'      => $screen,
 				'recordId'    => $record_id,

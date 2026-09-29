@@ -4,7 +4,7 @@ Tags: talent, casting, locations, elementor, csv import
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.7.0
+Stable tag: 1.7.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,9 @@ Because these forms can collect personal data, if your site is subject to GDPR o
 18. Location cards on the front end.
 
 == Changelog ==
+
+= 1.7.1 =
+Third corrective release addressing WordPress.org Plugin Review Team feedback. Reviewed the four call sites that echo pre-built HTML from `Carousel_Renderer`/`Card_Renderer` (flagged by the review scanner as "late escaping"): traced every dynamic value through the renderer chain and confirmed each one is already escaped with `esc_html()`/`esc_attr()`/`esc_url()`/`wp_get_attachment_image()` inside the renderer and card templates themselves — documented the full escaping audit in the codebase and added narrowly-scoped, justified PHPCS ignore comments rather than double-escaping already-safe HTML. Renamed the remaining short/generic internal identifiers the review flagged: five `AM_*` constant aliases were removed outright (an unconditional `define()` risks a real collision with another plugin using the same generic name, unlike the hook-based backward-compatible aliases used elsewhere in this plugin), five internal script-handle/localized-JS-global pairs (`am-admin-app`/`amAdminApp`, `am-form-builder`/`amFormBuilder`, `am-admin-meta-boxes`/`amMediaPicker`, `am-shortcode-reference`/`amShortcodeReference`, `am-widget-style-presets`/`amWidgetStylePresets`) were renamed to their `nettalo`-prefixed equivalents, four internal `wp_ajax_am_*` actions were renamed to `wp_ajax_nettalo_*`, and two internal transient keys were renamed to `nettalo_*`. No public identifier (shortcodes, REST routes, Elementor widget slugs, admin page slugs, post types, taxonomies, meta keys, or stored option names) changed. No database schema changes, no functionality removed.
 
 = 1.7.0 =
 Second corrective release addressing WordPress.org Plugin Review Team feedback. Replaced 25 remaining uses of the old "agency-manager" text domain with the plugin's actual slug. The `am_form_submission_allowed` filter no longer receives raw, unsanitized `$_POST` — it now receives already-sanitized field values. Added missing `json_last_error()` validation to two JSON-payload AJAX endpoints. Fixed a genuine unescaped-output case and hardened file-upload input handling throughout. Migrated the plugin's internal PHP namespace, five internal constants, and fourteen internal hook names to a unique `Nettalo`/`nettalo_` prefix, per review feedback that the previous internal prefix was too generic — every old constant and hook name remains available as a backward-compatible alias, and no public identifier (shortcodes, REST routes, Elementor widgets, meta keys, options, post types, AJAX actions) changed. No database schema changes, no functionality removed.

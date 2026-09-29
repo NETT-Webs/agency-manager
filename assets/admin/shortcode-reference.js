@@ -7,7 +7,7 @@
 	'use strict';
 
 	function showToast( button ) {
-		var text = ( window.amShortcodeReference && window.amShortcodeReference.copiedText ) || 'Shortcode copied.';
+		var text = ( window.nettaloShortcodeReference && window.nettaloShortcodeReference.copiedText ) || 'Shortcode copied.';
 		var toast = document.createElement( 'span' );
 		toast.className = 'am-shortcode-copy__toast';
 		toast.textContent = text;

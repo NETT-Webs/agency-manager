@@ -66,7 +66,7 @@ class Elementor_Integration {
 		);
 
 		wp_enqueue_script(
-			'am-widget-style-presets',
+			'nettalo-widget-style-presets',
 			NETTALO_PLUGIN_URL . 'assets/elementor/widget-style-presets.js',
 			array( 'jquery' ),
 			NETTALO_VERSION,
@@ -74,8 +74,8 @@ class Elementor_Integration {
 		);
 
 		wp_localize_script(
-			'am-widget-style-presets',
-			'amWidgetStylePresets',
+			'nettalo-widget-style-presets',
+			'nettaloWidgetStylePresets',
 			array(
 				'presets' => Settings::get_widget_style_presets(),
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),

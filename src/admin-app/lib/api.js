@@ -1,6 +1,6 @@
 import apiFetch from '@wordpress/api-fetch';
 
-const config = window.amAdminApp || {};
+const config = window.nettaloAdminApp || {};
 
 if ( config.restUrl ) {
 	apiFetch.use( apiFetch.createRootURLMiddleware( config.restUrl ) );
@@ -59,7 +59,7 @@ export function getFormBuilderData( id ) {
 export function saveFormSchema( { formId, title, formType, confirmation, fields } ) {
 	const cfg = config.formBuilder || {};
 	const body = new URLSearchParams();
-	body.set( 'action', 'am_save_form_schema' );
+	body.set( 'action', 'nettalo_save_form_schema' );
 	body.set( 'nonce', cfg.nonce || '' );
 	body.set( 'form_id', formId );
 	body.set( 'title', title );

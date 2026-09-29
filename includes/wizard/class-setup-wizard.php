@@ -27,11 +27,11 @@ class Setup_Wizard {
 	}
 
 	public function maybe_redirect(): void {
-		if ( ! get_transient( 'am_activation_redirect' ) ) {
+		if ( ! get_transient( 'nettalo_activation_redirect' ) ) {
 			return;
 		}
 
-		delete_transient( 'am_activation_redirect' );
+		delete_transient( 'nettalo_activation_redirect' );
 
 		if ( wp_doing_ajax() || ( defined( 'DOING_CRON' ) && DOING_CRON ) || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
 			return;

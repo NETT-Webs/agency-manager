@@ -826,8 +826,13 @@ abstract class Base_Grid_Widget extends Widget_Base {
 		// beyond these Elementor Style-tab controls is the active theme's
 		// responsibility (CSS variables / a template override) — there is no
 		// "Style preset" selector here.
-		// Carousel_Renderer escapes every dynamic value it outputs internally.
-		echo Carousel_Renderer::render( $type, $layout, $args ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		// Carousel_Renderer::render() returns fully pre-escaped HTML — every
+		// dynamic value it outputs is escaped at its actual point of output
+		// (esc_attr() for its own wrapper markup, esc_url()/esc_html()/
+		// wp_get_attachment_image() inside the talent-card/location-card
+		// templates it delegates to), not here at this echo. See
+		// docs/REBRAND.md for the full escaping audit.
+		echo Carousel_Renderer::render( $type, $layout, $args ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- pre-escaped HTML, see comment above.
 	}
 
 	/**

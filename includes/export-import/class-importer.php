@@ -80,7 +80,7 @@ class Importer {
 			$this->import_section( $section, $data['sections'][ $section ] );
 		}
 
-		set_transient( 'am_import_report_' . get_current_user_id(), $this->report, 5 * MINUTE_IN_SECONDS );
+		set_transient( 'nettalo_import_report_' . get_current_user_id(), $this->report, 5 * MINUTE_IN_SECONDS );
 
 		wp_safe_redirect( admin_url( 'admin.php?page=agency-manager-import-export&am_imported=1' ) );
 		exit;
@@ -408,7 +408,7 @@ class Importer {
 	}
 
 	public static function get_last_report(): array {
-		$report = get_transient( 'am_import_report_' . get_current_user_id() );
+		$report = get_transient( 'nettalo_import_report_' . get_current_user_id() );
 
 		return is_array( $report ) ? $report : array();
 	}

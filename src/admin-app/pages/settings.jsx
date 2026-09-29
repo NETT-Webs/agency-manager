@@ -18,7 +18,7 @@ const AGENCY_TYPES = [
 ];
 
 const BACKUP_SECTIONS = [ 'plugin_settings', 'display_settings', 'homepage_settings', 'forms' ];
-const config = window.amAdminApp?.importExport || {};
+const config = window.nettaloAdminApp?.importExport || {};
 
 function BackupCard() {
 	return (

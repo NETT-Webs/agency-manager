@@ -10,7 +10,7 @@
 
 1. Log into `wp-admin`.
 2. Go to **Plugins → Add New → Upload Plugin**.
-3. Click **Choose File**, select `nettwebs-talent-location-management-1.7.0.zip`, then click **Install Now**.
+3. Click **Choose File**, select `nettwebs-talent-location-management-1.7.1.zip`, then click **Install Now**.
 4. Click **Activate Plugin**.
 5. You'll be redirected to the **Setup Wizard** automatically — no manual configuration is required.
 

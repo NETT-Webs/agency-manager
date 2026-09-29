@@ -33,8 +33,8 @@ function formatValue( value ) {
 }
 
 function buildCsvExportUrl( formId ) {
-	const adminPostUrl = window.amAdminApp?.importExport?.adminPostUrl || '';
-	const nonce = window.amAdminApp?.applications?.csvExportNonce || '';
+	const adminPostUrl = window.nettaloAdminApp?.importExport?.adminPostUrl || '';
+	const nonce = window.nettaloAdminApp?.applications?.csvExportNonce || '';
 	const params = new URLSearchParams( { action: 'am_export_submissions_csv', form_id: formId, _wpnonce: nonce } );
 	return `${ adminPostUrl }?${ params.toString() }`;
 }
@@ -139,7 +139,7 @@ export function Applications() {
 	}
 
 	const loading = ! rows;
-	const csvForms = ( window.amAdminApp?.applications?.csvForms || [] ).filter( ( f ) => f.type === type );
+	const csvForms = ( window.nettaloAdminApp?.applications?.csvForms || [] ).filter( ( f ) => f.type === type );
 
 	return (
 		<div className="am-flex am-flex-col am-gap-6">

@@ -1,7 +1,7 @@
 ( function () {
 	'use strict';
 
-	var cfg = window.amFormBuilder || {};
+	var cfg = window.nettaloFormBuilder || {};
 	var root = document.getElementById( 'am-form-builder-root' );
 	if ( ! root ) {
 		return;
@@ -717,7 +717,7 @@
 		}
 
 		var body = new URLSearchParams();
-		body.set( 'action', 'am_save_form_schema' );
+		body.set( 'action', 'nettalo_save_form_schema' );
 		body.set( 'nonce', cfg.nonce );
 		body.set( 'form_id', cfg.formId );
 		body.set( 'title', state.title );

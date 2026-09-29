@@ -28,7 +28,7 @@ const OPTIONAL_KEYS = [ 'forms' ];
 const CONTENT_QUICK = [ 'talent', 'locations', 'categories', 'groups', 'location_types', 'display_settings', 'homepage_settings', 'widget_style_presets' ];
 const EVERYTHING_QUICK = [ ...CONTENT_QUICK, 'forms', 'plugin_settings' ];
 
-const config = window.amAdminApp?.importExport || {};
+const config = window.nettaloAdminApp?.importExport || {};
 
 function CheckboxGroups( { selected, onToggle } ) {
 	const groups = [

@@ -22,8 +22,8 @@ class Form_Builder_Page {
 	public function enqueue(): void {
 		Media_Picker_Assets::enqueue();
 
-		wp_enqueue_style( 'am-form-builder', NETTALO_PLUGIN_URL . 'assets/admin/form-builder.css', array( 'am-admin' ), NETTALO_VERSION );
-		wp_enqueue_script( 'am-form-builder', NETTALO_PLUGIN_URL . 'assets/admin/form-builder.js', array( 'jquery' ), NETTALO_VERSION, true );
+		wp_enqueue_style( 'nettalo-form-builder', NETTALO_PLUGIN_URL . 'assets/admin/form-builder.css', array( 'am-admin' ), NETTALO_VERSION );
+		wp_enqueue_script( 'nettalo-form-builder', NETTALO_PLUGIN_URL . 'assets/admin/form-builder.js', array( 'jquery' ), NETTALO_VERSION, true );
 	}
 
 	public function render( int $form_id ): void {
@@ -43,8 +43,8 @@ class Form_Builder_Page {
 		$confirm    = get_post_meta( $form_id, '_am_form_confirmation_message', true );
 
 		wp_localize_script(
-			'am-form-builder',
-			'amFormBuilder',
+			'nettalo-form-builder',
+			'nettaloFormBuilder',
 			array(
 				'ajaxUrl'      => admin_url( 'admin-ajax.php' ),
 				'nonce'        => wp_create_nonce( Form_Builder_Ajax::NONCE_ACTION ),

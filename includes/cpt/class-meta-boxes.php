@@ -383,7 +383,14 @@ class Meta_Boxes {
 		}
 
 		echo '<div class="am-meta-preview">';
-		echo 'talent' === $type ? Card_Renderer::render_talent_card( $post->ID ) : Card_Renderer::render_location_card( $post->ID ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Card_Renderer/templates escape all dynamic values internally.
+		// Card_Renderer::render_talent_card()/render_location_card() return
+		// fully pre-escaped HTML — every dynamic value (the post title, its
+		// permalink, its category/type terms, its city meta, its image) is
+		// escaped at its actual point of output inside templates/talent-card.php
+		// / templates/location-card.php via esc_url()/esc_html()/
+		// wp_get_attachment_image(), not here at this echo. See
+		// docs/REBRAND.md for the full escaping audit.
+		echo 'talent' === $type ? Card_Renderer::render_talent_card( $post->ID ) : Card_Renderer::render_location_card( $post->ID ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- pre-escaped HTML, see comment above.
 		echo '</div>';
 	}
 

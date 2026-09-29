@@ -14,12 +14,12 @@ class Media_Picker_Assets {
 
 	public static function enqueue(): void {
 		wp_enqueue_media();
-		wp_enqueue_script( 'am-admin-meta-boxes', NETTALO_PLUGIN_URL . 'assets/admin/admin.js', array( 'jquery' ), NETTALO_VERSION, true );
+		wp_enqueue_script( 'nettalo-admin-meta-boxes', NETTALO_PLUGIN_URL . 'assets/admin/admin.js', array( 'jquery' ), NETTALO_VERSION, true );
 		wp_enqueue_style( 'am-admin', NETTALO_PLUGIN_URL . 'assets/admin/admin.css', array(), NETTALO_VERSION );
 
 		wp_localize_script(
-			'am-admin-meta-boxes',
-			'amMediaPicker',
+			'nettalo-admin-meta-boxes',
+			'nettaloMediaPicker',
 			array(
 				'selectImagesTitle' => __( 'Select Images', 'nettwebs-talent-location-management' ),
 				'selectFileTitle'   => __( 'Select File', 'nettwebs-talent-location-management' ),

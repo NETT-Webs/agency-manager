@@ -27,9 +27,9 @@ class Widget_Style_Presets {
 	private const NONCE_ACTION = 'am_widget_style_presets';
 
 	public function register(): void {
-		add_action( 'wp_ajax_am_save_widget_style_preset', array( $this, 'ajax_save' ) );
-		add_action( 'wp_ajax_am_delete_widget_style_preset', array( $this, 'ajax_delete' ) );
-		add_action( 'wp_ajax_am_rename_widget_style_preset', array( $this, 'ajax_rename' ) );
+		add_action( 'wp_ajax_nettalo_save_widget_style_preset', array( $this, 'ajax_save' ) );
+		add_action( 'wp_ajax_nettalo_delete_widget_style_preset', array( $this, 'ajax_delete' ) );
+		add_action( 'wp_ajax_nettalo_rename_widget_style_preset', array( $this, 'ajax_rename' ) );
 	}
 
 	/**

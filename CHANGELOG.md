@@ -2,6 +2,19 @@
 
 All notable changes to NettWebs Talent & Location Management (formerly "Agency Manager") are documented in this file.
 
+## [1.7.1] — 2026-09-28
+
+Third corrective release addressing WordPress.org Plugin Review Team feedback (late-escaping audit and remaining generic/short internal-identifier prefixes).
+
+### Changed
+
+- Audited the four `echo Carousel_Renderer::render(...)` / `echo Card_Renderer::render_*_card(...)` call sites the review scanner flagged as "late escaping." Traced every dynamic value through the renderer/card-template chain and confirmed all output is already escaped (`esc_html()`, `esc_attr()`, `esc_url()`, `wp_get_attachment_image()`) at the point it is generated. Documented the full audit in `docs/REBRAND.md` and added narrowly-scoped, justified `phpcs:ignore` comments instead of double-escaping already-safe HTML.
+- Removed the five `AM_*` constant backward-compatibility aliases (`AM_VERSION`, `AM_PLUGIN_FILE`, `AM_PLUGIN_DIR`, `AM_PLUGIN_URL`, `AM_PLUGIN_BASENAME`) outright rather than renaming around them — an unconditional `define()` can genuinely collide with another plugin using the same generic constant name, unlike the hook-based deprecation aliases used elsewhere in this plugin.
+- Renamed five internal script-handle/localized-JS-global pairs to `nettalo`-prefixed equivalents: `am-admin-app`/`amAdminApp`, `am-form-builder`/`amFormBuilder`, `am-admin-meta-boxes`/`amMediaPicker`, `am-shortcode-reference`/`amShortcodeReference`, `am-widget-style-presets`/`amWidgetStylePresets`.
+- Renamed four internal `wp_ajax_am_*` AJAX actions to `wp_ajax_nettalo_*`: `save_form_schema`, `save_widget_style_preset`, `rename_widget_style_preset`, `delete_widget_style_preset`.
+- Renamed two internal transient keys to `nettalo_*`: the activation-redirect flag and the import-report cache.
+- No public identifier (shortcodes, REST routes, Elementor widget slugs, admin page slugs, post types, taxonomies, meta keys, or stored option names) changed. No database schema changes, no functionality removed.
+
 ## [1.7.0] — 2026-09-23
 
 Second corrective release addressing WordPress.org Plugin Review Team feedback (internationalization, input sanitization/validation, output escaping, and generic global-identifier prefixing).

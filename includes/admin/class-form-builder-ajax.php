@@ -21,7 +21,7 @@ class Form_Builder_Ajax {
 	public const NONCE_ACTION = 'am_form_builder';
 
 	public function register(): void {
-		add_action( 'wp_ajax_am_save_form_schema', array( $this, 'ajax_save' ) );
+		add_action( 'wp_ajax_nettalo_save_form_schema', array( $this, 'ajax_save' ) );
 	}
 
 	public function ajax_save(): void {

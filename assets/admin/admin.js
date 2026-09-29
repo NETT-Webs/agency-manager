@@ -22,7 +22,7 @@
 		var $input   = $wrapper.find( '.am-media-ids' );
 		var multiple = '1' === String( $wrapper.data( 'multiple' ) );
 
-		var i18n = window.amMediaPicker || {};
+		var i18n = window.nettaloMediaPicker || {};
 
 		var frame = wp.media( {
 			title: multiple ? ( i18n.selectImagesTitle || 'Select Images' ) : ( i18n.selectFileTitle || 'Select File' ),

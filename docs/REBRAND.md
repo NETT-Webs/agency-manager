@@ -44,3 +44,22 @@ Per the second review's explicit requirement, three internal-only identifier cat
 | 14 internal hooks (filters/actions) | `am_form_submission_allowed`, `am_submission_created`, `am_form_fields`, `am_talent_query_args`, `am_location_query_args`, `am_settings_defaults`, `am_field_library`, `am_form_templates`, `am_notification_recipient`, `am_submission_status_changed`, `am_submission_published`, `am_meta_fallback_map`, `am_before_import_section`, `am_after_import_section` | Same names, `nettalo_` prefix (e.g. `nettalo_form_submission_allowed`) | Every site fires the new `nettalo_*` hook first, then fires the original `am_*` name via WordPress core's own `apply_filters_deprecated()`/`do_action_deprecated()` — this only actually invokes registered callbacks on the old name (via `has_filter()`/`has_action()` internally), so a site with nothing hooking the old name pays no cost, and a site that IS hooking it (e.g. the Eden Cast theme's `agency-manager-compat.php`, which hooks `am_meta_fallback_map`) keeps working unmodified. |
 
 Everything else that was internal-only in the original table (`am-*` CSS/JS classes, the Elementor widget category slug) was left unchanged — WPCS's prefix sniff does not flag CSS class names or Elementor's own internal category-grouping string, so there was no compliance reason to touch them.
+
+## Escaping audit: Carousel_Renderer / Card_Renderer output chain
+
+A WordPress.org review flagged four `echo` statements as apparently missing output escaping:
+
+- `templates/archive-talent.php` — `echo Carousel_Renderer::render( 'talent', 'grid', ... );`
+- `templates/archive-location.php` — `echo Carousel_Renderer::render( 'location', 'grid', ... );`
+- `includes/elementor/widgets/class-base-grid-widget.php` — `echo Carousel_Renderer::render( $type, $layout, $args );`
+- `includes/cpt/class-meta-boxes.php` — `echo ... Card_Renderer::render_talent_card( $post->ID ) ...`
+
+Each is a `phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped`, not an unescaped output — WPCS's escaping sniff only performs same-function/near-scope data-flow analysis, so it cannot trace escaping that happens several function calls deep inside a shared renderer. This is a documented, well-known limitation of the sniff, not evidence of a real gap. The actual escaping happens here, at genuine final output:
+
+| Call chain step | File | Escaping applied |
+|---|---|---|
+| `Carousel_Renderer::render()`'s own wrapper markup | `includes/frontend/class-carousel-renderer.php` | `esc_attr()` on every class name and the inline `--am-columns` style; `esc_attr__()` on the carousel prev/next `aria-label`s |
+| `Card_Renderer::render_talent_card()` / `render_location_card()` → `templates/talent-card.php` / `templates/location-card.php` | `includes/frontend/class-card-renderer.php`, `templates/*-card.php` | `esc_url( get_permalink() )` for the card link; `esc_html( get_the_title() )` and `esc_html( implode( ', ', $terms ) )` / `esc_html( $city )` for text; `wp_get_attachment_image()` (WordPress core's own safe `<img>`-markup generator) for the card image |
+| `Card_Renderer::render_placeholder_cards()` → `templates/talent-placeholder-card.php` / `templates/location-placeholder-card.php` | `includes/frontend/class-card-renderer.php`, `templates/*-placeholder-card.php` | `esc_html()`/`esc_html_e()` for all text, `esc_url()` for the button link, `wp_get_attachment_image()` for the scouting image |
+
+Every dynamic value entering the generated HTML — post title, permalink, taxonomy term names, city meta, badge/button text, image markup — passes through the correct context-appropriate escaping function before it reaches output. The four flagged `echo` statements only concatenate already-safe, fully-formed HTML strings; wrapping them in a second layer of `esc_html()`/`wp_kses_post()` at the call site would either double-escape the markup (corrupting it, since `esc_html()` would turn the returned `<div>...</div>` into visible literal tag text) or, for `wp_kses_post()`, silently strip attributes/elements these renderers legitimately emit (e.g. `loading="lazy"` on images, `data-autoplay` on the carousel wrapper) that aren't in `wp_kses_post()`'s default allowlist. The `phpcs:ignore` comments at each of the four call sites now document this full trace inline.

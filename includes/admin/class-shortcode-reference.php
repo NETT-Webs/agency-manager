@@ -219,10 +219,10 @@ class Shortcode_Reference {
 
 	public function maybe_enqueue( string $hook ): void {
 		wp_enqueue_style( 'am-admin', NETTALO_PLUGIN_URL . 'assets/admin/admin.css', array(), NETTALO_VERSION );
-		wp_enqueue_script( 'am-shortcode-reference', NETTALO_PLUGIN_URL . 'assets/admin/shortcode-reference.js', array(), NETTALO_VERSION, true );
+		wp_enqueue_script( 'nettalo-shortcode-reference', NETTALO_PLUGIN_URL . 'assets/admin/shortcode-reference.js', array(), NETTALO_VERSION, true );
 		wp_localize_script(
-			'am-shortcode-reference',
-			'amShortcodeReference',
+			'nettalo-shortcode-reference',
+			'nettaloShortcodeReference',
 			array( 'copiedText' => __( 'Shortcode copied.', 'nettwebs-talent-location-management' ) )
 		);
 	}

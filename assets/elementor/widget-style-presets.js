@@ -10,7 +10,7 @@
  * rename/delete) fire the matching am:widget_style_* event on Elementor's
  * own editor event channel; nothing else triggers these.
  *
- * "Load" never calls the server — window.amWidgetStylePresets.presets
+ * "Load" never calls the server — window.nettaloWidgetStylePresets.presets
  * (localized once per editor page load in
  * Elementor_Integration::enqueue_editor_scripts()) already holds every
  * preset's full values, so applying one is instant. Save/Rename/Delete
@@ -35,7 +35,7 @@
 	];
 
 	function config() {
-		return window.amWidgetStylePresets || { presets: {}, ajaxUrl: '', nonce: '', i18n: {} };
+		return window.nettaloWidgetStylePresets || { presets: {}, ajaxUrl: '', nonce: '', i18n: {} };
 	}
 
 	function text( key, fallback ) {
@@ -115,7 +115,7 @@
 		} );
 
 		$.post( config().ajaxUrl, {
-			action: 'am_save_widget_style_preset',
+			action: 'nettalo_save_widget_style_preset',
 			nonce: config().nonce,
 			name: name,
 			values: JSON.stringify( values )
@@ -169,7 +169,7 @@
 		}
 
 		$.post( config().ajaxUrl, {
-			action: 'am_rename_widget_style_preset',
+			action: 'nettalo_rename_widget_style_preset',
 			nonce: config().nonce,
 			old_name: oldName,
 			new_name: newName
@@ -205,7 +205,7 @@
 		}
 
 		$.post( config().ajaxUrl, {
-			action: 'am_delete_widget_style_preset',
+			action: 'nettalo_delete_widget_style_preset',
 			nonce: config().nonce,
 			name: name
 		} ).done( function ( response ) {
